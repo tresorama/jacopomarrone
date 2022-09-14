@@ -4,4 +4,4 @@ export const links = [
   { label: 'BitBucket', permalink: 'https://bitbucket.org/tresorama/' },
   { label: 'CodePen', permalink: 'https://codepen.io/tresorama' }
 ];
-export const portfolio_permalink = "https://bitbucket.org/tresorama/the-portfolio/src/master/";
+export const portfolio_permalink = "https://github.com/tresorama/jacopomarrone";
