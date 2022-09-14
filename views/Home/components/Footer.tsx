@@ -5,7 +5,7 @@ export const Footer = () => {
     <>
       <footer className="site-footer">
         <div className="site-footer__portfolio-details">
-          <span className="site-footer__description">Made with Pug, SASS, ES6 - </span>
+          <span className="site-footer__description">Made with Next, Gsap, SASS - </span>
           <a href={portfolio_permalink}>
             <span className="site-footer__link site-footer__source-code-link">Source Code</span>
           </a>
