@@ -1,0 +1,410 @@
+// ========================
+//    VARIATIONS - ESTHETIC
+// ========================
+
+.variation--0 {
+  // NO STYLE
+}
+
+.variation--1 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--2 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(-40deg, red 70%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--3 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(90deg, red 70%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--4 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(90deg, salmon 70%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--5 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: black;
+    background: none;
+    background-image: linear-gradient(90deg, white 70%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--6 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(90deg, red -100%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--7 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(90deg, red 0%, color("transparent") 100%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--8 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: none;
+    background-image: linear-gradient(90deg, red 0%, color("transparent") 60%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--9 {
+  .home-grid__wrapper {
+    background: white;
+  }
+
+  .home-grid__box {
+    color: black;
+    background: none;
+    background-image: linear-gradient(90deg, #00ffd3 0%, color("transparent") 60%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--10 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: black;
+    background: none;
+    background-image: linear-gradient(90deg, #00ffd3 0%, color("transparent") 60%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--11 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: black;
+    //background-image: linear-gradient(89deg,#cd4839 10%, color("transparent") 100%);
+    //background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--12 {
+  .home-grid__wrapper {
+    background: salmon;
+  }
+
+  .home-grid__box {
+    color: white;
+    //background: black;
+    background-image: linear-gradient(-40deg, grey 70%, color("transparent") 100%);
+    //background-blend-mode: exclusion;
+  }
+
+  @include cursor2;
+}
+
+.variation--13 {
+  .home-grid__wrapper {
+    background: #ffeb3b;
+  }
+
+  .home-grid__box-different {
+    color: black;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--14 {
+  .home-grid__wrapper {
+    background: #ffc107;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--15 {
+  .home-grid__wrapper {
+    background: #ff9800;
+  }
+
+  .home-grid__box {
+    color: white;
+    background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--16 {
+  .home-grid__wrapper {
+    background: #ff5722;
+    color: wheat;
+  }
+
+  .home-grid__box {
+    background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--17 {
+  .home-grid__wrapper {
+    background: #ff5722;
+    color: wheat;
+  }
+
+  .home-grid__box {
+    // background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+.variation--18 {
+  .home-grid__wrapper {
+    background: hsl(36, 100%, 50%);
+  }
+
+  .home-grid__box {
+    color: white;
+    // background: red;
+    background-image: linear-gradient(89deg, #cd4839 10%, color("transparent") 100%);
+    background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+
+.variation--19 {
+  .home-grid__wrapper {
+    background: white;
+  }
+
+  .home-grid__box {
+    color: black;
+    background: none;
+    background-image: linear-gradient(90deg, #a3a3a3 0%, color("transparent") 60%);
+    background-blend-mode: normal;
+  }
+
+  @include cursor2;
+}
+
+.variation--20 {
+  .home-grid__wrapper {
+    background: hsl(42, 100%, 50%);
+  }
+
+  .home-grid__box {
+    color: white;
+    // background: red;
+    background-image: linear-gradient(89deg,
+        #cd4839 10%,
+        rgba(255, 127, 127, 0) 90%);
+    // background-blend-mode: exclusion;
+  }
+
+  @include cursor1;
+}
+
+//
+//
+//
+// ========================
+//    VARIATIONS - BOX HOVER FX
+// ========================
+[class*="hover-fx--"] {
+  .home-grid__box {
+    --hover-fx-time: 400ms;
+    transition-duration: var(--hover-fx-time);
+    transition-property: none;
+  }
+}
+
+.hover-fx--0 {
+  // NO STYLE
+}
+
+.hover-fx--1 {
+  .home-grid__box {
+    transition-property: filter;
+    filter: blur(2px);
+  }
+
+  .home-grid__box:hover {
+    filter: blur(0px);
+  }
+}
+
+.hover-fx--2 {
+  .home-grid__box {
+    transition-property: filter;
+    filter: blur(2px);
+  }
+
+  .home-grid__box:hover {
+    filter: blur(0px);
+  }
+}
+
+.hover-fx--3 {
+  .home-grid__box {
+    transition-property: filter;
+    filter: drop-shadow(2px 4px 6px color("transparent"));
+  }
+
+  .home-grid__box:hover {
+    filter: drop-shadow(2px 4px 6px black);
+  }
+}
+
+.hover-fx--4 {
+  .home-grid__box {
+    transition-property: filter;
+    filter: grayscale(0.6);
+  }
+
+  .box:hover {
+    filter: grayscale(0);
+  }
+}
+
+.hover-fx--5 {
+  .box {
+    transition-property: filter;
+    filter: grayscale(1);
+  }
+
+  .box:hover {
+    filter: grayscale(0);
+  }
+}
+
+//
+//
+//
+// ========================
+//    VARIATIONS - BOX HOVER FX B
+// ========================
+.hover-fx-b--0 {
+  // NOTHING
+}
+
+.hover-fx-b--1 {
+  .home-grid__box:not(.home-grid__box-different)>* {
+    transition-duration: 200ms;
+    transition-property: transform;
+    transform: none;
+    transform-origin: bottom left;
+  }
+
+  .home-grid__box:not(.home-grid__box-different):hover>* {
+    transform: translateY(-20%) scale(1.1);
+  }
+}

@@ -1,0 +1,46 @@
+// Breakpoint
+$bp-small: "(min-width: 0px)";
+$bp-small-to: "(max-width: 767px)";
+$bp-medium: "(min-width: 768px)";
+$bp-medium-to: "(max-width: 991px)";
+$bp-large: "(min-width: 992px)";
+$bp-large-to: "(max-width: 1399px)";
+$bp-huge: "(min-width: 1400px)";
+
+
+
+@mixin atSmall {
+  @media #{$bp-small} {
+    @content;
+  }
+}
+
+@mixin untilSmall {
+  @media #{$bp-small-to} {
+    @content;
+  }
+}
+
+@mixin atMedium {
+  @media #{$bp-medium} {
+    @content;
+  }
+}
+
+@mixin untilMedium {
+  @media #{$bp-medium-to} {
+    @content;
+  }
+}
+
+@mixin atLarge {
+  @media #{$bp-large} {
+    @content;
+  }
+}
+
+@mixin atHuge {
+  @media #{$bp-huge} {
+    @content;
+  }
+}

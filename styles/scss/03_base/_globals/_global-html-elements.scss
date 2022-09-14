@@ -1,0 +1,28 @@
+@use "sass:color";
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+
+
+input,
+textarea {
+  padding: 0.5em 1em;
+  width: 100%;
+  max-width: 100%;
+  outline-width: 4px;
+  outline-style: outset;
+  outline-color: var(--outline-color, transparent);
+  &:focus {
+    --outline-color: #{color.change(color('grey-900'), $alpha: 0.5)};
+  }
+}
+
+*:focus-visible {
+  outline-width: 4px;
+  outline-style: outset;
+  outline-color:  color.change(color('grey-900'), $alpha: 0.5);
+}

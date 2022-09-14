@@ -1,0 +1,8 @@
+:root {
+  --transition-preset-1: 0.5s ease;
+  --transition-preset-2: 0.2s ease-out;
+}
+@function transition($key) {
+  // i.e. transition("preset-1"), transition("preset-2"), etc.
+  @return var(--transition-#{$key});
+}

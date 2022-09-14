@@ -1,0 +1,87 @@
+/* Neutral Colors Map */
+$color-set-neutral: (
+  "white": #fff,
+  "black": rgb(0, 0, 0),
+  "transparent": rgba(255, 255, 255, 0),
+
+  // "grey-50": #ffffff,
+  // "grey-100": #f5f5f5,
+  // "grey-200": #eeeeee,
+  // "grey-300": #e0e0e0,
+  // "grey-400": #bdbdbd,
+  // "grey-500": #9e9e9e,
+  // "grey-600": #757575,
+  // "grey-700": #616161,
+  // "grey-800": #424242,
+  // "grey-900": #212121,
+
+  "grey-50": hsl(0, 0%, 100%),
+  "grey-100": hsl(0, 0%, 98%),
+  "grey-150": hsl(0, 0%, 96%),
+  "grey-200": hsl(0, 0%, 94%),
+  "grey-300": hsl(0, 0%, 90%),
+  "grey-400": hsl(0, 0%, 85%),
+  "grey-500": hsl(0, 0%, 80%),
+  "grey-600": hsl(0, 0%, 60%),
+  "grey-700": hsl(0, 0%, 45%),
+  "grey-800": hsl(0, 0%, 30%),
+  "grey-900": hsl(0, 0%, 8%),
+
+);
+
+
+/* Main Colors */
+$lighten-amount: 5;
+$darken-amount: 5;
+
+$color-primary: hsl(296, 100%, 50%);
+$color-secondary: hsla(169, 100%, 50%, 1);
+$color-tertiary: hsla(182, 100%, 50%, 1);
+
+$my-colors: (
+  primary: (base: $color-primary,
+    light: lighten($color-primary, $lighten-amount),
+    dark: darken($color-primary, $darken-amount),
+  ),
+  secondary: (base: $color-secondary,
+    light: lighten($color-secondary, $lighten-amount),
+    dark: darken($color-secondary, $darken-amount),
+  ),
+  tertiary: (base: $color-tertiary,
+    light: lighten($color-tertiary, $lighten-amount),
+    dark: darken($color-tertiary, $darken-amount),
+  ),
+);
+
+
+
+/** 
+  * Function used to retrieve a colo rin SASS Stylesheets
+  * 
+  * @param {string} color-key - The name of the color to retrieve
+  * @param {string} shade - The shade of the color to retrieve
+  * @return {string} - The color in CSS color string format
+*/
+@function color($color-key, $shade: "base") {
+
+  // before try to get color from "$my-colors"
+  @if map-has-key($my-colors, $color-key) {
+    $color: map-get(map-get($my-colors, $color-key), $shade);
+    @return $color;
+  }
+
+  // if not found, try to get color from "$color-set-neutral"
+  @else if map-has-key($color-set-neutral, $color-key) {
+    $color: map-get($color-set-neutral, $color-key);
+    @return $color;
+  }
+
+  // if arrives here means that color is not allowed
+  @error "ERROR: Specified index does not exist in the mapping";
+}
+
+:root {
+  /* Other Colors */
+  --color-text-upfront: #{color("black")};
+  --color-text-behind: #{color("grey-600")};
+}

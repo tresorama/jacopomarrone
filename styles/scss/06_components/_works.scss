@@ -1,0 +1,118 @@
+@use "sass:color";
+
+body:not(.works--visible) .works {
+  visibility: hidden;
+}
+
+body.works--visible .works {
+  visibility: visible;
+}
+
+
+.works {
+
+  &__headline {
+    @include text('h4');
+  }
+
+  &__list {
+    display: grid;
+    gap: spaceOLD(20);
+    gap: space('lg');
+
+    //// QUIIIIIIIIIIIII 
+    //// CONtinua a sostituire "spaceOLD()" con "space()"
+  }
+
+  &__list-item-separator {
+    height: space('xl');
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(180deg, color("transparent") 0%, currentColor 35%, color("transparent") 60%);
+    color: color('grey-400');
+    opacity: 0.35;
+    opacity: 0;
+  }
+
+  &__list-item-separator--full-width {
+    margin-left: calc(-1 * #{container-value()});
+    margin-right: calc(-1 * #{container-value()});
+  }
+
+  &__list-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.work {
+  & {
+    padding-bottom: space('md');
+  }
+
+  &__header,
+  &__content {
+    padding: space('md') 0;
+  }
+
+  &__title {
+    @include text('huge');
+    margin-bottom: spaceOLD(4);
+    margin-bottom: space('sm');
+  }
+
+  &__caption {
+    @include text('h5');
+    color: color('grey-800');
+    display: block;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__description {
+    @include text("body", $family: 'book');
+
+    p {
+      margin-bottom: spaceOLD(4);
+      margin-bottom: space('sm');
+    }
+
+    .secondary-text {
+      color: color('grey-700');
+    }
+  }
+
+  &__actions {
+    padding: spaceOLD(5) 0;
+    padding: space('md') 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+}
+
+@include atLarge {
+  .work {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .work__image {
+    grid-column: 1/2;
+  }
+
+  .work__content {
+    padding-left: space('md');
+    padding-right: space('md');
+    padding-top: spaceOLD(4);
+    padding-top: space('sm');
+  }
+
+  .work__caption {
+    @include text('h3');
+  }
+}

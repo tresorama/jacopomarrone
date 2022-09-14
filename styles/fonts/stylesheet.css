@@ -1,0 +1,28 @@
+/*
+* This file is the same as public/fonts/heiti/stylesheet.css
+* 
+* But this file contains different "path" to font files.
+* This file is what is used inside Next.js.
+*/
+@font-face {
+  font-family: 'JM Heiti TC';
+  src: 
+    local('Heiti TC Medium'),
+    url('/fonts/heiti/STHeitiTC-Medium.woff2') format('woff2'),
+    url('/fonts/heiti/STHeitiTC-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JM Heiti TC';
+  src: 
+    local('Heiti TC Light'),
+    url('/fonts/heiti/STHeitiTC-Light.woff2') format('woff2'),
+    url('/fonts/heiti/STHeitiTC-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+

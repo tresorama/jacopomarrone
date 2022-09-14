@@ -1,0 +1,47 @@
+@use "sass:color";
+
+body.cursor-with-triangle {
+  
+  .cursor-container {
+    --cursor-bg: none;
+    --cursor-border-radius: 0;
+  }
+
+  .cursor {
+    --cursor-width: 50px;
+    height: var(--cursor-width);
+    mix-blend-mode: exclusion;
+    overflow: visible;
+    transform: 
+      translate(50%, 50%) translateX(-25px) rotate(-145deg);
+    transform-origin: center top;
+  }
+
+  .cursor-triangle::before,
+  .cursor-triangle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: color.change(
+      color('secondary'), $alpha: 0.55
+    );
+    padding: 0;
+    clip-path: polygon(50% 0%, 5% 100%, 95% 100%);
+  }
+
+  .cursor-triangle::before {
+    background: color.change(
+      color('primary'), $alpha: 0.46
+    );
+    transform: rotate(24deg);
+    transform-origin: inherit;
+  }
+
+  .cursor-dot {
+    opacity: 0;
+  }
+
+}

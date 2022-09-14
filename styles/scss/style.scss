@@ -1,0 +1,29 @@
+// 01 Abstract - SASS Mixin / SASS Function / SASS Utilities / Project Variables
+@import "./01_abstracts/_variables/variables";
+
+// 02 Vendor - Vendor CSS/SASS, i.e. Bootstrap, FontAwesome, etc.
+@import "./02_vendor/index";
+
+// 03 BAse - Base CSS/SASS, i.e. Reset, Global Styles, Global HTML Elements Styles
+@import "./03_base/_resets/resets";
+@import "./03_base/_globals/global-base";
+@import "./03_base/_globals/global-html-elements";
+
+// 04 Layout - Layout CSS/SASS, i.e. Grid System, Flexbox System, Margin/Padding Utilites
+@import "./04_layout/container";
+
+// 05 Utilities - Utilities CSS/SASS, i.e. Color, Font, Spacing, etc.
+@import "./05_utilities/index";
+
+// 06 Components - i.e. Buttons, Forms, Lists, Gallery, Posts List, CTA
+@import "./06_components/index";
+
+// 07 Pages - i.e. Home, About, Contact, etc.
+@import "./07_pages/home";
+
+// 08 Fixes - i.e. css that fix problems of varous generes, consider to refractor the code instead of fixes when possible
+@import "./08_fixes/index";
+
+
+// OPTIONAL: 
+@import "./10_dev-only/index";

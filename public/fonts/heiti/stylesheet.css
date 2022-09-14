@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'JM Heiti TC';
+    src: 
+      local('Heiti TC Medium'),
+      url('./STHeitiTC-Medium.woff2') format('woff2'),
+      url('./STHeitiTC-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JM Heiti TC';
+    src: 
+      local('Heiti TC Light'),
+      url('./STHeitiTC-Light.woff2') format('woff2'),
+      url('./STHeitiTC-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

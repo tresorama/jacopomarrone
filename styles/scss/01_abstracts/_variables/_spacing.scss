@@ -1,0 +1,131 @@
+@use "sass:math";
+
+/* =================================================== 
+      UTILITIES,MIXINS, FUNCTIONS
+=================================================== */
+@mixin generateSpacingScale($spacing-scale-ratio: 2) {
+  --spacing-xxs: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, -3)});
+  --spacing-xs: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, -2)});
+  --spacing-sm: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, -1)});
+  --spacing-md: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, 0)});
+  --spacing-lg: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, 1)});
+  --spacing-xl: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, 2)});
+  --spacing-xxl: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, 3)});
+  --spacing-3xl: calc(var(--spacing-unit-base) * #{math.pow($spacing-scale-ratio, 4)});
+}
+
+
+/* =================================================== 
+      PROJECT SPACING SYSTEM
+=================================================== */
+// Define base spacing unit.
+// Define spacing scale.
+:root {
+  
+  --spacing-unit-base: 1rem;
+  @include atMedium { --spacing-unit-base: 1.5rem; }
+  @include atLarge { --spacing-unit-base: 2rem; }
+
+  @include generateSpacingScale();
+
+}
+
+
+// Define a mixin to use in the project when you want to use spacing.
+@function space($space-key) {
+  @return var(--spacing-#{$space-key});
+}
+
+
+
+
+
+/*
+
+  USAGE GUIDE
+
+This spacing system , shortly, works like this:
+  1. In :root selector:
+    1.1 Define a base unit for spacing.
+        :root {
+          --spacing-unit-base: 1rem;
+        }
+    1.2 Define a scale for spacing.
+        :root {
+          @include generateSpacingScale($spacing-scale-ratio: 1.34);
+        }
+
+  2. When you need to use a spacing value in your SASS, you do this:
+    .my-elemnt {
+      margin-top: space('sm');
+      padding-left: space('xl');
+    }
+
+  3 At differrent media query...
+    3.1 At different media query it can be useful to override the base unit.
+        :root {
+          @include atMedium { --spacing-unit-base: 1.5rem; }
+          @include atLarge { --spacing-unit-base: 2rem; }
+        }
+    3.2 At different media query it can be useful to override the scale.
+        :root {
+          @include atMedium { generateSpacingScale($spacing-scale-ratio: 1.5); }
+          @include atLarge { generateSpacingScale($spacing-scale-ratio: 2); }
+        }
+    3.3 Or both...
+
+  
+
+
+  UNDER THE HOOD:
+  
+    The spacing scale is in "t-shirt" sizes. 
+      xxs|xs|sm|md|lg|xl|xxl|3xl
+      
+    Every step of the scale will be a CSS Custom properties.
+
+
+*/
+
+
+
+
+.demo-spacing {
+
+  > * {
+    background-color: pink;
+    border: solid;
+  }
+
+  .spacing-xxs {
+    margin-top: space('xxs');
+  }
+
+  .spacing-xs {
+    margin-top: space('xs');
+  }
+
+  .spacing-sm {
+    margin-top: space('sm');
+  }
+
+  .spacing-md {
+    margin-top: space('md');
+  }
+
+  .spacing-lg {
+    margin-top: space('lg');
+  }
+
+  .spacing-xl {
+    margin-top: space('xl');
+  }
+
+  .spacing-xxl {
+    margin-top: space('xxl');
+  }
+  
+  .spacing-3xl {
+    margin-top: space('3xl');
+  }
+}

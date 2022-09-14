@@ -1,0 +1,246 @@
+@use "sass:math";
+
+/* =================================================== 
+      UTILITIES, MIXIN, FUNCTION
+=================================================== */
+
+@function root-font-size($pixel-size) {
+  @return #{math.div($pixel-size, 16) * 100%};
+  /*
+  Return the root font size in percentage.
+  Use this function in the following way:
+  :root {
+    font-size: root-font-size(20); // set root/html font size to 20px ideally.
+  }
+  */
+}
+@mixin generateTypoScale($typo-scale-ratio, $min: -2, $max: 6) {
+  @for $i from $min through $max {
+    --font-size-level#{$i}: #{math.pow($typo-scale-ratio, $i)}rem;
+  }
+  // example output: 
+  // 
+  // generateTypoScale(1.125, $min: -2, $max: 6);
+  //
+  //   --font-size-level-2: 0.7901234568rem;
+  //   --font-size-level-1: 0.8888888889rem;
+  //   --font-size-level0: 1rem;
+  //   --font-size-level1: 1.125rem;
+  //   --font-size-level2: 1.265625rem;
+  //   --font-size-level3: 1.423828125rem;
+  //   --font-size-level4: 1.6018066406rem;
+  //   --font-size-level5: 1.8020324707rem;
+  //   --font-size-level6: 2.0272865295rem;
+}
+@function fontsize($level) {
+  @return var(--font-size-level#{$level});
+}
+
+
+/* =================================================== 
+      THIS PROJECT TYPOGRAPHY SYSTEM
+=================================================== */
+
+// Define root font size and font size scale.
+:root {
+
+  font-size: root-font-size(16); // 16 px
+  @include generateTypoScale(1.125, -3, 15);
+  
+  // @include atLarge {
+  //   @include generateTypoScale(1.25, -3, 15);
+  // }
+  // @include atLarge {
+  //   @include generateTypoScale(1.333, -3, 15);
+  // }
+  @include atLarge {
+    font-size: root-font-size(20); // 20 px
+    @include generateTypoScale(1.333, -3, 15);
+  }
+
+}
+
+/* Import Font Family Favorites */
+:root {
+  /* Font Families Jachi Favorites Sets */
+
+  // --font-family-serif: Rockwell, serif;
+  // --font-family-serif: Baskerville, serif;
+  // --font-family-serif: BiauKai, serif;
+  // --font-family-serif: "Big Caslon", serif;
+  // --font-family-serif: "Bodoni 72", serif;
+  // --font-family-serif: "Didot", serif;
+  --font-family-serif: "Canela Text", serif;
+  
+  // --font-family-sans-serif: Helvetica, sans-serif;
+  // --font-family-sans-serif: "Avenir", sans-serif;
+  // --font-family-sans-serif: "Myanmar MN", serif;
+  // --font-family-sans-serif: Optima, sans-serif;
+  // --font-family-sans-serif: "Hiragino Sans", sans-serif;
+  // --font-family-sans-serif: "Heiti TC", sans-serif;
+  // --font-family-sans-serif: "Bangla MN", sans-serif;
+  // --font-family-sans-serif: "Cambay Devanagari", sans-serif;
+  // --font-family-sans-serif: "PT Sans", sans-serif;
+  // --font-family-sans-serif: "AppleGothic", sans-serif;
+  // --font-family-sans-serif: "Yomm", sans-serif;
+  --font-family-sans-serif: "JM Heiti TC", sans-serif;
+
+  --font-family-sans-serif-2: Optima, sans-serif;
+
+  --font-family-monospace: 'PT Mono', monospace;
+  // --font-family-monospace: 'Andale Mono', monospace;
+  // --font-family-monospace: 'Dank Mono', monospace;
+  
+  --font-family-toy: "Baloo Thambi 2";
+  // --font-family-toy: "BM Hanna 11yrs Old";
+  // --font-family-toy: "BM Hanna Air";
+  // --font-family-toy: "BM Hanna Pro";
+  // --font-family-toy: "BM Kirang Haerang";
+  // --font-family-toy: "BM Yeonsung";
+
+}
+
+/* Define Font Family for this project, choosing from imported ones */
+/* Define Text Sets for this project */
+:root {
+  /* Font-Families */
+  --font-family-main: var(--font-family-sans-serif);
+  --font-family-book: var(--font-family-sans-serif-2);/* Use this for text that needs to be read easily, like copy of card, article, ... */
+  
+  /* Text Sets */
+  --text-gigantic: normal 600 #{fontsize(7)}/1 var(--font-family-main);
+  --text-huge: normal 600 #{fontsize(6)}/1 var(--font-family-main);
+  --text-h1: normal 600 #{fontsize(5)}/1 var(--font-family-main);
+  --text-h2: normal 600 #{fontsize(4)}/1.1 var(--font-family-main);
+  --text-h3: normal 600 #{fontsize(3)}/1.1 var(--font-family-main);
+  --text-h4: normal 600 #{fontsize(2)}/1.3 var(--font-family-main);
+  --text-h5: normal 600 #{fontsize(1)}/1.5 var(--font-family-main);
+  --text-h6: normal 600 #{fontsize(0)}/1.5 var(--font-family-main);
+  --text-body: normal 400 #{fontsize(0)}/1.5 var(--font-family-main);
+  --text-small: normal 400 #{fontsize(-1)}/1.2 var(--font-family-main);
+  --text-small-2: normal 500 #{fontsize(-2)}/1.2 var(--font-family-main);
+  // font: font-style font-variant font-weight font-size/line-height font-family; */
+
+}
+
+
+// Define a mixin to be used in the project.
+@mixin text($key: 'body', $family: 'main') {
+  font: var(--text-#{$key});
+  @include font-family($family);
+  @content; // in case cosnumer wants to add some custom css, manly overrides
+}
+
+@mixin font-family($key: 'main') {
+
+  @if $key == 'book' {
+    font-family: var(--font-family-book);
+    letter-spacing: 0.01em;
+  }
+  @else {
+    //     Use the 'default' font-family, whichis defined in this files at lines 
+    font-family: var(--font-family-main);
+    letter-spacing: -0.01em;
+  }
+}
+
+
+
+/*
+
+  USAGE GUIDE
+
+This typography system , shortly, works like this:
+  1. You defined a "$spacing-scale-ratio" that will be used for calculate all the steps of the spacing scale.
+     You must specifie also how many step the scale will have, providing "$min" and "$max" values.
+     Every step of the scale will be printed as CSS Custom properties in ":root" selector
+  2. You can override the scale at different media query in the :root selector.
+  3. When its time to use the scale, you do this:
+      .my-elemnt {
+        @include text('h2');
+      }
+      .my-elemnt-two {
+        @include text('h2', 'book');
+      }
+
+*/
+
+
+
+/*
+
+  USAGE GUIDE
+
+This typography system , shortly, works like this:
+  1. In :root selector:
+    1.1 Define a base font size.
+        :root {
+          font-size: root-font-size(20); // set root/html font size to 20px ideally.
+        }
+    1.2 Generate a scale of fontsize.
+        :root {
+          @include generateTypoScale(1.125, $min: -3, $max: 15);
+        }
+
+    1.3 Define font-families.
+        :root {
+          --font-family-main: Helvetica, sans-serif;
+          --font-family-book: Optima, sans-serif;
+        }
+    
+    1.4 Define "Text Sets"
+        :root {
+          --text-gigantic: normal 600 #{fontsize(7)}/1 var(--font-family-main);
+          --text-huge: normal 600 #{fontsize(6)}/1 var(--font-family-main);
+          --text-h1: normal 600 #{fontsize(5)}/1 var(--font-family-main);
+          --text-h2: normal 600 #{fontsize(4)}/1.1 var(--font-family-main);
+          --text-h3: normal 600 #{fontsize(3)}/1.1 var(--font-family-main);
+          --text-h4: normal 600 #{fontsize(2)}/1.3 var(--font-family-main);
+          --text-h5: normal 600 #{fontsize(1)}/1.5 var(--font-family-main);
+          --text-h6: normal 600 #{fontsize(0)}/1.5 var(--font-family-main);
+          --text-body: normal 400 #{fontsize(0)}/1.5 var(--font-family-main);
+          --text-small: normal 400 #{fontsize(-1)}/1.2 var(--font-family-main);
+          --text-small-2: normal 500 #{fontsize(-2)}/1.2 var(--font-family-main);
+
+          // font: font-style font-variant font-weight font-size/line-height font-family;
+        
+        }
+
+    1.5 Define a mixin to use in the project.
+        @mixin text($key: 'body', $family: 'main') {
+          font: var(--text-$key);
+          font-family: var(--font-family-$family);
+        }
+
+  2. When you need to use a text in your SASS, you do this:
+    .my-elemnt {
+      @include text('h2');
+    }
+    .my-elemnt-two {
+      @include text('h2', $family: 'book');
+    }
+
+
+  3. At differrent media query...
+    3.1 At different media query it can be useful to override the base font size.
+        :root {
+          @include atMedium { font-size: root-font-size(22); }
+          @include atLarge { font-size: root-font-size(24); }
+        }
+    3.2 At different media query it can be useful to override the scale.
+        :root {
+          @include atMedium { generateTypoScale(1.333, $min: -3, $max: 15); }
+          @include atLarge { generateTypoScale(1.414, $min: -3, $max: 15); }
+        }
+    3.3 Or both...
+
+
+
+  UNDER THE HOOD:
+  
+    The typography scale is in numerical step sizes. 
+
+    Every step of the scale will be a CSS Custom properties.
+
+
+*/

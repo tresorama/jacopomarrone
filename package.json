@@ -1,5 +1,6 @@
 {
   "name": "the-portfolio-next",
+  "author": "Jacopo Marrone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +10,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.8",
+    "axios": "^0.27.2",
+    "gsap": "^3.11.1",
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.35.0",
+    "usehooks-ts": "^2.6.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "18.7.16",
     "@types/react": "18.0.19",
     "@types/react-dom": "18.0.6",
+    "dotenv": "^16.0.2",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
+    "node-mailjet": "^5.1.1",
+    "sass": "^1.54.9",
     "typescript": "4.8.3"
   }
 }

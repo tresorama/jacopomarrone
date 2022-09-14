@@ -1,0 +1,74 @@
+@use "sass:color";
+
+.form {
+
+  & {
+    max-width: 55ch;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    @include text('h1');
+    margin-bottom: space('lg');
+  }
+
+  &__section + &__section {
+    margin-top: space('md');
+  }
+
+  &__section-heading {
+    @include text('h2');
+    margin-bottom: space('md');
+  }
+  
+  &__section--actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space('xs');
+  }
+
+  &-field+&-field {
+    margin-top: space('md');
+  }
+}
+
+.form-field {
+
+  &,
+  &__label,
+  &__input,
+  &__helper-text {
+    display: block;
+    width: 100%;
+  }
+
+  &__label {
+    @include text('small');
+    margin-bottom: space('xs');
+  }
+  &__helper-text {
+    @include text('small');
+    margin-top: space('sm');
+
+    // &:empty:before {
+    //   content: "avoid jumping UI";
+    //   visibility: hidden;
+    // }
+  }
+
+  &--has-value &__label {
+  }
+  &--is-invalid &__label ,
+  &--is-invalid &__helper-text {
+    color: red;
+  }
+  &--is-invalid &__helper-text {
+    background-color: color.change(red, $alpha: 0.1);
+  }
+  &--is-invalid &__input ,
+  &--is-invalid &__input:focus {
+    --outline-color: red;
+  }
+
+
+}

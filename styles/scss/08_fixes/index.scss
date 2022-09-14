@@ -1,0 +1,7 @@
+.GSAP-IS-ANIMATING * {
+  transition: none !important;
+}
+
+.cursor-container {
+  z-index: 2000; // SweatAlert Toast is z-index: 1060 or 1600 , so we go higher
+}

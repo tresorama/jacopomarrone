@@ -1,0 +1,20 @@
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  fill: currentColor;
+  stroke-opacity: 0;
+  fill-opacity: 1;
+  vertical-align: middle;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: inherit;
+}
+
+.svg-icon circle {
+  stroke: inherit;
+  stroke-width: 1;
+}
