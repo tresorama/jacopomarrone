@@ -4,7 +4,7 @@ export const works = [
     name: 'Pipocas',
     image: "/images/works/pipocas_02.jpg",
     caption: 'Local SEO and landing page',
-    description: '<p>Pipocas is an established vintage clothing shop in Reggio Emilia.</p><p>Pipocas needed a local SEO strategy, to find new customers and increase brand reputation.<br ><br >Then, i build a Facebook page, a Google My Business profile and a Website to links every point of contact and help users build a strong relationship with the brand.</p>',
+    description: '<p>Pipocas is an established vintage clothing shop in Reggio Emilia.</p><p>Pipocas needed a local SEO strategy, to find new customers and increase brand reputation.<br ><br >Facebook page, Google My Business profile and a Website created an opportunity to connect every touch point and help users build a relationship with the brand.</p>',
     permalink: 'https://www.pipocas.it/'
   },
   {
