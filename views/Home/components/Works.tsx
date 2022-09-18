@@ -1,8 +1,9 @@
+import { Work } from '@/contents/works.types';
 import { ArrowLeft } from '@/views/components/icons/icons/ArrowLeft';
 import React from 'react';
 import { useIsFirstRender, useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';
-import { works } from '../assets/works';
+// import { works } from '../assets/works';
 
 function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
   const animationRef = React.useRef<gsap.core.Timeline | null>(null);
@@ -20,7 +21,15 @@ function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
   }
 }
 
-export const Works = ({ isVisible, setIsVisible }: { isVisible: boolean, setIsVisible: (...args: any[]) => unknown }) => {
+export const Works = ({
+  isVisible,
+  setIsVisible,
+  works = []
+}: {
+  isVisible: boolean,
+  setIsVisible: (...args: any[]) => unknown,
+  works: Work[]
+}) => {
   const nodeWrapperRef = React.useRef<HTMLDivElement | null>(null);
   const animation = useAnimation(nodeWrapperRef);
   const isFirstRender = useIsFirstRender();
@@ -63,8 +72,8 @@ export const Works = ({ isVisible, setIsVisible }: { isVisible: boolean, setIsVi
                 caption,
                 image,
                 slug,
-                description,
-                permalink
+                permalink,
+                content
               }) => (
                 <React.Fragment key={slug}>
                   <div className="works__list-item work">
@@ -77,7 +86,7 @@ export const Works = ({ isVisible, setIsVisible }: { isVisible: boolean, setIsVi
                       <div className="work__description"
                         data-gtm-el="works-description"
                         data-gtm-el-key={slug}
-                        dangerouslySetInnerHTML={{ __html: description }}
+                        dangerouslySetInnerHTML={{ __html: content }}
                       >
                       </div>
                       <div className="work__actions">

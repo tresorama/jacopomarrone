@@ -1,14 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import ViewHome from '@/views/Home/Home';
+import { getAllWorks } from '@/lib/works';
+import type { Work } from '@/contents/works.types';
 
-const Home: NextPage = () => {
+const Home: NextPage<{ works: Work[] }> = ({ works }) => {
   return (
     <>
       <Head>
         <Seo />
       </Head>
-      <ViewHome />
+      <ViewHome works={works} />
     </>
   )
 }
@@ -40,3 +42,20 @@ const Seo = () => (
     <meta property="twitter:image" content="https://jacopomarrone.netlify.app/images/seo/seo-jacopo-marrone.png" />
   </>
 );
+
+
+export const getStaticProps = async () => {
+  const allWorks = getAllWorks([
+    'slug',
+    'name',
+    'image',
+    'caption',
+    'permalink',
+    'date',
+    'content',
+  ])
+
+  return {
+    props: { works: allWorks },
+  }
+}
