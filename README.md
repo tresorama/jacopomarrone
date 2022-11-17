@@ -1,3 +1,26 @@
+
+[Visit the Website](https://jacopomarrone.netlify.app/)
+
+## Structure / Stack
+
+- Language: Typescript
+- CSS: SASS + BEM
+- UI: Next.js + React
+- Animation: GSAP
+- Deploy: Netlify
+- Form :
+  - State: react-hook-form
+  - Validation: yup
+  - Mail Service: Mailjet
+- Analytics: Google Tag Manager
+
+## Key Parts
+
+- Intro animation is a [GSAP Flip](https://greensock.com/docs/v3/Plugins/Flip/) animation with CSS Grid.[code](https://github.com/tresorama/jacopomarrone/blob/main/views/Home/animations/HomeGridAnimation.ts)
+- Form submit result (success or failure) events trigger Google Tag Manager custom events.[code](https://github.com/tresorama/jacopomarrone/blob/f7feb0b1ac283effeb87f2338d94d7a158abfdaa/views/Home/components/ContactMe.tsx#L112)
+
+## Next.js README
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
