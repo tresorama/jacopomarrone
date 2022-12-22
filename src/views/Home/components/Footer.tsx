@@ -1,11 +1,11 @@
-import { links, portfolio_permalink } from "../assets/social-links";
+import { links, portfolio_source_code } from "../assets/social-links";
 
 export const Footer = () => (
   <>
     <footer className="site-footer">
       <div className="site-footer__portfolio-details">
         <span className="site-footer__description">Made with Next, Gsap, SASS - </span>
-        <a href={portfolio_permalink}>
+        <a href={portfolio_source_code}>
           <span className="site-footer__link site-footer__source-code-link">Source Code</span>
         </a>
       </div>
