@@ -72,7 +72,7 @@ export const Works = ({ isVisible, onCloseClick }: {
                       <h2 className="work__title">{name}</h2>
                       <span className="work__caption">{caption}</span>
                     </div>
-                    <img className="work__image" src={image} />
+                    <img className="work__image" src={image} alt={name} />
                     <div className="work__content">
                       <div className="work__description"
                         data-gtm-el="works-description"
