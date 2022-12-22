@@ -4,9 +4,7 @@ import { HomeView } from '@/views/Home';
 
 const Home: NextPage = () => (
   <>
-    <Head>
-      <Seo />
-    </Head>
+    <Seo />
     <HomeView />
   </>
 );
@@ -15,7 +13,7 @@ export default Home;
 
 
 const Seo = () => (
-  <>
+  <Head>
     {/* <!-- Primary Meta Tags --> */}
     <title>Jacopo Marrone - Web Developer, Italy</title>
     <meta name="title" content="Jacopo Marrone - Web Developer, Italy" />
@@ -36,5 +34,5 @@ const Seo = () => (
     <meta property="twitter:title" content="Jacopo Marrone - Web Developer, Italy" />
     <meta property="twitter:description" content="Give your business a boost with a custom website or by reaching new customers on Google Search. Let's talk about your project!" />
     <meta property="twitter:image" content="https://jacopomarrone.netlify.app/images/seo/seo-jacopo-marrone.png" />
-  </>
+  </Head>
 );
