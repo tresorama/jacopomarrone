@@ -6,9 +6,9 @@ import axios from 'axios';
 import { useIsFirstRender, useIsomorphicLayoutEffect } from "usehooks-ts";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { getFloatingPanelAnimation } from "../animations/FloatingPanelAnimation";
-import { wait } from "../utils/wait";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/integrations/GTM/client";
 import { ArrowLeft } from "@/views/Home/components/icons";
+import { IS_DEVELOPMENT } from "@/constants/client";
 
 
 function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
@@ -144,19 +144,36 @@ async function submitFormToServer(formValues: ContactValues) {
 
 
 const TheForm = () => {
-  const [submitResult, setSubmitResult] = React.useState<null | { success: boolean, error?: string; }>(null);
+  const [submitStatus, setSubmitStatus] = React.useState<{
+    status: 'idle' | 'pending' | 'success' | 'error',
+    error?: string,
+  }>({ status: 'idle' });
   const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: initialFormValues,
   });
   const onSubmit: SubmitHandler<ContactValues> = async (data) => {
     console.log(data);
-    const { success, error } = await submitFormToServer(data);
-    setSubmitResult({ success, error });
-    if (success) {
+
+    try {
+      setSubmitStatus({ status: 'pending' });
+      const { success, error } = await submitFormToServer(data);
+      if (!success) throw new Error(error);
+      setSubmitStatus({ status: 'success' });
       reset();
-      await wait(10000);
-      setSubmitResult(null);
+    } catch (error) {
+      if (IS_DEVELOPMENT) {
+        setSubmitStatus({
+          status: 'error',
+          error: error instanceof Error ? error.message : 'Unexpected error!'
+        });
+      }
+      else {
+        setSubmitStatus({
+          status: 'error',
+          error: 'Ops something went wrong! Please retry or contact directly at jacopo.marrone27@gmail.com'
+        });
+      }
     }
   };
 
@@ -189,8 +206,9 @@ const TheForm = () => {
         <button className="button" type="submit"><span>Send</span></button>
         <button className="button button--naked" type="reset"><span>Reset</span></button>
 
-        {submitResult && submitResult.success && (<span>✅ Successfully submitted. I will reply you back as soon as possible !</span>)}
-        {submitResult && !submitResult.success && (<span>❌ {submitResult.error}</span>)}
+        {submitStatus.status === 'pending' && (<span>Submitting...</span>)}
+        {submitStatus.status === 'success' && (<span>✅ Successfully submitted. I will reply you back as soon as possible !</span>)}
+        {submitStatus.status === 'error' && (<span>❌ {submitStatus.error}</span>)}
       </div>
     </form>
   );
