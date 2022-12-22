@@ -3,8 +3,8 @@ export const works = [
     slug: 'pipocas',
     name: 'Pipocas',
     image: "/images/works/pipocas_02.jpg",
-    caption: 'Local SEO and landing page',
-    description: '<p>Pipocas is an established vintage clothing shop in Reggio Emilia.</p><p>Pipocas needed a local SEO strategy, to find new customers and increase brand reputation.<br ><br >Facebook page, Google My Business profile and a Website created an opportunity to connect every touch point and help users build a relationship with the brand.</p>',
+    caption: 'Local SEO, landing page and sales dashboard',
+    description: `<p>Pipocas is an established vintage clothing shop in Reggio Emilia.</p><p>With my assistance, Pipocas was able to launch a successful online presence and increase potential customers in the local area.</p><p>I helped enhance customer experience by creating an easy-to-navigate landing page, enabling customers to browse their shop and contact them with ease. </p><p>Additionally, I developed an internal tool for increased business intelligence specifically tailored to their needs.</p>`,
     permalink: 'https://www.pipocas.it/'
   },
   {
