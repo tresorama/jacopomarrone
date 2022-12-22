@@ -4,7 +4,7 @@ import { HomeGridAnimation } from '../animations/HomeGridAnimation';
 
 
 /* Custom Hook for create the animation */
-function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
+function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
   const animationRef = React.useRef<HomeGridAnimation | null>(null);
 
   React.useEffect(() => {
@@ -12,7 +12,7 @@ function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
       animationRef.current = new HomeGridAnimation(nodeRef.current);
       wait(1).then(() => animationRef.current?.FADE_IN());
     }
-  }, []);
+  }, [nodeRef]);
 
 }
 

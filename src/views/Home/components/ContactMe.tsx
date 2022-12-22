@@ -19,7 +19,7 @@ function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
       animationRef.current = getFloatingPanelAnimation(nodeRef.current);
       return () => { animationRef.current?.kill(); };
     }
-  }, []);
+  }, [nodeRef]);
 
   return React.useMemo(() => ({
     FADE_IN: () => animationRef.current?.play(),
