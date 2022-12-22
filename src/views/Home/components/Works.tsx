@@ -1,10 +1,10 @@
 import { ArrowLeft } from '@/views/Home/components/icons';
 import React from 'react';
-import { useIsFirstRender, useIsomorphicLayoutEffect } from 'usehooks-ts';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';
 import { works } from '../assets/works';
 
-function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
+function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
   const animationRef = React.useRef<gsap.core.Timeline | null>(null);
 
   useIsomorphicLayoutEffect(() => {
@@ -14,10 +14,10 @@ function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
     }
   }, []);
 
-  return {
+  return React.useMemo(() => ({
     FADE_IN: () => animationRef.current?.play(),
     FADE_OUT: () => animationRef.current?.reverse(),
-  };
+  }), []);
 }
 
 export const Works = ({ isVisible, onCloseClick }: {
@@ -26,15 +26,12 @@ export const Works = ({ isVisible, onCloseClick }: {
 }) => {
   const nodeWrapperRef = React.useRef<HTMLDivElement>(null);
   const animation = useAnimation(nodeWrapperRef);
-  const isFirstRender = useIsFirstRender();
 
   // on "isVisible" change, show/hide the panel
   React.useEffect(() => {
-    if (isFirstRender) return;
-    if (!nodeWrapperRef.current) return;
     if (isVisible) animation.FADE_IN();
     if (!isVisible) animation.FADE_OUT();
-  }, [isVisible]);
+  }, [isVisible, animation]);
 
   // on "esc" key press close the panel
   React.useEffect(() => {
@@ -46,7 +43,7 @@ export const Works = ({ isVisible, onCloseClick }: {
     };
     document.addEventListener('keyup', handler);
     return () => { document.removeEventListener('keyup', handler); };
-  }, [isVisible]);
+  }, [isVisible, onCloseClick]);
 
   return (
     <>

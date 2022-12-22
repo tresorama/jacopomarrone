@@ -3,7 +3,7 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useIsFirstRender, useIsomorphicLayoutEffect } from "usehooks-ts";
+import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { getFloatingPanelAnimation } from "../animations/FloatingPanelAnimation";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/integrations/GTM/client";
@@ -11,7 +11,7 @@ import { ArrowLeft } from "@/views/Home/components/icons";
 import { IS_DEVELOPMENT } from "@/constants/client";
 
 
-function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
+function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
   const animationRef = React.useRef<gsap.core.Timeline | null>(null);
 
   useIsomorphicLayoutEffect(() => {
@@ -21,10 +21,10 @@ function useAnimation(nodeRef: React.MutableRefObject<HTMLDivElement | null>) {
     }
   }, []);
 
-  return {
+  return React.useMemo(() => ({
     FADE_IN: () => animationRef.current?.play(),
     FADE_OUT: () => animationRef.current?.reverse(),
-  };
+  }), []);
 }
 
 export const ContactMe = ({ isVisible, onCloseClick }: {
@@ -33,15 +33,12 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
 }) => {
   const nodeWrapperRef = React.useRef<HTMLDivElement>(null);
   const animation = useAnimation(nodeWrapperRef);
-  const isFirstRender = useIsFirstRender();
 
   // on "isVisible" change, trigger the animation
   React.useEffect(() => {
-    if (isFirstRender) return;
-    if (!nodeWrapperRef.current) return;
     if (isVisible) animation.FADE_IN();
     if (!isVisible) animation.FADE_OUT();
-  }, [isVisible]);
+  }, [isVisible, animation]);
 
   // on "esc" key press close the panel
   React.useEffect(() => {
@@ -53,7 +50,7 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
     };
     document.addEventListener('keyup', handler);
     return () => { document.removeEventListener('keyup', handler); };
-  }, [isVisible]);
+  }, [isVisible, onCloseClick]);
 
 
   return (
