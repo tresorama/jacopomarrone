@@ -8,7 +8,7 @@ export class GTM_CustomEventDispatcher {
     if (typeof window.dataLayer === 'undefined') {
       console.error('GTM is not loaded, cannot trigger Custom Events');
       return;
-    };
+    }
     window.dataLayer.push({
       event,
       payload,
