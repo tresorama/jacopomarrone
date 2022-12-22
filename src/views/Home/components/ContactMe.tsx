@@ -1,7 +1,7 @@
 import React from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useIsFirstRender, useIsomorphicLayoutEffect } from "usehooks-ts";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
@@ -77,16 +77,12 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
 };
 
 
-const formValidatorSchema = yup.object().shape({
-  contact__name: yup.string().required('Name is required'),
-  contact__email: yup.string().email('Invalid email address').required('Email is required'),
-  contact__message: yup.string().required('Message is required'),
+const formValidatorSchema = z.object({
+  contact__name: z.string({ required_error: 'Name is required' }),
+  contact__email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  contact__message: z.string({ required_error: 'Message is required' }),
 });
-type FormValues = {
-  contact__name: string,
-  contact__email: string,
-  contact__message: string,
-};
+type FormValues = z.infer<typeof formValidatorSchema>;
 const initialFormValues: FormValues = {
   contact__name: '',
   contact__email: '',
@@ -150,7 +146,7 @@ async function submitFormToServer(formValues: FormValues) {
 const TheForm = () => {
   const [submitResult, setSubmitResult] = React.useState<null | { success: boolean, error?: string; }>(null);
   const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm<FormValues>({
-    resolver: yupResolver(formValidatorSchema),
+    resolver: zodResolver(formValidatorSchema),
     defaultValues: initialFormValues,
   });
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
