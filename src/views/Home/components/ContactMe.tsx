@@ -77,19 +77,19 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
 };
 
 
-const formValidatorSchema = z.object({
+const contactSchema = z.object({
   contact__name: z.string({ required_error: 'Name is required' }),
   contact__email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
   contact__message: z.string({ required_error: 'Message is required' }),
 });
-type FormValues = z.infer<typeof formValidatorSchema>;
-const initialFormValues: FormValues = {
+type ContactValues = z.infer<typeof contactSchema>;
+const initialFormValues: ContactValues = {
   contact__name: '',
   contact__email: '',
   contact__message: ''
 };
 
-async function submitFormToServer(formValues: FormValues) {
+async function submitFormToServer(formValues: ContactValues) {
   const date = new Date();
 
   const data: ContactMeRequestData = {
@@ -145,11 +145,11 @@ async function submitFormToServer(formValues: FormValues) {
 
 const TheForm = () => {
   const [submitResult, setSubmitResult] = React.useState<null | { success: boolean, error?: string; }>(null);
-  const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm<FormValues>({
-    resolver: zodResolver(formValidatorSchema),
+  const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
     defaultValues: initialFormValues,
   });
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<ContactValues> = async (data) => {
     console.log(data);
     const { success, error } = await submitFormToServer(data);
     setSubmitResult({ success, error });
