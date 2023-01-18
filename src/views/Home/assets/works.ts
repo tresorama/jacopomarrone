@@ -1,5 +1,21 @@
 export const works = [
   {
+    slug: 'regexer',
+    name: 'Regexer',
+    image: "/images/works-source/regexer.png",
+    caption: 'AI generator and tutor for regex',
+    description: `<p>A tool for developers.<br/><br/>You need a regex pattern but you always forget how regex works.<br /><br />With Regexer you can generate your regex asking in plain english.<br /><br />Or paste your regex and ask question about it.<br />Just ask!</p>`,
+    permalink: 'https://regexer.dev/'
+  },
+  {
+    slug: 'gradia',
+    name: 'Gradia',
+    image: "/images/works-source/gradia.png",
+    caption: 'Multi-Layer CSS gradient editor',
+    description: `<p>A tool for developers.<br/><br/>Be creative with your design and get the perfect background for your project. <br/><br />Stack multiple layer of linear or radial gradients with ease to use controls.<br /><br />When you are satisfied export to pure CSS (or CSS-in-JS).</p>`,
+    permalink: 'https://gradia.app/'
+  },
+  {
     slug: 'pipocas',
     name: 'Pipocas',
     image: "/images/works/pipocas_02.jpg",
