@@ -97,6 +97,11 @@ export const Works = ({ isVisible, onCloseClick }: {
                   <div className="works__list-item-separator works__list-item-separator--full-width" data-shape-divider="arrow-down"></div>
                 </React.Fragment>
               ))}
+              <div className="works__list-footer">
+                <button onClick={onCloseClick} className="works__close-panel-footer" type="button">
+                  <span>Close</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
