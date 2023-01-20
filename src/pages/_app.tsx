@@ -1,3 +1,4 @@
+import "@/styles/global.tailwind.css";
 import "@/styles/fonts/stylesheet.css";
 import "@/styles/scss/style.scss";
 import "@/views/Home/components/icons/global.icons.styles.css";
