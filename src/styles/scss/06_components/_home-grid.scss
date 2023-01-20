@@ -30,7 +30,7 @@ body,
   grid-row: 1/-1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: space('xs');
+  gap: space('xxs');
 
   &>*:nth-child(1) {
     // border: 5px green solid;
