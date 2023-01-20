@@ -1,4 +1,4 @@
-import { ArrowLeft } from '@/views/Home/components/icons';
+import { ArrowLeft } from '@/views/shared/components/icons';
 import React from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';

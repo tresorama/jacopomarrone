@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { BlogPost, getAllBlogPostSlugs, getBlogPostBySlug, getNextBlogPostBySlug, getPrevBlogPostBySlug } from "@/utils/blog";
-import { BlogPostView } from "@/views/Blog/views/BlogPostView/BlogPostView";
+import { BlogPostView } from "@/views/Blog/views/BlogPostView";
 
 type PathParams = {
   slug: BlogPost['slug'];

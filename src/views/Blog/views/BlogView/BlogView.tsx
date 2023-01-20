@@ -1,6 +1,6 @@
 import { PageProps } from "@/pages/blog/index";
 import Link from "next/link";
-import { ArrowLeft } from "../../../Home/components/icons";
+import { ArrowLeft } from "../../../shared/components/icons";
 import { AppShell } from "../shared/components/AppShell";
 
 const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });

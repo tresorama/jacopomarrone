@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageProps } from "@/pages/blog/[slug]";
 import 'highlight.js/styles/github-dark-dimmed.css'; //This is the theme your code is going to be displayed with.
-import { ArrowLeft } from "../../../Home/components/icons";
+import { ArrowLeft } from "../../../shared/components/icons";
 import { AppShell } from "../shared/components/AppShell";
 
 const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });

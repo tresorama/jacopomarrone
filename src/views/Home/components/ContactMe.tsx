@@ -7,7 +7,7 @@ import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { getFloatingPanelAnimation } from "../animations/FloatingPanelAnimation";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/integrations/GTM/client";
-import { ArrowLeft } from "@/views/Home/components/icons";
+import { ArrowLeft } from "@/views/shared/components/icons";
 import { IS_DEVELOPMENT } from "@/constants/client";
 
 
