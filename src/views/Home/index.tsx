@@ -22,6 +22,7 @@ export const HomeView = () => {
       <HomeGrid
         onWorksClick={() => setIsVisibleWorks(true)}
         onContactMeClick={() => setIsVisibleContactMe(true)}
+        onBlogClick={() => BlogPageExitAnimation.startAnimation()}
       />
       <Works
         isVisible={isVisibleWorks}

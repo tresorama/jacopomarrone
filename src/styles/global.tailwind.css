@@ -2,3 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .blogpost-prose {
+    @apply tracking-normal;
+    @apply font-fam-main;
+    @apply prose prose-lg;
+    @apply prose-h1:font-medium;
+    @apply prose-h2:font-medium;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-base {
+    & {
+      position: relative;
+    }
+    &::before{
+      pointer-events: none;
+      content: "";
+      z-index: -2;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: hsl(0deg, 0%, 80%);
+      /* background-color: theme(colors.gray.300); */
+      }
+      &::after{
+        pointer-events: none;
+        content: "";
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) -20%, rgba(255, 255, 255, 0) 20%);
+        /* background-image: linear-gradient(180deg, theme(colors.gray.900), transaprent); */
+        }
+  }
+
+
+  /* Typography preset imported from SASS */
+  .font-fam-main {
+    font-family: var(--font-family-sans-serif);
+  }
+  .font-fam-book {
+    font-family: var(--font-family-sans-serif-2);/* Use this for text that needs to be read easily, like copy of card, article, ... */
+  }
+
+  /* Text Sets */
+  .text-preset-gigantic{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-7xl lg:text-8xl;
+  }
+  .text-preset-huge{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-6xl lg:text-7xl;
+
+  }
+  .text-preset-h1{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-4xl lg:text-5xl;
+
+  }
+  .text-preset-h2{
+    font: normal 600 1rem/1.1 var(--font-family-main);
+    @apply text-3xl lg:text-4xl;
+
+  }
+  .text-preset-h3{
+    font: normal 600 1rem/1.1 var(--font-family-main);
+    @apply text-2xl lg:text-3xl;
+
+  }
+  .text-preset-h4{
+    font: normal 600 1rem/1.3 var(--font-family-main);
+    @apply text-xl lg:text-2xl;
+  }
+  .text-preset-h5{
+    font: normal 600 1rem/1.5 var(--font-family-main);
+    @apply text-lg lg:text-xl;
+  }
+  .text-preset-h6{
+    font: normal 600 1rem/1.5 var(--font-family-main);
+    @apply text-md;
+  }
+  .text-preset-body{
+    font: normal 400 1rem/1.5 var(--font-family-main);
+    @apply text-md;
+  }
+  .text-preset-small{
+    font: normal 400 1rem/1.2 var(--font-family-main);
+    @apply text-sm;
+  }
+  .text-preset-small{
+    font-2: normal 500 1rem/1.2 var(--font-family-main);
+    @apply text-xs;
+  }
+}
+

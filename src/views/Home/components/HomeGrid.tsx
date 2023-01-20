@@ -32,7 +32,7 @@ export const HomeGrid = ({ onWorksClick, onContactMeClick }: {
     <div className="home-grid__wrapper" ref={nodeWrapperRef}>
       <div className="home-grid home-grid--shrinked">
         <div className="home-grid__box home-grid__box--no-bg home-grid__box-different home-grid-animate animate-from-left"><span>Jacopo Marrone</span></div>
-        <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="blog" onClick={onWorksClick}><span>Blog</span></button>
+        <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="blog" onClick={onBlogClick}><span>Blog</span></button>
         <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="works" onClick={onWorksClick}><span>Works</span></button>
         <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="contact-me" onClick={onContactMeClick}><span>Contact Me</span></button>
       </div>
