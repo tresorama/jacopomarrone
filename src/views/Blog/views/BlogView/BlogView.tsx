@@ -1,11 +1,12 @@
 import { PageProps } from "@/pages/blog/index";
 import Link from "next/link";
-import { ArrowLeft } from "../Home/components/icons";
+import { ArrowLeft } from "../../../Home/components/icons";
+import { AppShell } from "../shared/components/AppShell";
 
 const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });
 
 export const BlogView = ({ blogPostsWithLink }: PageProps) => (
-  <div className="w-full h-full overflow-auto">
+  <AppShell>
 
     <nav className="pointer-events-none absolute left-0 top-0 z-10 py-8 px-6 lg:px-16 w-full flex items-center justify-between text-zinc-700">
       <Link href="/?skip-intro-animation=true" passHref>
@@ -34,5 +35,6 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => (
         </ul>
       </main>
     </div>
-  </div>
+
+  </AppShell>
 );
