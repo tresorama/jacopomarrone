@@ -29,7 +29,11 @@ export class HomeGridAnimation {
       this.FADE_IN();
     }
   }
-  animationAtoB() {
+  SKIP_ANIMATION() {
+    this.is_visible = true;
+    this.animationAtoB(0);
+  }
+  animationAtoB(duration = 2.6) {
     const nodes = {
       grid_shrinked: this.nodeWrapper.querySelector('.home-grid.home-grid--shrinked'),
       grid_expanded: this.nodeWrapper.querySelector('.home-grid.home-grid--expanded'),
@@ -39,10 +43,9 @@ export class HomeGridAnimation {
       return;
     }
 
-    const duration = 2.6;
     const ease = "power4.out";
     const stagger = {
-      each: 0.4
+      each: duration * 0.15
     };
 
 
@@ -52,11 +55,11 @@ export class HomeGridAnimation {
         nodes.grid_expanded?.appendChild(node);
       });
       return Flip.from(flipState, {
-        duration: duration,
+        duration,
         ease,
         stagger,
         absolute: true,
-      })
+      });
     }
     function fadeBoxes() {
       const tl = gsap.timeline();
@@ -88,7 +91,7 @@ export class HomeGridAnimation {
           gsap.set([...nodes.grid_items, ...getChildren(nodes.grid_items)], { visibility: 'hidden' });
         },
         onComplete: () => {
-          this.reactivate_transition()
+          this.reactivate_transition();
         },
       })
       .addLabel('t0', duration * 0)
@@ -124,7 +127,7 @@ export class HomeGridAnimation {
         ease,
         stagger,
         absolute: true,
-      })
+      });
     }
     function fadeBoxes() {
       const tl = gsap.timeline();
@@ -155,14 +158,14 @@ export class HomeGridAnimation {
           this.deactivate_transition();
         },
         onComplete: () => {
-          this.reactivate_transition()
+          this.reactivate_transition();
         },
       })
       .addLabel('t0', duration * 0)
       .addLabel('t1', duration * 0.5)
       .add(fadeBoxes(), 't1')
       .add(fadeBoxesChildren(), 't0')
-      .add(expandBoxes(), 't0')
+      .add(expandBoxes(), 't0');
   }
   deactivate_transition() {
     document.body.classList.toggle('GSAP-IS-ANIMATING', true);
