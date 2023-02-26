@@ -95,11 +95,11 @@ This theme.json will be converted into CSS (by Wordpress), but the CSS for the b
 }
 ```
 
-# Enviroments
+## Environments
 
-Let’s look at `block editor` and `frontend` enviroments.
+Let’s look at `block editor` and `frontend` environments.
 
-## Block Editor
+### Block Editor
 
 In block editor, the live preview is inside an iframe, the UI of the editor is external to the iframe.
 
@@ -107,13 +107,13 @@ In block editor, the live preview is inside an iframe, the UI of the editor is e
 
 ![Schermata 2023-02-26 alle 01.35.42.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_01.35.42.png)
 
-## Frontend
+### Frontend
 
 In frontend, your content is not wrapped by an iframe.
 
 ![Schermata 2023-02-26 alle 01.34.24.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_01.34.24.png)
 
-# Start
+## Start
 
 Let’s say that we change the text font-size like so
 
@@ -121,7 +121,7 @@ Let’s say that we change the text font-size like so
 
 ![Schermata 2023-02-26 alle 02.02.43.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_02.02.43.png)
 
-… but on mobile is too big
+...but on mobile font-size is too big
 
 ![Schermata 2023-02-26 alle 01.52.21.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_01.52.21.png)
 
@@ -129,13 +129,13 @@ So what we want is to create a CSS file with some media query and apply them
 
 ```css
 @media (max-width: 600px) {
-  .mobile:text-2xl {
+  .mobile\:text-2xl {
     font-size: 1.5rem;
   }
 }
 ```
 
-So, even if the CSS is not injected we apply a custom CSS class to the paragraph
+So, even if the CSS is not yet injected we apply a custom CSS class to the paragraph
 
 ![Schermata 2023-02-26 alle 01.58.07.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_01.58.07.png)
 
@@ -145,11 +145,11 @@ Now it’s time to inject the CSS.
 
 1. create CSS file
 2. enqueue CSS in block editor and in frontend
-3. ensure that `mobile:text-2xl` overrides style
+3. ensure that `mobile:text-2xl` overrides style from theme.json
 
 ## 1. create CSS file
 
-NOTE: dont’forget the `\` char
+NOTE: don't forget the `\` char
 
 ```css
 /* .../wp-content/my-theme/my-theme-custom-css.css */
@@ -187,10 +187,10 @@ In Block Editor we **DON’T** have the class
 
 ![Schermata 2023-02-26 alle 02.29.28.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_02.29.28.png)
 
-Remeber, the iframe ???
-Our CSS is loaded in the page , but not in the iframe that render the preview.
-After 1 hours of research , i found an issue on Github that say that
-”if your CSS does not contain `.wp-block` and .`.editor-styles-wrapper` in your content it won't be loaded in the iframe".
+Remember, the iframe ???  
+Our CSS is loaded in the page, but not in the iframe that render the preview.
+After 1 hours of research, i found an [issue](https://github.com/WordPress/gutenberg/issues/38673#issuecomment-1036142814) on Github that say that
+”if your CSS doesn't contain `.wp-block` and .`.editor-styles-wrapper` it won't be loaded in the iframe".  
 Very weird and hard to understand.
 
 So let's edit the CSS file like so
@@ -214,7 +214,7 @@ Now the CSS is injected in the iframe
 
 ![Schermata 2023-02-26 alle 02.37.22.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_02.37.22.png)
 
-## 3. ensure that `mobile:text-2xl` overrides other class
+## 3. ensure that `mobile:text-2xl` overrides theme.json style
 
 Frontend
 
@@ -222,7 +222,7 @@ This is the fight
 
 ![Schermata 2023-02-26 alle 02.44.00.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_02.44.00.png)
 
-First we put !important in our CSS …
+First we put `!important` in our CSS...
 
 ```css
 /* .../wp-content/my-theme/my-theme-custom-css.css */
@@ -239,11 +239,12 @@ First we put !important in our CSS …
 }
 ```
 
-… but is not enough, maybe our custom CSS is injected before the one we want to override ??
+...but is not enough.  
+Maybe our custom CSS is injected before the one we want to override ??
 
 ![Schermata 2023-02-26 alle 02.55.02.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_02.55.02.png)
 
-So we tell to worpdress that our custom css depends on the theme.json one, so that wropresss inject the theme.json one before.
+So we tell to Wordpress that our custom css depends on the theme.json one, so that wordpress injects the theme.json one before.
 
 ```php
 // in my-theme/functions.php
@@ -262,13 +263,15 @@ Great! we won the fight
 
 ![Schermata 2023-02-26 alle 03.01.36.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.01.36.png)
 
-Let’s go in the editor
+Let's go in the editor
 
-What ? Our CSS is not there anymore
+What ?  
+Our CSS is not there anymore!
 
 ![Schermata 2023-02-26 alle 03.11.28.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.11.28.png)
 
-Maybe the “dependency” assets we added is not present in the editor ? try to remove it
+Maybe the “dependency” assets we added is not present in the editor?  
+Try to remove it
 
 ```php
 // in my-theme/functions.php
@@ -283,21 +286,21 @@ function my_theme_enqueue_blocks_assets() {
 add_action('enqueue_block_assets', 'my_theme_enqueue_blocks_assets');
 ```
 
-… we are back in business !
+...we are back in business !
 
 ![Schermata 2023-02-26 alle 03.17.57.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.17.57.png)
 
-Let’s look how the theme.json is loaded in the page…
+Let's look how the theme.json css is loaded in page...
 
 ![Schermata 2023-02-26 alle 03.21.45.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.21.45.png)
 
-Mmm, it is not a <link> like in the  frontend, and there is no `id` that i can use to search it "handle" name in the codebase.
+Mmm, it's not a `<link>` like in the  frontend but a `<style>`, and there is no `id` that i can use to search its "handle" name in the codebase.
 
-So, my first idea is to fight again with specificity, let's see the fight
+It's time to fight again with specificity, let's see the fight
 
 ![Schermata 2023-02-26 alle 03.25.27.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.25.27.png)
 
-… we can’t inject `my-theme-custom-css` after `theme.json` one, se we need to be more specific in selectors, something like...
+...we can’t inject `my-theme-custom-css` after `theme.json` one, se we need to be more specific in selectors to win, something like...
 
 ```css
 /* .../wp-content/my-theme/my-theme-custom-css.css */
@@ -314,17 +317,17 @@ So, my first idea is to fight again with specificity, let's see the fight
 }
 ```
 
-..we won!!!!
+... and we won!!!!
 
 ![Schermata 2023-02-26 alle 03.34.30.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.34.30.png)
 
-Let’s check in frontend…
+Let’s check in frontend...
 
 ![Schermata 2023-02-26 alle 03.36.12.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.36.12.png)
 
-.. and sadly , our classes is not there.
+...and sadly, our classes is not there anymore.
 
-In frontend, body doesn’t have `editor-styles-wrapper` class, so we must add a second scoped selector in CSS...
+In frontend, `body` doesn’t have `editor-styles-wrapper` class, so we must add a second scoped selector in CSS only for frontend...
 
 ```css
 /* .../wp-content/my-theme/my-theme-custom-css.css */
@@ -342,11 +345,11 @@ In frontend, body doesn’t have `editor-styles-wrapper` class, so we must add a
 }
 ```
 
-Not so nice! But ….
+Not so nice! But...
 
 ![Schermata 2023-02-26 alle 03.41.53.png](/blog/load-global-css-in-block-theme-in-wordpress/Schermata_2023-02-26_alle_03.41.53.png)
 
-… it worked!
+...it worked!
 
 ## Considerations
 
