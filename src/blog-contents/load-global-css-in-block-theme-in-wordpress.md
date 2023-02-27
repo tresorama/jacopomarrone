@@ -8,14 +8,56 @@ author:
 ## Update (2023-02-27 - 27 Feb)
 
 There is a better solution, and simpler, to do what this guide does.  
-There is a `add_editor_style` function in core wordpress, that does exactly what this guide does manually.  
+
+In frontend use `wp_enqueue_style` and add dependency of css generated from `theme.json`, so your will have priority if has same css specificity.
+In block editor iframe, use `add_editor_style`.
+
+```css
+/* .../wp-content/my-theme/my-custom-css.css */
+
+.text-2xl {
+  font-size: 1.5rem !important;
+}
+
+@media (max-width: 600px) {
+  .mobile\:text-2xl {
+    font-size: 1.5rem !important;
+  }
+}
+```
+
+```php
+/**
+ * Load custom global CSS into both block editor "iframe" and frontend
+ *
+ * @return void
+ */
+function my_theme_enqueue_custom_global_css_in_blocks() {
+  
+  // Add custom CSS to frontend.
+  wp_enqueue_style(
+    'my-custom-css',
+    get_template_directory_uri() . '/my-custom-css.css'
+    array( 'global-styles' ),// say to wordpress to inject this file after the css file generated from "theme.json"
+  );
+
+  // Add custom CSS to block editor "iframe".
+  add_editor_style( 'my-custom-css.css' );
+
+}
+add_action( 'after_setup_theme', 'my_theme_enqueue_custom_global_css_in_blocks' );
+
+```
+
+Your css stylesheet does not need special treatments, it works in both contexts(block editor/site editor and  frontend).
+
+In frontend, you just add your stylesheet after the one generated from `theme.json`, to be able to overrides without increasing css specificity.
+
+In the block editor (and site editor) "iframe" you use the function [add_editor_style](https://developer.wordpress.org/reference/functions/add_editor_style), does exactly what this guide does manually, for the iframe part.  
+The function `add_editor_style` injects a CSS file in the block editor "iframe" and adds `.editor-styles-wrapper` scoped selector to every css definition, also in media query definitions.
+For example, `.text-2xl` become `.editor-styles-wrapper .text-2xl`  
+
 Thanks to [carolinan](https://github.com/carolinan) that suggested this in this [issue](https://github.com/WordPress/gutenberg/issues/48437#issuecomment-1445262652).  
-
-For instance, [add_editor_style](https://developer.wordpress.org/reference/functions/add_editor_style/) inject a CSS file and:
-
-- in editor page, add `.editor-styles-wrapper` scoped selector to every definition, works also in media query.  
-  i.e. `.text-3xl` become `.editor-styles-wrapper .text-3xl`  
-- in frontend, the CSS file is loaded as inline `<style>` after all `<link>` files.  So it will be high in specificity without adding scoped selector.
 
 End of update.
 
