@@ -5,6 +5,22 @@ author:
   name: Jacopo Marrone
 ---
 
+## Update (2023-02-27 - 27 Feb)
+
+There is a better solution, and simpler, to do what this guide does.  
+There is a `add_editor_style` function in core wordpress, that does exactly what this guide does manually.  
+Thanks to [carolinan](https://github.com/carolinan) that suggested this in this [issue](https://github.com/WordPress/gutenberg/issues/48437#issuecomment-1445262652).  
+
+For instance, [add_editor_style](https://developer.wordpress.org/reference/functions/add_editor_style/) inject a CSS file and:
+
+- in editor page, add `.editor-styles-wrapper` scoped selector to every definition, works also in media query.  
+  i.e. `.text-3xl` become `.editor-styles-wrapper .text-3xl`  
+- in frontend, the CSS file is loaded as inline `<style>` after all `<link>` files.  So it will be high in specificity without adding scoped selector.
+
+End of update.
+
+## Guide
+
 Goal of this guide:
 Load a CSS file insde both editor and frontend.
 This CSS contains classes that when applied, they must override an already present class coming from the generated CSS of `theme.json`.
