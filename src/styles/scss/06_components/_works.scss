@@ -74,7 +74,7 @@ body.works--visible .works {
   }
 
   &__description {
-    @include text("body", $family: 'book');
+    @include text("body");
 
     p {
       margin-bottom: spaceOLD(4);
