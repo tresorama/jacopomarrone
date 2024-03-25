@@ -23,7 +23,11 @@ export type PageProps = {
 };
 
 export const getStaticProps: GetStaticProps<PageProps, PathParams> = async ({ params }) => {
-  const { slug } = params!;
+  // handle case when params are not available
+  if (!params) return { notFound: true };
+
+  // params are available
+  const { slug } = params;
   const blogPost = await getBlogPostBySlug(slug);
   if (!blogPost) return { notFound: true };
 
