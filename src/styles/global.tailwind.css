@@ -4,15 +4,20 @@
 
 @layer components {
   .blogpost-prose {
-    @apply tracking-normal;
-    @apply font-fam-main;
-    @apply prose prose-lg;
-    @apply prose-h1:font-semibold;
-    @apply prose-h2:font-semibold prose-h2:text-5xl;
-    @apply prose-h3:font-semibold prose-h3:text-3xl;
-    @apply prose-h4:font-semibold prose-h4:text-xl prose-h4:mt-14 prose-h4:mb-4;
-    @apply prose-h5:font-semibold;
-    @apply prose-h6:font-semibold;
+    @apply 
+      max-w-3xl
+      tracking-normal
+      font-fam-main
+      prose
+      prose-base
+      prose-h1:font-semibold
+      prose-h2:font-semibold prose-h2:text-5xl
+      prose-h2:first-of-type:mt-[1em]
+      /* prose-h3:font-semibold prose-h3:text-3xl */
+      /* prose-h4:font-semibold prose-h4:text-xl prose-h4:mt-14 prose-h4:mb-4 */
+      /* prose-h5:font-semibold */
+      /* prose-h6:font-semibold */
+    ;
     
     @apply prose-code:bg-zinc-500 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:px-1 prose-code:py-0;
     pre code { background-color: transparent;}

@@ -18,17 +18,17 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
       </Link>
     </nav>
 
-    <div className='min-h-full grid grid-cols-1 grid-rows-[minmax(0,1fr)_auto_auto] bg-gradient-base'>
-      <main className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto">
-        <section className="py-20 text-left">
-          <div className="mb-4">
-            <p className="">{blogPost.author.name}</p>
-            <p className="">{formatDate(blogPost.date)}</p>
-          </div>
+    <div className='min-h-full grid grid-rows-[minmax(0,1fr)_auto_auto] bg-gradient-base'>
+      <main className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
+        <section className="space-y-4">
           <h1 className="text-preset-huge tracking-normal">{blogPost.title}</h1>
+          <div>
+            <p className="opacity-80 text-xs">{blogPost.author.name}</p>
+            <p className="opacity-60 text-xs">{formatDate(blogPost.date)}</p>
+          </div>
         </section>
         <div
-          className="blogpost-prose"
+          className="mt-12 md:mt-24 blogpost-prose"
           dangerouslySetInnerHTML={{ __html: blogPost.contentAsHTMLString }}
         />
         {blogPost.crossposted_url && (
@@ -39,7 +39,7 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
           </div>
         )}
       </main>
-      <nav className="pt-48 pb-20 px-8 w-full max-w-3xl mx-auto flex flex-wrap gap-12">
+      <nav className="pt-48 pb-12 px-8 w-full max-w-3xl mx-auto flex flex-wrap gap-12">
         {nextBlogPostWithLink && (
           <div className="max-w-[18ch] text-3xl text-left">
             <span className="block text-sm font-light">Older Post</span>
