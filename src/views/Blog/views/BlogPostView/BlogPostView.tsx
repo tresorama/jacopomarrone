@@ -23,8 +23,8 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
         <section className="space-y-4">
           <h1 className="text-preset-huge tracking-normal">{blogPost.title}</h1>
           <div>
-            <p className="opacity-80 text-xs">{blogPost.author.name}</p>
-            <p className="opacity-60 text-xs">{formatDate(blogPost.date)}</p>
+            <p className="opacity-80 text-xs">{blogPost.author}</p>
+            <p className="opacity-60 text-xs">{formatDate(blogPost.published_date)}</p>
           </div>
         </section>
         <div

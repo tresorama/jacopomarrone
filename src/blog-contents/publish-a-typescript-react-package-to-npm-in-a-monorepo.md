@@ -1,8 +1,7 @@
 ---
 title: 'Publish a Typescript React library to NPM in a monorepo'
-date: '2023-01-21T07:35:07.322Z'
-author:
-  name: Jacopo Marrone
+published_date: '2023-01-21T07:35:07.322Z'
+author: Jacopo Marrone
 crossposted_url: "https://dev.to/tresorama/publish-a-typescript-react-library-to-npm-in-a-monorepo-1ah1"
 ---
 

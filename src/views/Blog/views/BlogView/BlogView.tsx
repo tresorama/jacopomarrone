@@ -22,11 +22,11 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => (
       <main className="pt-40 pb-12 px-8 lg:px-16">
         {/* <h1 className="pt-6 pb-14 text-4xl font-extralight text-gray-700">Blog with Tailwind</h1> */}
         <ul className='space-y-8'>
-          {blogPostsWithLink.map(({ url, title, date }) => (
+          {blogPostsWithLink.map(({ url, title, published_date }) => (
             <li key={url}>
               <Link href={url} passHref>
                 <a className="flex flex-col">
-                  <span className='text-sm font-normal text-gray-500'>{formatDate(date)}</span>
+                  <span className='text-sm font-normal text-gray-500'>{formatDate(published_date)}</span>
                   <span className='text-4xl font-normal underline'>{title}</span>
                 </a>
               </Link>

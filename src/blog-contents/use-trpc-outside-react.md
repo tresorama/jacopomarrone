@@ -1,8 +1,7 @@
 ---
 title: 'Use tRPC outside React'
-date: '2022-10-10T20:35:07.322Z'
-author:
-  name: Jacopo Marrone
+published_date: '2022-10-10T20:35:07.322Z'
+author: Jacopo Marrone
 crossposted_url: "https://dev.to/tresorama/use-trpc-outside-react-d1o"
 ---
 

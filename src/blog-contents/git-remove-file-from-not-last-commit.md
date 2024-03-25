@@ -1,8 +1,7 @@
 ---
 title: 'Git remove file from not last commit'
-date: '2022-10-11T20:35:07.322Z'
-author:
-  name: Jacopo Marrone
+published_date: '2022-10-11T20:35:07.322Z'
+author: Jacopo Marrone
 crossposted_url: "https://dev.to/tresorama/git-remove-file-from-not-last-commit-2nh4"
 ---
 ## CAUTION

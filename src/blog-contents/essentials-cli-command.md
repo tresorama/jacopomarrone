@@ -1,8 +1,7 @@
 ---
 title: 'Essential CLI commands'
-date: '2024-03-25T16:26:53.078Z'
-author:
-  name: Jacopo Marrone
+published_date: '2024-03-25T16:26:53.078Z'
+author: Jacopo Marrone
 ---
 
 ## Terminal vs Shells

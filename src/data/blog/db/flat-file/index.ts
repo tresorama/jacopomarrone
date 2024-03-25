@@ -1,10 +1,11 @@
 import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import matter from 'gray-matter';
-import { BlogPost, validateBlogPostOrThrow } from "@/utils/blog/blog.schema";
-import { compileMarkdownToHTMLString } from "@/utils/blog/utils/utils.markdown";
-import { capitalize } from "@/utils/blog/utils/utils.string";
-import { sortByDateDescending } from "@/utils/blog/utils/utils.sort";
+import { BlogPost, validateBlogPostOrThrow } from "@/data/blog/blog.schema";
+import { compileMarkdownToHTMLString } from "@/data/blog/utils/utils.markdown";
+import { capitalize } from "@/data/blog/utils/utils.string";
+import { sortByDateDescending } from "@/data/blog/utils/utils.sort";
+import { BlogPostDatasource } from "../../blog.datasource.types";
 
 export { type BlogPost };
 
@@ -17,7 +18,7 @@ const getBlogPostFileBySlug = (slug: string) => readFileSync(`${getBlogDirPath()
 const getAllBlogPostSlugs = () => getAllBlogPostFileNames();
 
 // Public API for this datasource
-export const flatFileDB = {
+export const flatFileDB: BlogPostDatasource = {
   getAllBlogPost: async () => {
     const slugs = getAllBlogPostSlugs();
     const blogPosts: BlogPost[] = [];
@@ -26,26 +27,21 @@ export const flatFileDB = {
       if (!blogPost) continue;
       blogPosts.push(blogPost);
     }
-    return blogPosts.sort((a, b) => sortByDateDescending(a.date, b.date));
+    return blogPosts.sort((a, b) => sortByDateDescending(a.published_date, b.published_date));
   },
-  getBlogPostBySlug: async (slug: string): Promise<BlogPost | null> => {
+  getBlogPostBySlug: async (slug) => {
     const file = getBlogPostFileBySlug(slug);
     const metadata = matter(file.toString());
     const markdownAsString = metadata.content;
     const contentAsHTMLString = compileMarkdownToHTMLString(markdownAsString);
-    const blogPost: BlogPost = {
+    const blogPost = validateBlogPostOrThrow({
+      // custom fields
+      ...metadata.data,
       // required fields
       slug,
       title: metadata.data.title ?? capitalize(slug.replaceAll('-', ' ')),
       contentAsHTMLString,
-      // custom fields
-      date: metadata.data.date,
-      author: {
-        name: metadata.data.author.name
-      },
-      crossposted_url: metadata.data.crossposted_url ?? null,
-    };
-    validateBlogPostOrThrow(blogPost);
+    });
     return blogPost;
   }
 };

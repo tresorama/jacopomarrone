@@ -4,17 +4,20 @@ import { sortByDateDescending } from "./utils/utils.sort";
 
 export { type BlogPost };
 
+// This file contains all the 
 // Public API for fetching data
+// Use this API from the Next.js pages directory
+
 export const getAllBlogPostSlugs = async (): Promise<BlogPost['slug'][]> => {
   const blogPosts = await db.getAllBlogPost();
   return blogPosts
-    .sort((a, b) => sortByDateDescending(a.date, b.date))
+    .sort((a, b) => sortByDateDescending(a.published_date, b.published_date))
     .map(b => b.slug);
 };
 
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   const blogPosts = await db.getAllBlogPost();
-  return blogPosts.sort((a, b) => sortByDateDescending(a.date, b.date));
+  return blogPosts.sort((a, b) => sortByDateDescending(a.published_date, b.published_date));
 };
 
 export const getBlogPostBySlug = async (slug: BlogPost['slug']) => {

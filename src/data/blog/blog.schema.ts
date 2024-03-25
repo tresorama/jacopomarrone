@@ -8,24 +8,29 @@ const blogPostSchema = z.object({
   contentAsHTMLString: z.string(),
 }).extend({
   /* Add here your front-matter markdown custom fields */
-  date: z.string().datetime(),
-  author: z.object({
-    name: z.string(),
-  }),
-  crossposted_url: z.string().nullable(),
+  status: z.enum(["published", "draft"]),
+  published_date: z.string().datetime(),
+  author: z.string(),
+  crossposted_url: z.string().optional(),
 });
 
 export type BlogPost = z.infer<typeof blogPostSchema>;
 
 // Validation
-export const validateBlogPostOrThrow = (blogPost: BlogPost) => {
-  const result = blogPostSchema.safeParse(blogPost);
-  if (result.success) return;
+export const validateBlogPostOrThrow = (blogPostToValidate: unknown) => {
+  // parse and if no error return the parsed data
+  const parsed = blogPostSchema.safeParse(blogPostToValidate);
+  if (parsed.success) return parsed.data;
+
+  // build a human readable error and throw
+  const parsedSlug = z.object({ slug: z.string() }).safeParse(blogPostToValidate);
+  const slug = parsedSlug.success ? parsedSlug.data.slug : 'No Slug';
+
   const logger = new Logger("BlogPost Not Valid");
   const errorMessage = logger.error(
-    "BlogPost slug: " + blogPost.slug,
+    "BlogPost slug: " + slug,
     "Some attributes of the blogpost are not valid, usually means that blogpost frontmatter has something wrong.",
-    result.error,
+    parsed.error,
   );
   throw new Error(errorMessage);
 };

@@ -1,8 +1,7 @@
 ---
 title: 'Terminal vs Shell'
-date: '2024-03-25T15:26:53.078Z'
-author:
-  name: Jacopo Marrone
+published_date: '2024-03-25T15:26:53.078Z'
+author: Jacopo Marrone
 ---
 
 Terminal and Shell are not the same things but are commonly used interchangebly to refer to the the same concept: **doing things with a CLI (command line interface).**
