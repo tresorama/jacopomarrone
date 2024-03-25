@@ -1,6 +1,6 @@
 import { PageProps } from "@/pages/blog/index";
 import Link from "next/link";
-import { ArrowLeft } from "../../../shared/components/icons";
+import { ArrowLeft } from "@/views/shared/components/icons";
 import { AppShell } from "../shared/components/AppShell";
 import { IS_DEVELOPMENT } from "@/constants/shared";
 
@@ -27,7 +27,6 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
 
       <div className='w-full min-h-full grid grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
         <main className="pt-40 pb-12 px-8 lg:px-16">
-          {/* <h1 className="pt-6 pb-14 text-4xl font-extralight text-gray-700">Blog with Tailwind</h1> */}
           <ul className='space-y-8'>
             {posts.map(({ url, title, published_date }) => (
               <li key={url}>
