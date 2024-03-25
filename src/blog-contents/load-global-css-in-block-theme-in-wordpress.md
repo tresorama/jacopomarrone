@@ -1,4 +1,5 @@
 ---
+status: 'published'
 title: 'Load global CSS in block theme in Wordpress'
 published_date: '2023-02-26T10:35:07.322Z'
 author: Jacopo Marrone

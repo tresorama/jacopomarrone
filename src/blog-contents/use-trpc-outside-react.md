@@ -1,4 +1,5 @@
 ---
+status: 'published'
 title: 'Use tRPC outside React'
 published_date: '2022-10-10T20:35:07.322Z'
 author: Jacopo Marrone
