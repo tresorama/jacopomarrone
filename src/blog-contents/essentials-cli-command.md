@@ -18,7 +18,7 @@ This article is written for `zsh` shell, the one I'm using in my Mac.
   In CLI context they "are just the final part of the file name", so when you create a script file it's good practice to include an extension that indicate that is a script (`.sh` `.command` `.script`)
 - **Which folder you are in does not count**, but :
   - when referencing file path using a "relative" approach, the starting point is your current folder (knows as `cwd`, current working directory)
-  - when referencing file path using a "relative" approach, it is ininfluent.
+  - when referencing file path using a "relative" approach, it is irrelevant.
 
 ## Commands
 
