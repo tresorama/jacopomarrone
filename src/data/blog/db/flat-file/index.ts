@@ -10,7 +10,7 @@ import { BlogPostDatasource } from "../../blog.datasource.types";
 export { type BlogPost };
 
 // Utils for working with disk
-const getBlogDirPath = () => path.resolve(process.cwd(), "./src/blog-contents");
+const getBlogDirPath = () => path.resolve(process.cwd(), "./src/contents");
 const getAllBlogPostFileNames = () => readdirSync(getBlogDirPath()).map(filename => filename.replace('.md', ''));
 const getBlogPostFileBySlug = (slug: string) => readFileSync(`${getBlogDirPath()}/${slug}.md`);
 
