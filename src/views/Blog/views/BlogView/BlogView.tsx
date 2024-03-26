@@ -22,7 +22,7 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
             <span className="text-[0.5em] mt-[0.15em] ml-[-0.15em]">Home</span>
           </a>
         </Link>
-        <div className="text-preset-h4"><span>Blog</span></div>
+        <h1 className="text-preset-h4">Blog</h1>
       </nav>
 
       <div className='w-full min-h-full grid grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
@@ -30,12 +30,13 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
           <ul className='space-y-8'>
             {posts.map(({ url, title, published_date }) => (
               <li key={url}>
-                <Link href={url} passHref>
-                  <a className="flex flex-col">
-                    <span className='text-sm font-normal text-gray-500'>{formatDate(published_date)}</span>
-                    <span className='text-4xl font-normal underline'>{title}</span>
-                  </a>
-                </Link>
+                <article className="relative flex flex-col">
+                  <time className='text-sm font-normal text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
+                  <h2 className='text-4xl font-normal underline'>{title}</h2>
+                  <Link href={url} passHref>
+                    <a className="absolute inset-0" aria-label={title} />
+                  </Link>
+                </article>
               </li>
             ))}
           </ul>

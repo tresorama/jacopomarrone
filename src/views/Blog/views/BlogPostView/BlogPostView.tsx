@@ -18,27 +18,27 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
       </Link>
     </nav>
 
-    <div className='min-h-full grid grid-rows-[minmax(0,1fr)_auto_auto] bg-gradient-base'>
-      <main className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
-        <section className="space-y-4">
+    <main className='min-h-full grid grid-rows-[minmax(0,1fr)_auto_auto] bg-gradient-base'>
+      <article className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
+        <header className="space-y-4">
           <h1 className="text-preset-huge tracking-normal">{blogPost.title}</h1>
           <div>
-            <p className="opacity-80 text-xs">{blogPost.author}</p>
-            <p className="opacity-60 text-xs">{formatDate(blogPost.published_date)}</p>
+            <address className="opacity-80 text-xs">{blogPost.author}</address>
+            <time className="opacity-60 text-xs" dateTime={blogPost.published_date}>{formatDate(blogPost.published_date)}</time>
           </div>
-        </section>
+        </header>
         <div
           className="mt-12 md:mt-24 blogpost-prose"
           dangerouslySetInnerHTML={{ __html: blogPost.contentAsHTMLString }}
         />
         {blogPost.crossposted_url && (
-          <div className="blogpost-prose py-4 px-4 bg-zinc-200">
+          <section className="blogpost-prose py-4 px-4 bg-zinc-200">
             Looking for comments?
             <br />
             This post is cross-posted <a href={blogPost.crossposted_url}>here</a>, where you will find comments.
-          </div>
+          </section>
         )}
-      </main>
+      </article>
       <nav className="pt-48 pb-12 px-8 w-full max-w-3xl mx-auto flex flex-wrap gap-12">
         {nextBlogPostWithLink && (
           <div className="max-w-[18ch] text-3xl text-left">
@@ -57,7 +57,7 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
           </div>
         )}
       </nav>
-    </div>
+    </main>
 
   </AppShell>
 );
