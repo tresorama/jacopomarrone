@@ -5,7 +5,7 @@ import { BlogPost, validateBlogPostOrThrow } from "@/data/blog/blog.schema";
 import { compileMarkdownToHTMLString } from "@/data/blog/utils/utils.markdown";
 import { capitalize } from "@/data/blog/utils/utils.string";
 import { sortByDateDescending } from "@/data/blog/utils/utils.sort";
-import { BlogPostDatasource } from "../../blog.datasource.types";
+import { BlogPostDatasource } from "@/data/blog/blog.datasource.types";
 
 export { type BlogPost };
 
