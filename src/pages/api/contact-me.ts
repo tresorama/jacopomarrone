@@ -150,16 +150,18 @@ async function forwardMessageToMyEmail(data: ForwardMessageToMyEmailData) {
       .post("send", { version: 'v3.1' })
       .request({ ...data });
 
-    console.log(result.body);
+    console.log({ who: "forwardMessageToMyEmail", mailjetResponse: JSON.stringify(result.body) });
 
     const { Status } = (result.body as unknown as SendEmailV3_1.IResponse).Messages[0];
     if (Status === 'success') {
+      console.log({ who: "forwardMessageToMyEmail", mailjetSuccess: true });
       return true;
     }
 
     throw new Error('Unexpected error');
   } catch (err) {
-    console.log(err);
+    console.log({ who: "forwardMessageToMyEmail", mailjetSuccess: false });
+    console.error(err);
     return false;
   }
 }
@@ -229,16 +231,18 @@ async function sendConfirmationEmailToContactor(data: SendConfirmationToContacto
       .post("send", { version: 'v3.1' })
       .request({ ...data });
 
-    // console.log(result.body);
+    console.log({ who: "sendConfirmationEmailToContactor", mailjetResponse: JSON.stringify(result.body) });
 
     const { Status } = (result.body as unknown as SendEmailV3_1.IResponse).Messages[0];
     if (Status === 'success') {
+      console.log({ who: "sendConfirmationEmailToContactor", mailjetSuccess: true });
       return true;
     }
 
     throw new Error('Unexpected error');
   } catch (err) {
-    console.log(err);
+    console.log({ who: "sendConfirmationEmailToContactor", mailjetSuccess: false });
+    console.error(err);
     return false;
   }
 }

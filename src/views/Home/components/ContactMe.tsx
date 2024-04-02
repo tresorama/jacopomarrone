@@ -80,7 +80,11 @@ const contactSchema = z.object({
   contact__message: z.string({ required_error: 'Message is required' }),
 });
 type ContactValues = z.infer<typeof contactSchema>;
-const initialFormValues: ContactValues = {
+const initialFormValues: ContactValues = IS_DEVELOPMENT ? {
+  contact__name: 'Test in Dev User',
+  contact__email: 'jacopo.marrone.dev.test.user@gmail.com',
+  contact__message: 'Demo omessage',
+} : {
   contact__name: '',
   contact__email: '',
   contact__message: ''
