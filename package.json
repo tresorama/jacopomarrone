@@ -16,7 +16,7 @@
     "deps:auto-upgrade-save": "npm update --save"
   },
   "dependencies": {
-    "@hookform/resolvers": "^2.9.11",
+    "@hookform/resolvers": "^3.3.4",
     "axios": "^0.27.2",
     "gray-matter": "^4.0.3",
     "gsap": "^3.12.5",
