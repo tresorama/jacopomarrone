@@ -22,19 +22,19 @@
     "gsap": "^3.12.5",
     "highlight.js": "^11.9.0",
     "marked": "^4.3.0",
-    "next": "^12.3.4",
+    "next": "^14.1.4",
     "nodemailer": "^6.9.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.2",
     "use-next-navigation-event": "^0.0.2",
-    "usehooks-ts": "^2.16.0",
+    "usehooks-ts": "^3.0.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.12",
     "@types/marked": "^4.3.2",
-    "@types/node": "^16.18.94",
+    "@types/node": "^20.12.3",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.23",
@@ -44,11 +44,12 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^12.3.4",
     "node-mailjet": "^5.1.1",
+    "npm-check-updates": "^16.14.18",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.38",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.5",
     "sass": "^1.72.0",
     "tailwindcss": "^3.4.3",
-    "typescript": "^4.9.5"
+    "typescript": "^5.4.3"
   }
 }
