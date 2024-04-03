@@ -3,6 +3,6 @@ export const links = [
   { label: 'Github', permalink: 'https://github.com/tresorama' },
   { label: 'CodeSandbox', permalink: 'https://codesandbox.io/u/tresorama' },
   { label: 'CodePen', permalink: 'https://codepen.io/tresorama' },
-  { label: 'BitBucket', permalink: 'https://bitbucket.org/tresorama/' },
+  // { label: 'BitBucket', permalink: 'https://bitbucket.org/tresorama/' },
 ];
 export const portfolio_source_code = "https://github.com/tresorama/jacopomarrone";
