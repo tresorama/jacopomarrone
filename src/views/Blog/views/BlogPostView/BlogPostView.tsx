@@ -18,7 +18,7 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
       </Link>
     </nav>
 
-    <main className='min-h-full grid grid-rows-[minmax(0,1fr)_auto_auto] bg-gradient-base'>
+    <main className='min-h-full grid grid-cols-1 grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
       <article className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
         <header className="space-y-4">
           <h1 className="text-preset-huge tracking-normal">{blogPost.title}</h1>
