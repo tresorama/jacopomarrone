@@ -98,8 +98,7 @@ async function submitFormToServer(formValues: ContactValues) {
     contact_email: formValues.contact__email,
     contact_message: formValues.contact__message,
     source_key: "portfolio-contact-form",
-    source_path: window.location.href,
-    date_timestamp: date.valueOf(),
+    source_href: window.location.href,
     date_iso_string: date.toISOString(),
     date_locale_string: date.toLocaleString(),
   };

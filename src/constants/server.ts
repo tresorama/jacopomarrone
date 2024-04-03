@@ -11,6 +11,6 @@ if (isBrowser()) {
   `);
 }
 
-// Mailjet
-export const MAILJET_API_KEY = getFromEnv('MAILJET_API_KEY');
-export const MAILJET_API_SECRET = getFromEnv('MAILJET_API_SECRET');
+// Gmail
+export const GMAIL_USER_ADDRESS = getFromEnv('GMAIL_USER_ADDRESS');
+export const GMAIL_USER_APP_PASSWORD = getFromEnv('GMAIL_USER_APP_PASSWORD');

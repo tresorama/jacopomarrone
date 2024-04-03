@@ -1,29 +1,28 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next';
-import type { SendEmailV3_1 } from 'node-mailjet';
-import { mailjet_client } from '@/integrations/mailjet/server';
+import { NextApiRequest, NextApiResponse } from "next";
+import { sendMailWithGmail } from "@/integrations/nodemail/server/gmail-client";
+import { z } from "zod";
 
-export type RequestData = {
-  /** Contact name, comes from form */
-  contact_name: string,
-  /** Contact email, comes from form */
-  contact_email: string,
-  /** Contact message, comes from form */
-  contact_message: string,
+// Schema + Types
+const requestDataSchema = z.object({
+  contact_name: z.string(),
+  contact_email: z.string().email(),
+  contact_message: z.string(),
   /** Name of the source which request comes from. i.e. portfolio | facebook  */
-  source_key: string,
-  /** Name of the path which request comes from. i.e. /contact-me | /about  */
-  source_path: string,
-  /** Date of the request, in Unix timestamp */
-  date_timestamp: number,
+  source_key: z.string(),
+  /** URL of the source. i.e. /contact-me | /about  */
+  source_href: z.string(),
   /** Date of the request, in ISO */
-  date_iso_string: string,
+  date_iso_string: z.string(),
   /** Date of the request, in locale string. Locale depends on the client that performed the request, i.e the user browser that filled the form. This is a good format to be understood by the user who performed the request. Use this if you need to inform the user vie email when the request happened. */
-  date_locale_string: string,
+  date_locale_string: z.string(),
+});
+export type RequestData = z.infer<typeof requestDataSchema>;
+export type ResponseData = {
+  success: boolean,
 };
-type ResponseData = {
-  success: boolean;
-};
+
+
+// Handler
 
 export default async function handler(
   req: NextApiRequest,
@@ -32,217 +31,100 @@ export default async function handler(
 
   try {
     // extract request data
-    const {
-      contact_name,
-      contact_email,
-      contact_message,
-      source_key,
-      source_path,
-      date_timestamp,
-      date_iso_string,
-      date_locale_string
-    }: RequestData = req.body;
+    const data = requestDataSchema.safeParse(req.body);
+    if (!data.success) {
+      throw new Error(
+        `Invalid request data. This should never happens because we have Client Side Validation, so check the code.
+        \n
+        request:
+        ${JSON.stringify(req.body ?? {}, null, 2)}`
+      );
+    }
 
     // send mail to me
-    const forwarded_to_me = await forwardMessageToMyEmail({
-      contact_name,
-      contact_email,
-      contact_message,
-      source_key,
-      source_path,
-      date_timestamp,
-      date_iso_string,
+    const forwarded_to_me = await sendMailWithGmail({
+      from: 'Jacopo Marrone jacopo.marrone27@gmail.com',
+      to: 'jacopo.marrone27@gmail.com',
+      subject: "New Contact from portfolio.",
+      text: `
+      New Contact from portfolio.
+      Name: ${data.data.contact_name}
+      Email: ${data.data.contact_email}
+      Message: ${data.data.contact_message}
+
+      Source Key: ${data.data.source_key}
+      Source Path: ${data.data.source_href}
+      Date ISO: ${data.data.date_iso_string}
+      Date Locale String (for who submit the form): ${data.data.date_locale_string}
+      `,
+      html: `
+      <h3>New Contact from portfolio.</h3>
+      <br />
+      <br />
+      <br />Name: ${data.data.contact_name}
+      <br />Email: ${data.data.contact_email}
+      <br />Message: ${data.data.contact_message}
+      <br />
+      <br />
+      <br />Source Key: ${data.data.source_key}
+      <br />Source Path: ${data.data.source_href}
+      <br />Date ISO: ${data.data.date_iso_string}
+      <br />Date Locale String (for who submit the form): ${data.data.date_locale_string}
+      `
     });
+
     if (!forwarded_to_me) {
       throw new Error("Error forwarding message to my email.");
     }
 
-    // send mail to contactor
-    const confirmed_to_contactor = await sendConfirmationEmailToContactor({
-      contact_name,
-      contact_email,
-      contact_message,
-      date_locale_string
+
+    // send email of confirmation to who submit the form
+    const confimed_to_requester = await sendMailWithGmail({
+      from: 'Jacopo Marrone jacopo.marrone27@gmail.com',
+      to: data.data.contact_email,
+      subject: "New Contact from portfolio.",
+      text: `
+      I received your message.  
+      Thank for your interest.  
+      I will contact you as soon as possible.  
+
+      Your message:
+      Name: ${data.data.contact_name}
+      Email: ${data.data.contact_email}
+      Message: ${data.data.contact_message}
+      Date: ${data.data.date_locale_string}
+      `,
+      html: `
+      <p>
+      I received your message.
+      <br />Thank for your interest.
+      <br />I will contact you as soon as possible.
+      </p>
+      <br />
+      <br />
+      Your message:<br />
+      Name: ${data.data.contact_name}<br />
+      Email: ${data.data.contact_email}<br />
+      Message: ${data.data.contact_message}<br />
+      Date: ${data.data.date_locale_string}<br />
+      `
     });
-    if (!confirmed_to_contactor) {
-      throw new Error("Error sending confirmation email to contactor.");
+    if (!confimed_to_requester) {
+      throw new Error("Error forwarding message to my who submitted the form.");
     }
 
     // response
+    console.log({ who: "/api/sendmail", success: true });
     res
       .status(200)
       .json({ success: true });
 
   } catch (error) {
-    console.log(error);
+    console.log({ who: "/api/sendmail", success: false });
+    console.error(error);
     res
       .status(500)
       .json({ success: false });
   }
 
-}
-
-
-type ForwardMessageToMyEmailData = Pick<
-  RequestData,
-  | 'contact_name'
-  | 'contact_email'
-  | 'contact_message'
-  | 'source_key'
-  | 'source_path'
-  | 'date_timestamp'
-  | 'date_iso_string'
->;
-async function forwardMessageToMyEmail(data: ForwardMessageToMyEmailData) {
-
-  const {
-    contact_name,
-    contact_email,
-    contact_message,
-    source_key,
-    source_path,
-    date_timestamp,
-    date_iso_string
-  } = data;
-
-  try {
-    const data: SendEmailV3_1.IBody = {
-      Messages: [
-        {
-          From: {
-            Email: "jacopo.marrone27@gmail.com",
-            Name: "Jacopo Marrone"
-          },
-          To: [
-            {
-              Email: "jacopo.marrone27@gmail.com",
-              Name: "Jacopo Marrone"
-            }
-          ],
-          Subject: "New Contact from portfolio.",
-          TextPart: `
-          New Contact from portfolio.
-          Name: ${contact_name}
-          Email: ${contact_email}
-          Message: ${contact_message}
-          Source Key: ${source_key}
-          Source Path: ${source_path}
-          Date Timestamp: ${date_timestamp}
-          Date ISO: ${date_iso_string}
-          `,
-          HTMLPart: `
-          <h3>New Contact from portfolio.</h3>
-          <br />
-          <br />
-          <br />Name: ${contact_name}
-          <br />Email: ${contact_email}
-          <br />Message: ${contact_message}
-          <br />Source Key: ${source_key}
-          <br />Source Path: ${source_path}
-          <br />Date Timestamp: ${date_timestamp}
-          <br />Date ISO: ${date_iso_string}
-          `,
-        }
-      ]
-    };
-
-    const result = await mailjet_client
-      .post("send", { version: 'v3.1' })
-      .request({ ...data });
-
-    console.log({ who: "forwardMessageToMyEmail", mailjetResponse: JSON.stringify(result.body) });
-
-    const { Status } = (result.body as unknown as SendEmailV3_1.IResponse).Messages[0];
-    if (Status === 'success') {
-      console.log({ who: "forwardMessageToMyEmail", mailjetSuccess: true });
-      return true;
-    }
-
-    throw new Error('Unexpected error');
-  } catch (err) {
-    console.log({ who: "forwardMessageToMyEmail", mailjetSuccess: false });
-    console.error(err);
-    return false;
-  }
-}
-
-type SendConfirmationToContactorData = Pick<
-  RequestData,
-  | 'contact_name'
-  | 'contact_email'
-  | 'contact_message'
-  | 'date_locale_string'
->;
-async function sendConfirmationEmailToContactor(data: SendConfirmationToContactorData) {
-
-  const {
-    contact_name,
-    contact_email,
-    contact_message,
-    date_locale_string
-  } = data;
-
-  try {
-
-    const data: SendEmailV3_1.IBody = {
-      Messages: [
-        {
-          From: {
-            Email: "jacopo.marrone27@gmail.com",
-            Name: "Jacopo Marrone"
-          },
-          To: [
-            {
-              Email: contact_email,
-              Name: contact_name
-            }
-          ],
-          Subject: "Your message is arrived.",
-          TextPart: `
-          Your message has been delivered to me.
-
-          Thank for your interest.
-          I will contact you as soon as possible.
-
-          Your message:
-          Name: ${contact_name}
-          Email: ${contact_email}
-          Message: ${contact_message}
-          Date: ${date_locale_string}
-          `,
-          HTMLPart: `
-            <h3>Your message has been delivered to me.</h3>
-            <br />
-            Thank for your interest.
-            I will contact you as soon as possible.
-            <br />
-            <br />
-            Your message:<br />
-            Name: ${contact_name}<br />
-            Email: ${contact_email}<br />
-            Message: ${contact_message}<br />
-            Date: ${date_locale_string}<br />
-          `,
-        }
-      ]
-    };
-
-    const result = await mailjet_client
-      .post("send", { version: 'v3.1' })
-      .request({ ...data });
-
-    console.log({ who: "sendConfirmationEmailToContactor", mailjetResponse: JSON.stringify(result.body) });
-
-    const { Status } = (result.body as unknown as SendEmailV3_1.IResponse).Messages[0];
-    if (Status === 'success') {
-      console.log({ who: "sendConfirmationEmailToContactor", mailjetSuccess: true });
-      return true;
-    }
-
-    throw new Error('Unexpected error');
-  } catch (err) {
-    console.log({ who: "sendConfirmationEmailToContactor", mailjetSuccess: false });
-    console.error(err);
-    return false;
-  }
 }
