@@ -21,7 +21,7 @@ export const HeaderBar = ({ children }: { children: React.ReactNode; }) => {
 const BackButton = ({ children, ...linkProps }: LinkProps & { children: React.ReactNode; }) => {
   return (
     <Link {...linkProps} passHref>
-      <a className="text-preset-h3 pointer-events-auto inline-flex items-center">
+      <a className="text-preset-h3 font-normal pointer-events-auto inline-flex items-center">
         <ArrowLeft />
         <span className="text-[0.5em] mt-[0.15em] ml-[-0.15em]">{children}</span>
       </a>
@@ -32,7 +32,7 @@ const BackButton = ({ children, ...linkProps }: LinkProps & { children: React.Re
 const Title = ({ as, children }: { as: keyof JSX.IntrinsicElements, children: React.ReactNode; }) => {
   const Component = as ?? 'span';
   return (
-    <Component className="text-preset-h4">
+    <Component className="text-preset-h4 font-normal">
       {children}
     </Component>
   );
