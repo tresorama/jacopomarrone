@@ -75,6 +75,10 @@ body,
     }
   }
 
+  &__box:not(&__box-different) span {
+    white-space: nowrap;
+  }
+
   &__box--no-bg {
     background: none !important;
   }

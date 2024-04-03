@@ -2,38 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components {
-  .blogpost-prose {
-    @apply 
-      max-w-3xl
-      tracking-normal
-      font-fam-main
-      prose
-      prose-base
-      prose-h1:font-semibold
-      prose-h2:font-semibold prose-h2:text-5xl
-      prose-h2:first-of-type:mt-[1em]
-      /* prose-h3:font-semibold prose-h3:text-3xl */
-      /* prose-h4:font-semibold prose-h4:text-xl prose-h4:mt-14 prose-h4:mb-4 */
-      /* prose-h5:font-semibold */
-      /* prose-h6:font-semibold */
-    ;
-    
-    @apply prose-code:bg-zinc-500 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:px-1 prose-code:py-0;
-    pre code { background-color: transparent;}
-    
-    @apply prose-blockquote:bg-zinc-200/60 prose-blockquote:pt-6 prose-blockquote:pb-4 prose-blockquote:px-8;
-    & blockquote {
-      p { margin:0 }
-      p:before,p:after { content: none; }
-    }
 
-    @apply prose-li:marker:text-zinc-400
+  /* Typography preset imported from SASS */
+  .font-fam-main {
+    font-family: var(--font-family-sans-serif);
+  }
+  .font-fam-book {
+    font-family: var(--font-family-sans-serif-2);/* Use this for text that needs to be read easily, like copy of card, article, ... */
+  }
 
+  /* Text Sets */
+  .text-preset-gigantic{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-7xl lg:text-8xl;
+  }
+  .text-preset-huge{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-5xl lg:text-7xl;
+
+  }
+  .text-preset-h1{
+    font: normal 600 1rem/1 var(--font-family-main);
+    @apply text-4xl lg:text-5xl;
+
+  }
+  .text-preset-h2{
+    font: normal 600 1rem/1.1 var(--font-family-main);
+    @apply text-3xl lg:text-4xl;
+
+  }
+  .text-preset-h3{
+    font: normal 600 1rem/1.1 var(--font-family-main);
+    @apply text-2xl lg:text-3xl;
+
+  }
+  .text-preset-h4{
+    font: normal 600 1rem/1.3 var(--font-family-main);
+    @apply text-xl lg:text-2xl;
+  }
+  .text-preset-h5{
+    font: normal 600 1rem/1.5 var(--font-family-main);
+    @apply text-lg lg:text-xl;
+  }
+  .text-preset-h6{
+    font: normal 600 1rem/1.5 var(--font-family-main);
+    @apply text-base;
+  }
+  .text-preset-body{
+    font: normal 400 1rem/1.5 var(--font-family-main);
+    @apply text-base;
+  }
+  .text-preset-small{
+    font: normal 400 1rem/1.2 var(--font-family-main);
+    @apply text-sm;
   }
 }
 
-@layer utilities {
+@layer components {
   .bg-gradient-base {
     & {
       position: relative;
@@ -63,64 +90,36 @@
         /* background-image: linear-gradient(180deg, theme(colors.gray.900), transaprent); */
         }
   }
+}
 
+@layer components {
+  .blogpost-prose {
+    @apply 
+      max-w-3xl
+      tracking-normal
+      font-fam-main
+      prose
+      prose-base
+      prose-h1:font-semibold
+      prose-h2:font-normal prose-h2:text-5xl prose-h2:first-of-type:mt-[1em]
+      prose-h3:font-normal prose-h3:text-3xl
+      /* prose-h4:font-semibold prose-h4:text-xl prose-h4:mt-14 prose-h4:mb-4 */
+      /* prose-h5:font-semibold */
+      /* prose-h6:font-semibold */
+    ;
+    
+    @apply prose-code:bg-zinc-500 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:px-1 prose-code:py-0;
+    pre code { background-color: transparent;}
+    
+    @apply prose-blockquote:bg-zinc-200/60 prose-blockquote:pt-6 prose-blockquote:pb-4 prose-blockquote:px-8;
+    & blockquote {
+      p { margin:0 }
+      p:before,p:after { content: none; }
+    }
 
-  /* Typography preset imported from SASS */
-  .font-fam-main {
-    font-family: var(--font-family-sans-serif);
-  }
-  .font-fam-book {
-    font-family: var(--font-family-sans-serif-2);/* Use this for text that needs to be read easily, like copy of card, article, ... */
-  }
+    @apply prose-li:marker:text-zinc-400
 
-  /* Text Sets */
-  .text-preset-gigantic{
-    font: normal 600 1rem/1 var(--font-family-main);
-    @apply text-7xl lg:text-8xl;
-  }
-  .text-preset-huge{
-    font: normal 600 1rem/1 var(--font-family-main);
-    @apply text-6xl lg:text-7xl;
-
-  }
-  .text-preset-h1{
-    font: normal 600 1rem/1 var(--font-family-main);
-    @apply text-4xl lg:text-5xl;
-
-  }
-  .text-preset-h2{
-    font: normal 600 1rem/1.1 var(--font-family-main);
-    @apply text-3xl lg:text-4xl;
-
-  }
-  .text-preset-h3{
-    font: normal 600 1rem/1.1 var(--font-family-main);
-    @apply text-2xl lg:text-3xl;
-
-  }
-  .text-preset-h4{
-    font: normal 600 1rem/1.3 var(--font-family-main);
-    @apply text-xl lg:text-2xl;
-  }
-  .text-preset-h5{
-    font: normal 600 1rem/1.5 var(--font-family-main);
-    @apply text-lg lg:text-xl;
-  }
-  .text-preset-h6{
-    font: normal 600 1rem/1.5 var(--font-family-main);
-    @apply text-md;
-  }
-  .text-preset-body{
-    font: normal 400 1rem/1.5 var(--font-family-main);
-    @apply text-md;
-  }
-  .text-preset-small{
-    font: normal 400 1rem/1.2 var(--font-family-main);
-    @apply text-sm;
-  }
-  .text-preset-small{
-    font-2: normal 500 1rem/1.2 var(--font-family-main);
-    @apply text-xs;
   }
 }
+
 

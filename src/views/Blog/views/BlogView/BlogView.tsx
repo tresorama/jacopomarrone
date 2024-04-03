@@ -26,7 +26,7 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
       </nav>
 
       <div className='w-full min-h-full grid grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
-        <main className="pt-40 pb-12 px-8 lg:px-16">
+        <main className="pt-28 pb-12 px-8 lg:pt-40 lg:px-16">
           <ul className='space-y-8'>
             {posts.map(({ url, title, published_date }) => (
               <li key={url}>

@@ -42,6 +42,7 @@
 
   &__header {
     @include i-am-not-clickable-but-my-children-are;
+    z-index: 1;
     padding-top: space('md');
     padding-bottom: space('md');
     position: absolute;
@@ -68,6 +69,8 @@
   }
 
   &__content {
+    z-index: 0;
+    position: relative;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -79,12 +82,20 @@
   &__close-panel {
     @include text('h4');
     display: inline-flex;
-    align-items: center;
+    position: relative;
+
+    svg {
+      --width: 1em;
+      width: var(--width);
+      margin-left: calc(-1 * 0.25 * var(--width));
+    }
 
     &-text {
-      font-size: 0.4em;
-      margin-top: 0.15em;
-      margin-left: -0.3em;
+      font-size: 0.6em;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(0px, -45%);
     }
   }
 

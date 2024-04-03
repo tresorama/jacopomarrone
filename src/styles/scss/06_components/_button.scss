@@ -3,7 +3,6 @@
 .button {
   & {
     @include text('body');
-    font-weight: 700;
     color: color('black');
     padding: 0.5em 2em;
     text-decoration: none;
@@ -49,6 +48,7 @@
 }
 
 .button--naked {
+
   &,
   &:before,
   &:after {

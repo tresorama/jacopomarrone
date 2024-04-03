@@ -1,5 +1,5 @@
 .GSAP-IS-ANIMATING * {
-  transition: none !important;
+  pointer-events: none !important;
 }
 
 .cursor-container {

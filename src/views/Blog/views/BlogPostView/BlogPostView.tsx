@@ -21,7 +21,7 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
     <main className='min-h-full grid grid-cols-1 grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
       <article className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
         <header className="space-y-4">
-          <h1 className="text-preset-huge tracking-normal">{blogPost.title}</h1>
+          <h1 className="text-preset-huge font-normal tracking-normal">{blogPost.title}</h1>
           <div>
             <address className="opacity-80 text-xs">{blogPost.author}</address>
             <time className="opacity-60 text-xs" dateTime={blogPost.published_date}>{formatDate(blogPost.published_date)}</time>
