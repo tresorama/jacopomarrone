@@ -28,9 +28,7 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
                 <article className="relative flex flex-col">
                   <time className='text-sm font-normal text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
                   <h2 className='text-4xl font-normal underline'>{title}</h2>
-                  <Link href={url} passHref>
-                    <a className="absolute inset-0" aria-label={title} />
-                  </Link>
+                  <Link href={url} className="absolute inset-0" aria-label={title} />
                 </article>
               </li>
             ))}
