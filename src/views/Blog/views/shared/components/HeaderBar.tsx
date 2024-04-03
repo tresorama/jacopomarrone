@@ -20,11 +20,12 @@ export const HeaderBar = ({ children }: { children: React.ReactNode; }) => {
 
 const BackButton = ({ children, ...linkProps }: LinkProps & { children: React.ReactNode; }) => {
   return (
-    <Link {...linkProps} passHref>
-      <a className="text-preset-h3 font-normal pointer-events-auto inline-flex items-center">
-        <ArrowLeft />
-        <span className="text-[0.5em] mt-[0.15em] ml-[-0.15em]">{children}</span>
-      </a>
+    <Link
+      {...linkProps}
+      className="text-preset-h3 font-normal pointer-events-auto inline-flex items-center"
+    >
+      <ArrowLeft />
+      <span className="text-[0.5em] mt-[0.15em] ml-[-0.15em]">{children}</span>
     </Link>
   );
 };

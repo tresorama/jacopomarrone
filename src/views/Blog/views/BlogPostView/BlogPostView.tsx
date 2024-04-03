@@ -38,17 +38,13 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
         {nextBlogPostWithLink && (
           <div className="max-w-[18ch] text-3xl text-left">
             <span className="block text-sm font-light">Older Post</span>
-            <Link href={nextBlogPostWithLink.url} passHref>
-              <a>{nextBlogPostWithLink.title}</a>
-            </Link>
+            <Link href={nextBlogPostWithLink.url}>{nextBlogPostWithLink.title}</Link>
           </div>
         )}
         {prevBlogPostWithLink && (
           <div className="ml-auto max-w-[18ch] text-3xl text-right">
             <span className="block text-sm font-light">Newer Post</span>
-            <Link href={prevBlogPostWithLink.url} passHref>
-              <a>{prevBlogPostWithLink.title}</a>
-            </Link>
+            <Link href={prevBlogPostWithLink.url}>{prevBlogPostWithLink.title}</Link>
           </div>
         )}
       </nav>
