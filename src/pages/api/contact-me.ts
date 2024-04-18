@@ -82,11 +82,17 @@ export default async function handler(
     const confimed_to_requester = await sendMailWithGmail({
       from: 'Jacopo Marrone jacopo.marrone27@gmail.com',
       to: data.data.contact_email,
-      subject: "New Contact from portfolio.",
+      subject: "Thank You for Your Message",
       text: `
-      I received your message.  
-      Thank for your interest.  
-      I will contact you as soon as possible.  
+      Hello ${data.data.contact_name},
+
+      I just wanted to let you know that I received your message through the contact form on jacopomarrone.com.
+      I appreciate the time you've taken to reach out to me.  
+
+      I will respond you as soon as possible.
+
+      Best regards,
+      Jacopo Marrone
 
       Your message:
       Name: ${data.data.contact_name}
@@ -96,9 +102,15 @@ export default async function handler(
       `,
       html: `
       <p>
-      I received your message.
-      <br />Thank for your interest.
-      <br />I will contact you as soon as possible.
+      Hello ${data.data.contact_name},
+      <br />
+      <br />I just wanted to let you know that I received your message through the contact form on jacopomarrone.com.
+      <br />I appreciate the time you've taken to reach out to me.
+      <br />
+      <br />I will respond you as soon as possible
+      <br />
+      <br />Best regards,
+      <br />Jacopo Marrone
       </p>
       <br />
       <br />
