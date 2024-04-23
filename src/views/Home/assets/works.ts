@@ -7,11 +7,19 @@ export const works: {
   permalink: string;
 }[] = [
     {
+      slug: "pipocas-it-redesign-2024",
+      name: "Pipocas.it",
+      image: "/images/works/pipocas-it--redesign-2024-reel.gif",
+      caption: "Website redesign and SEO",
+      description: `<p>Redesign of Pipocas's website to better reflect the inner soul of the brand and improve SEO. Focused on strong colors, simplicity and mobile UX.</p><ul><li>Design</li><li>Web Development</li><li>Copywriting</li><li>SEO</li><li>Multilingual - English + Italian</li></ul>`,
+      permalink: "https://pipocas.it/"
+    },
+    {
       slug: 'regexer',
       name: 'Regexer',
       image: "/images/works-source/regexer.png",
       caption: 'AI generator and tutor for regex',
-      description: `<p>A tool for developers.<br/><br/>You need a regex pattern but you always forget how regex works.<br /><br />With Regexer you can generate your regex asking in plain english.<br /><br />Or paste your regex and ask question about it.<br />Just ask!</p>`,
+      description: `<p>Tool powered by AI that helps developer in the process of creating a regex pattern.<br/>The usage is simple: just prompt the desiderd goal, and let the AI generate a regex pattern and some test cases. You can also use the tool to explain an existing regex.</p>`,
       permalink: 'https://regexer.dev/'
     },
     {
@@ -19,7 +27,7 @@ export const works: {
       name: 'Gradia',
       image: "/images/works-source/gradia.png",
       caption: 'Multi-Layer CSS gradient editor',
-      description: `<p>A tool for developers.<br/><br/>Be creative with your design and get the perfect background for your project. <br/><br />Stack multiple layer of linear or radial gradients with ease to use controls.<br /><br />When you are satisfied export to pure CSS (or CSS-in-JS).</p>`,
+      description: `<p>Gradia is a tool, for developers or designers, that helps the process of crafting a multi-layered gradient in CSS.<br/>Gradia offers an easy-to-use interface that aim remove complexity and provide an intuitive experience.</p>`,
       permalink: 'https://gradia.app/'
     },
     {
@@ -50,7 +58,7 @@ export const works: {
       slug: 'fli',
       name: 'Fli',
       image: "/images/works/fli.jpg",
-      caption: 'Artist artwork presentation',
+      caption: 'Artist artwork presentation website',
       description: '<p>Cinematic sequence landing page used to create hype on product launch. </p><p>Fli wanted to give strength to his artwork presentation at an important artistic international event providing a countdown to the day of the event.</p>',
       permalink: 'https://sad-einstein-7248c0.netlify.app/'
     },
