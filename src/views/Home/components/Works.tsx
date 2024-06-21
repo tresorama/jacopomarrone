@@ -85,7 +85,6 @@ export const Works = ({ isVisible, onCloseClick }: {
                           className="button"
                           href={permalink}
                           target="_blank"
-                          rel="noreferrer"
                           data-gtm-el="works-permalink"
                           data-gtm-el-key={slug}
                         >
