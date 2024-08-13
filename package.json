@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev:openbrowser": "npm-run-all -s open-browser dev",
-    "dev": "next dev",
+    "dev": "export NODE_ENV=development && next dev",
     "build": "rimraf .next && next build",
     "start": "next start",
     "lint": "npm-run-all -s lint:**",
