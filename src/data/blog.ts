@@ -6,7 +6,7 @@ import { sortByDateDescending } from "@/lib/markdown-data-layer/utils.sort";
 const collection = createCollection({
   slug: 'blog',
   db: createDb_Flatfile({
-    dirPath: './src/contents',
+    dirPath: './src/data/blog',
   }),
   schema: {
     /* Add here your front-matter markdown custom fields */
