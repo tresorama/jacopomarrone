@@ -1,22 +1,16 @@
 import Head from "next/head";
 import { GetStaticProps, NextPage } from "next";
-import { BlogPost, getAllBlogPosts } from "@/data/blog";
-import { BlogView } from "@/views/Blog/views/BlogView";
+import { type BlogPost, getAllBlogPosts } from "@/data/blog";
+import { BlogView } from "@/views/Blog/BlogView";
 
-type BlogPostWithLink = BlogPost & { url: string; };
 export type PageProps = {
-  blogPostsWithLink: BlogPostWithLink[];
+  blogPosts: BlogPost[];
 };
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const blogPosts = await getAllBlogPosts();
-  const blogPostsWithLink: BlogPostWithLink[] = blogPosts.map(blogPost => ({
-    ...blogPost,
-    url: `/blog/${blogPost.slug}`,
-  }));
-
   return {
-    props: { blogPostsWithLink }
+    props: { blogPosts }
   };
 };
 

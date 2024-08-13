@@ -1,4 +1,5 @@
-import { links, portfolio_source_code } from "../assets/social-links";
+import data from "@/data/footer.json";
+const { links, portfolio_source_code } = data;
 
 export const Footer = () => (
   <>

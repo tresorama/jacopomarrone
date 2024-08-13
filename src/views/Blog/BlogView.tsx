@@ -1,16 +1,16 @@
 import { PageProps } from "@/pages/blog/index";
 import Link from "next/link";
-import { AppShell } from "../shared/components/AppShell";
+import { AppShell } from "./shared/components/AppShell";
 import { IS_DEVELOPMENT } from "@/constants/shared";
-import { HeaderBar } from "../shared/components/HeaderBar";
+import { HeaderBar } from "./shared/components/HeaderBar";
 
 const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });
 
-export const BlogView = ({ blogPostsWithLink }: PageProps) => {
+export const BlogView = ({ blogPosts }: PageProps) => {
 
   // in "production" and "staging" shows only "published" posts
   // in "dev" shows all posts
-  const posts = IS_DEVELOPMENT ? blogPostsWithLink : blogPostsWithLink.filter(p => p.status === 'published');
+  const posts = IS_DEVELOPMENT ? blogPosts : blogPosts.filter(p => p.status === 'published');
 
   return (
     <AppShell>
@@ -26,7 +26,9 @@ export const BlogView = ({ blogPostsWithLink }: PageProps) => {
             {posts.map(({ url, title, published_date }) => (
               <li key={url}>
                 <article className="relative flex flex-col">
-                  <time className='text-sm font-normal text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
+                  {published_date && (
+                    <time className='text-sm font-normal text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
+                  )}
                   <h2 className='text-4xl font-normal underline'>{title}</h2>
                   <Link href={url} className="absolute inset-0" aria-label={title} />
                 </article>

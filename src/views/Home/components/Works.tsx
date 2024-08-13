@@ -2,7 +2,7 @@ import { ArrowLeft } from '@/views/shared/components/icons';
 import React from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';
-import { works } from '../assets/works';
+import works from '@/data/portfolio.json';
 
 function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
   const animationRef = React.useRef<gsap.core.Timeline | null>(null);

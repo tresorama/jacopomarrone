@@ -1,8 +1,15 @@
 ---
-status: 'draft'
-title: 'Basic Scripting in CLI'
-published_date: '2024-03-25T16:26:53.078Z'
-author: Jacopo Marrone
+type: blog
+status: draft
+slug: basic-scripting-in-cli
+title: Basic Scripting in CLI
+description: What is basic scripting in CLI and what you can do with it
+featured_image: null
+published_date: 2024-03-25T16:26:53.000Z
+author: jacopo-marrone
+crossposted_url: null
+keywords:
+  - cli
 ---
 
 ## CLI General Reminders

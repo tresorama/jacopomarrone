@@ -1,8 +1,9 @@
 ---
-status: 'published'
-title: 'Terminal vs Shell'
-published_date: '2024-03-25T15:26:53.078Z'
-author: Jacopo Marrone
+type: blog
+status: published
+title: Terminal vs Shell
+published_date: 2024-03-25T15:26:53.078Z
+author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/terminal-vs-shell-39jk
 ---
 
