@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { PageProps } from "@/pages/blog/[slug]";
 import 'highlight.js/styles/github-dark-dimmed.css'; //This is the theme your code is going to be displayed with.
-import { AppShell } from "../shared/components/AppShell";
-import { HeaderBar } from "../shared/components/HeaderBar";
+import { AppShell } from "./shared/components/AppShell";
+import { HeaderBar } from "./shared/components/HeaderBar";
 
 const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });
 
-export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithLink }: PageProps) => (
+export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps) => (
   <AppShell>
 
     <HeaderBar>
@@ -19,7 +19,9 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
           <h1 className="text-preset-huge font-normal tracking-normal">{blogPost.title}</h1>
           <div>
             <address className="opacity-80 text-xs">{blogPost.author}</address>
-            <time className="opacity-60 text-xs" dateTime={blogPost.published_date}>{formatDate(blogPost.published_date)}</time>
+            {blogPost.published_date && (
+              <time className="opacity-60 text-xs" dateTime={blogPost.published_date}>{formatDate(blogPost.published_date)}</time>
+            )}
           </div>
         </header>
         <div
@@ -35,16 +37,16 @@ export const BlogPostView = ({ blogPost, prevBlogPostWithLink, nextBlogPostWithL
         )}
       </article>
       <nav className="pt-48 pb-12 px-8 w-full max-w-3xl mx-auto flex flex-wrap gap-12">
-        {nextBlogPostWithLink && (
+        {nextBlogPost && (
           <div className="max-w-[18ch] text-3xl text-left">
             <span className="block text-sm font-light">Older Post</span>
-            <Link href={nextBlogPostWithLink.url}>{nextBlogPostWithLink.title}</Link>
+            <Link href={nextBlogPost.url}>{nextBlogPost.title}</Link>
           </div>
         )}
-        {prevBlogPostWithLink && (
+        {prevBlogPost && (
           <div className="ml-auto max-w-[18ch] text-3xl text-right">
             <span className="block text-sm font-light">Newer Post</span>
-            <Link href={prevBlogPostWithLink.url}>{prevBlogPostWithLink.title}</Link>
+            <Link href={prevBlogPost.url}>{prevBlogPost.title}</Link>
           </div>
         )}
       </nav>

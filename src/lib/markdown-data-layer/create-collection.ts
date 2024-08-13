@@ -10,9 +10,7 @@ const baseSchema = z.object({
   contentAsHTMLString: z.string(),
 });
 type BaseSchema = typeof baseSchema;
-function createFullSchema<T extends z.ZodRawShape>(userSchema: T) {
-  return baseSchema.extend(userSchema);
-}
+
 const createValidateItemOrThrow = <ItemSchema extends z.ZodTypeAny>(zodSchema: ItemSchema) => {
   return (rawItem: unknown) => {
     // parse and if no error return the parsed data

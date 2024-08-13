@@ -1,9 +1,10 @@
 ---
-status: 'published'
-title: 'Use tRPC outside React'
-published_date: '2022-10-10T20:35:07.322Z'
-author: Jacopo Marrone
-crossposted_url: "https://dev.to/tresorama/use-trpc-outside-react-d1o"
+type: blog
+status: published
+title: Use tRPC outside React
+published_date: 2022-10-10T20:35:07.322Z
+author: jacopo-marrone
+crossposted_url: https://dev.to/tresorama/use-trpc-outside-react-d1o
 ---
 
 > “[...] The code easiest to maintain is the code that was never written.”

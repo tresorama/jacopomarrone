@@ -1,0 +1,186 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "next",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.panel.actions.disabled": [
+    "createContent"
+  ],
+  "frontMatter.content.draftField": {
+    "name": "status",
+    "type": "choice",
+    "choices": [
+      "draft",
+      "published"
+    ]
+  },
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Blog Post",
+      "path": "[[workspace]]/src/data/blog",
+      "contentTypes": [
+        "blog"
+      ]
+    },
+    {
+      "title": "Author",
+      "path": "[[workspace]]/src/data/author",
+      "contentTypes": [
+        "author"
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "blog",
+      "pageBundle": false,
+      "previewPath": "blog",
+      "fields": [
+        {
+          "name": "status",
+          "title": "Status",
+          "required": true,
+          "type": "draft"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "featured_image",
+          "title": "Featured Image",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "name": "published_date",
+          "title": "Publishing date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "name": "author",
+          "title": "Author",
+          "type": "contentRelationship",
+          "contentTypeName": "author",
+          "contentTypeValue": "slug",
+          "multiple": false
+        },
+        {
+          "name": "crossposted_url",
+          "title": "Crossposted URL",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "author",
+      "pageBundle": false,
+      "fields": [
+        {
+          "name": "full_name",
+          "title": "Full Name",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "frontMatter.data.files": [
+    {
+      "id": "footer",
+      "title": "Footer",
+      "file": "[[workspace]]/src/data/footer.json",
+      "fileType": "json",
+      "singleEntry": true,
+      "schema": {
+        "title": "Item",
+        "type": "object",
+        "required": [
+          "portfolio_source_code",
+          "links"
+        ],
+        "properties": {
+          "portfolio_source_code": {
+            "title": "Portfolio Source Code URL",
+            "type": "string"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "label",
+                "permalink"
+              ],
+              "properties": {
+                "label": {
+                  "title": "Label",
+                  "type": "string"
+                },
+                "permalink": {
+                  "title": "Permalink",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "portfolio",
+      "title": "Portfolio",
+      "file": "[[workspace]]/src/data/portfolio.json",
+      "labelField": "slug",
+      "fileType": "json",
+      "schema": {
+        "title": "Item",
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "image",
+          "caption",
+          "description",
+          "permalink"
+        ],
+        "properties": {
+          "slug": {
+            "title": "slug",
+            "type": "string"
+          },
+          "name": {
+            "title": "name",
+            "type": "string"
+          },
+          "image": {
+            "title": "image",
+            "type": "string"
+          },
+          "caption": {
+            "title": "caption",
+            "type": "string"
+          },
+          "description": {
+            "title": "description",
+            "type": "string"
+          },
+          "permalink": {
+            "title": "permalink",
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

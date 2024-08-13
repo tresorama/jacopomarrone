@@ -1,8 +1,11 @@
 ---
-status: 'published'
-title: 'Essential CLI commands'
-published_date: '2024-03-25T16:26:53.078Z'
-author: Jacopo Marrone
+type: blog
+status: published
+title: Essential CLI commands
+description: Useful list of CLI commands to get you started
+featured_image: null
+published_date: 2024-03-25T16:26:53.078Z
+author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/essential-cli-commands-2nn3
 ---
 
