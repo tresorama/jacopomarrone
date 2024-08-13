@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { GetStaticProps, NextPage } from "next";
-import { BlogPost, getAllBlogPosts } from "@/data/blog";
+import { type BlogPost, getAllBlogPosts } from "@/data/blog";
 import { BlogView } from "@/views/Blog/views/BlogView";
 
 type BlogPostWithLink = BlogPost & { url: string; };
