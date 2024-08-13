@@ -8,13 +8,17 @@ const collection = createCollection({
   db: createDb_Flatfile({
     dirPath: './src/data/blog',
   }),
-  schema: {
+  schema: (baseSchema) => baseSchema.extend({
     /* Add here your front-matter markdown custom fields */
     status: z.enum(["published", "draft"]),
-    published_date: z.string().datetime(),
+    published_date: z.date().optional(),
     author: z.string(),
-    crossposted_url: z.string().optional(),
-  },
+    crossposted_url: z.string().nullable().optional(),
+  }).transform((data) => ({
+    ...data,
+    published_date: data.published_date ? String(data.published_date) : data.published_date,
+  })
+  ),
 });
 
 export type BlogPost = z.infer<typeof collection.fullSchema>;

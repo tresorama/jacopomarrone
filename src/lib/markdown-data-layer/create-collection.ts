@@ -9,6 +9,7 @@ const baseSchema = z.object({
   title: z.string(),
   contentAsHTMLString: z.string(),
 });
+type BaseSchema = typeof baseSchema;
 function createFullSchema<T extends z.ZodRawShape>(userSchema: T) {
   return baseSchema.extend(userSchema);
 }
@@ -42,13 +43,13 @@ export type CollectionDB = {
 
 // collection
 
-type CollectionInitOptions<ItemSchema extends z.ZodRawShape> = {
+type CollectionInitOptions<ItemSchema extends z.ZodTypeAny> = {
   slug: string,
   db: CollectionDB,
-  schema: ItemSchema,
+  schema: (_baseSchema: BaseSchema) => ItemSchema,
 };
 
-export function createCollection<ItemSchema extends z.ZodRawShape>(
+export function createCollection<ItemSchema extends z.ZodTypeAny>(
   options: CollectionInitOptions<ItemSchema>
 ) {
   const { slug, db, schema } = options;
@@ -56,7 +57,9 @@ export function createCollection<ItemSchema extends z.ZodRawShape>(
   // build the final zod schema for the "item"
   // by merging base schema (that has required fields) 
   // with user defined schema
-  const fullSchema = createFullSchema(schema);
+  // NOTE: is the user that need to "extends" the base schema
+  // and maybe add "transform" or other "refine"s
+  const fullSchema = schema(baseSchema);
   type FullSchema = z.infer<typeof fullSchema>;
 
   // create validation function that check if zodSchema is respected
