@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { Seo } from '@/utils/seo';
-import { HomeView } from '@/views/home/HomeView';
+import { HomeView } from '@/views/Home/HomeView';
 
 const Home: NextPage = () => (
   <>

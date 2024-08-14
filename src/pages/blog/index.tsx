@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import { type BlogPost, getAllBlogPosts } from "@/data/blog";
 import { Seo } from "@/utils/seo";
-import { BlogView } from "@/views/blog/BlogView";
+import { BlogView } from "@/views/Blog/BlogView";
 
 export type PageProps = {
   blogPosts: BlogPost[];
