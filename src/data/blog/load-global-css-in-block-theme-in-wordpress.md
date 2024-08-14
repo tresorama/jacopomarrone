@@ -10,7 +10,9 @@ author: jacopo-marrone
 
 ## Update (2023-02-27 - 27 Feb)
 
-There is a better solution, and simpler, to do what this guide does.  
+Initially, when I wrote the first version of this guide, I wasnt't aware of `add_editor_style` wordpress function, that is used to add css to the Tinymce editor (the classic editor) and now its used to add css to the block editor (Gutenberg or Block Editor).
+
+Here is the "update" of this guide:
 
 In frontend use `wp_enqueue_style` and add dependency of css generated from `theme.json`, so your will have priority if has same css specificity.
 In block editor iframe, use `add_editor_style`.
@@ -64,7 +66,7 @@ Thanks to [carolinan](https://github.com/carolinan) that suggested this in this 
 
 End of update.
 
-## Guide
+## Original Guide (OLD)
 
 Goal of this guide:
 Load a CSS file insde both editor and frontend.
