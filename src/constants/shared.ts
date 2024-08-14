@@ -4,3 +4,8 @@ if (!process.env.NEXT_PUBLIC_BUILD_MODE) throw new Error('Missing env var => NEX
 export const IS_DEVELOPMENT = process.env.NEXT_PUBLIC_BUILD_MODE === 'development';
 export const IS_STAGING = process.env.NEXT_PUBLIC_BUILD_MODE === 'staging';
 export const IS_PRODUCTION = process.env.NEXT_PUBLIC_BUILD_MODE === 'production';
+
+
+// base url
+
+export const BASE_URL = 'https://www.jacopomarrone.com';

@@ -1,6 +1,5 @@
 import Head from 'next/head';
-
-const BASE_URL = 'https://jacopomarrone.com';
+import { BASE_URL } from '@/constants/shared';
 
 type SeoProps = {
   /** The url segments of the current page, without the host url.  
