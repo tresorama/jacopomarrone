@@ -3,8 +3,12 @@ import { PageProps } from "@/pages/blog/[slug]";
 import 'highlight.js/styles/github-dark-dimmed.css'; //This is the theme your code is going to be displayed with.
 import { AppShell } from "./shared/components/AppShell";
 import { HeaderBar } from "./shared/components/HeaderBar";
+import { IS_DEVELOPMENT } from "@/constants/shared";
 
-const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });
+const formatDate = (date: Date | string) => {
+  const locale = IS_DEVELOPMENT ? 'en-US' : undefined;// prevent mismatch server/client
+  return new Date(date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: '2-digit' });
+};
 
 export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps) => (
   <AppShell>

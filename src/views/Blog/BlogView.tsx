@@ -4,7 +4,10 @@ import { AppShell } from "./shared/components/AppShell";
 import { IS_DEVELOPMENT } from "@/constants/shared";
 import { HeaderBar } from "./shared/components/HeaderBar";
 
-const formatDate = (date: Date | string) => new Date(date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: '2-digit' });
+const formatDate = (date: Date | string) => {
+  const locale = IS_DEVELOPMENT ? 'en-US' : undefined;// prevent mismatch server/client
+  return new Date(date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: '2-digit' });
+};
 
 export const BlogView = ({ blogPosts }: PageProps) => {
 
