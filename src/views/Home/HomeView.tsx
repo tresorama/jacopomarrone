@@ -15,6 +15,7 @@ export const HomeView = () => {
   });
   useEffect(() => {
     if (router.query["initial-is-visible-works"] === 'true') setIsVisibleWorks(true);
+    if (router.query["initial-is-visible-contact-me"] === 'true') setIsVisibleContactMe(true);
   }, [router.query]);
   useEffect(() => {
     // Add classes, CSS need this
