@@ -8,43 +8,50 @@ import { capitalize } from "./utils.string";
 export const createDb_Flatfile = ({
   dirPath,
 }: {
+  /** Path to the directory containing the markdown files, relative to process.cwd() - i.e. `./src/contents/posts` */
   dirPath: string,
 }) => {
 
   // Utils for working with disk
   const getDirPath = () => path.resolve(process.cwd(), dirPath);
-  const getAllItemsFileNames = () => readdirSync(getDirPath()).map(filename => filename.replace('.md', ''));
-  const getItemFileBySlug = (slug: string) => readFileSync(`${getDirPath()}/${slug}.md`);
+  const getAllFileNames = () => readdirSync(getDirPath()).map(filename => filename.replace('.md', ''));
+  const getFileByFileName = (slug: string) => readFileSync(`${getDirPath()}/${slug}.md`);
 
-  // Utils that should not be exposed as API
-  const getAllBlogPostSlugs = () => getAllItemsFileNames();
+  // Private API
+  const convertFileToItem = async (file: Buffer) => {
+    const metadata = matter(file.toString());
+    const markdownAsString = metadata.content;
+    const contentAsHTMLString = await compileMarkdownToHTMLString(markdownAsString);
+    const item = {
+      // custom fields
+      ...metadata.data,
+      // required fields
+      slug: (metadata.data.slug) as string,
+      title: (metadata.data.title) as string,
+      contentAsHTMLString,
+    };
+    return item;
+  };
 
-  // api
+  type Item = Awaited<ReturnType<typeof convertFileToItem>>;
+
+  // Public api
 
   const flatFileDB: CollectionDB = {
     getAll: async () => {
-      const slugs = getAllBlogPostSlugs();
-      const items = [];
-      for (const slug of slugs) {
-        const item = await flatFileDB.getOneBySlug(slug);
-        if (!item) continue;
+      const filenames = getAllFileNames();
+      const items: Item[] = [];
+      for (const filename of filenames) {
+        const file = getFileByFileName(filename);
+        const item = await convertFileToItem(file);
         items.push(item);
       }
       return items;
     },
     getOneBySlug: async (slug) => {
-      const file = getItemFileBySlug(slug);
-      const metadata = matter(file.toString());
-      const markdownAsString = metadata.content;
-      const contentAsHTMLString = compileMarkdownToHTMLString(markdownAsString);
-      const item = {
-        // custom fields
-        ...metadata.data,
-        // required fields
-        slug,
-        title: metadata.data.title ?? capitalize(slug.replaceAll('-', ' ')),
-        contentAsHTMLString,
-      };
+      const items = await flatFileDB.getAll();
+      const item = items.find(i => i.slug === slug);
+      if (!item) return null;
       return item;
     }
   };

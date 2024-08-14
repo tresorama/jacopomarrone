@@ -34,8 +34,8 @@ const createValidateItemOrThrow = <ItemSchema extends z.ZodTypeAny>(zodSchema: I
 // db
 
 export type CollectionDB = {
-  getAll: () => Promise<unknown[]>,
-  getOneBySlug: (slug: string) => Promise<unknown | null>,
+  getAll: () => Promise<z.infer<BaseSchema>[]>,
+  getOneBySlug: (slug: string) => Promise<z.infer<BaseSchema> | null>,
 };
 
 

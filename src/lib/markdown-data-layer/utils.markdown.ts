@@ -40,7 +40,7 @@ import hljs from 'highlight.js';
 //   return markdownAsHTMLString;
 // };
 
-export const compileMarkdownToHTMLString = (markdown: string) => {
+export const compileMarkdownToHTMLString = async (markdown: string) => {
   const marked = new Marked(
     markedHighlight({
       langPrefix: "hljs language-",
@@ -63,5 +63,8 @@ export const compileMarkdownToHTMLString = (markdown: string) => {
     })
   );
   const markdownAsHTMLString = marked.parse(markdown);
-  return markdownAsHTMLString;
+  if (typeof markdownAsHTMLString === 'string') {
+    return markdownAsHTMLString;
+  }
+  return await markdownAsHTMLString;
 };
