@@ -3,75 +3,28 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
-import { getFloatingPanelAnimation } from "../animations/FloatingPanelAnimation";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/integrations/GTM/client";
-import { ArrowLeft } from "@/views/shared/components/icons";
 import { IS_DEVELOPMENT } from "@/constants/client";
-
-
-function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
-  const animationRef = React.useRef<gsap.core.Timeline | null>(null);
-
-  useIsomorphicLayoutEffect(() => {
-    if (nodeRef.current) {
-      animationRef.current = getFloatingPanelAnimation(nodeRef.current);
-      return () => { animationRef.current?.kill(); };
-    }
-  }, [nodeRef]);
-
-  return React.useMemo(() => ({
-    FADE_IN: () => animationRef.current?.play(),
-    FADE_OUT: () => animationRef.current?.reverse(),
-  }), []);
-}
+import { FloatingPanel } from "./FloatingPanel";
 
 export const ContactMe = ({ isVisible, onCloseClick }: {
   isVisible: boolean;
   onCloseClick: () => void;
-}) => {
-  const nodeWrapperRef = React.useRef<HTMLDivElement>(null);
-  const animation = useAnimation(nodeWrapperRef);
-
-  // on "isVisible" change, trigger the animation
-  React.useEffect(() => {
-    if (isVisible) animation.FADE_IN();
-    if (!isVisible) animation.FADE_OUT();
-  }, [isVisible, animation]);
-
-  // on "esc" key press close the panel
-  React.useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      // on "esc" press
-      if (e.keyCode === 27) {
-        if (isVisible) onCloseClick();
-      }
-    };
-    document.addEventListener('keyup', handler);
-    return () => { document.removeEventListener('keyup', handler); };
-  }, [isVisible, onCloseClick]);
-
-
-  return (
-    <>
-      <div className="floating-panel contact" ref={nodeWrapperRef}>
-        <div className="floating-panel__inner">
-          <div className="floating-panel__header">
-            <button className="floating-panel__close-panel" type="button" onClick={onCloseClick}>
-              <ArrowLeft />
-              <span className="floating-panel__close-panel-text">Close</span>
-            </button>
-            <div className="contact__headline"><span>Contact Me</span></div>
-          </div>
-          <div className="floating-panel__content">
-            <TheForm />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+}) => (
+  <FloatingPanel
+    isVisible={isVisible}
+    onCloseClick={onCloseClick}
+  >
+    <FloatingPanel.Header>
+      <FloatingPanel.HeaderBackButton onClick={onCloseClick}>Close</FloatingPanel.HeaderBackButton>
+      <div className="contact__headline"><span>Contact Me</span></div>
+    </FloatingPanel.Header>
+    <FloatingPanel.Content>
+      <TheForm />
+    </FloatingPanel.Content>
+  </FloatingPanel>
+);
 
 
 const contactSchema = z.object({
