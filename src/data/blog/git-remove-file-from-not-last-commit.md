@@ -1,5 +1,5 @@
 ---
-type: blog
+fmContentType: blog
 status: published
 title: Git remove file from not last commit
 published_date: 2022-10-11T20:35:07.322Z

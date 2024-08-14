@@ -1,5 +1,5 @@
 ---
-type: blog
+fmContentType: blog
 status: published
 title: Publish a Typescript React library to NPM in a monorepo
 published_date: 2023-01-21T07:35:07.322Z

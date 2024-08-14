@@ -1,4 +1,5 @@
 ---
+fmContentType: blog
 status: published
 title: Disable Wordpress Rest API Users route for better security
 description: Reduce risk of bruteforce attack by hiding Users information that Wordpress expose publicly by default via Rest API
@@ -6,7 +7,6 @@ featured_image: ""
 published_date: 2024-08-14T00:31:51.017Z
 author: jacopo-marrone
 crossposted_url: ""
-type: blog
 ---
 WordPress is a popular content management system - CMS - that provides a user-friendly interface for managing websites. However, by default, **WordPress exposes sensitive user information** publicly via its REST API.
 

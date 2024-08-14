@@ -1,5 +1,5 @@
 ---
-type: blog
+fmContentType: blog
 status: published
 title: Essential CLI commands
 description: Useful list of CLI commands to get you started

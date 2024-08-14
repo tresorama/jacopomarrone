@@ -1,5 +1,5 @@
 ---
-type: blog
+fmContentType: blog
 status: draft
 slug: basic-scripting-in-cli
 title: Basic Scripting in CLI

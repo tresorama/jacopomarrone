@@ -1,5 +1,5 @@
 ---
-type: blog
+fmContentType: blog
 status: published
 title: Terminal vs Shell
 published_date: 2024-03-25T15:26:53.078Z
