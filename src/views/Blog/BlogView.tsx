@@ -30,9 +30,9 @@ export const BlogView = ({ blogPosts }: PageProps) => {
               <li key={url}>
                 <article className="relative flex flex-col">
                   {published_date && (
-                    <time className='text-sm font-normal text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
+                    <time className='text-sm font-medium text-gray-500' dateTime={published_date}>{formatDate(published_date)}</time>
                   )}
-                  <h2 className='text-4xl font-normal underline'>{title}</h2>
+                  <h2 className='text-3xl md:text-4xl underline'>{title}</h2>
                   <Link href={url} className="absolute inset-0" aria-label={title} />
                 </article>
               </li>

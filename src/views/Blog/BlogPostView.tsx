@@ -20,7 +20,7 @@ export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps
     <main className='min-h-full grid grid-cols-1 grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
       <article className="pt-24 pb-10 px-8 w-full max-w-3xl mx-auto md:pt-32">
         <header className="space-y-4">
-          <h1 className="text-preset-huge font-normal tracking-normal">{blogPost.title}</h1>
+          <h1 className="text-preset-huge">{blogPost.title}</h1>
           <div>
             <address className="opacity-80 text-xs">{blogPost.author}</address>
             {blogPost.published_date && (
@@ -29,7 +29,7 @@ export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps
           </div>
         </header>
         <div
-          className="mt-12 md:mt-24 blogpost-prose"
+          className="mt-12 lg:mt-16 blogpost-prose"
           dangerouslySetInnerHTML={{ __html: blogPost.contentAsHTMLString }}
         />
         {blogPost.crossposted_url && (
@@ -42,14 +42,14 @@ export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps
       </article>
       <nav className="pt-48 pb-12 px-8 w-full max-w-3xl mx-auto flex flex-wrap gap-12">
         {nextBlogPost && (
-          <div className="max-w-[18ch] text-3xl text-left">
-            <span className="block text-sm font-light">Older Post</span>
+          <div className="max-w-[18ch] text-3xl leading-none text-left">
+            <span className="mb-2 block text-sm font-light">Older Post</span>
             <Link href={nextBlogPost.url}>{nextBlogPost.title}</Link>
           </div>
         )}
         {prevBlogPost && (
-          <div className="ml-auto max-w-[18ch] text-3xl text-right">
-            <span className="block text-sm font-light">Newer Post</span>
+          <div className="ml-auto max-w-[18ch] text-3xl leading-none text-right">
+            <span className="mb-2 block text-sm font-light">Newer Post</span>
             <Link href={prevBlogPost.url}>{prevBlogPost.title}</Link>
           </div>
         )}
