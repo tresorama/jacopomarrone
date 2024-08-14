@@ -1,7 +1,9 @@
 ---
 fmContentType: blog
 status: published
+slug: git-remove-file-from-not-last-commit
 title: Git remove file from not last commit
+description: 
 published_date: 2022-10-11T20:35:07.322Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/git-remove-file-from-not-last-commit-2nh4

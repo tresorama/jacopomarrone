@@ -1,7 +1,9 @@
 ---
 fmContentType: blog
 status: published
+slug: use-trpc-outside-react
 title: Use tRPC outside React
+description:
 published_date: 2022-10-10T20:35:07.322Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/use-trpc-outside-react-d1o

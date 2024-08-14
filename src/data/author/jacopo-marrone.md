@@ -1,5 +1,5 @@
 ---
-type: author
-name: Jacopo Marrone
+fmContentType: author
+slug: jacopo-marrone
 title: Jacopo Marrone
 ---

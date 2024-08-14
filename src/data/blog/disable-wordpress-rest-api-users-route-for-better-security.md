@@ -1,6 +1,7 @@
 ---
 fmContentType: blog
 status: published
+slug: disable-wordpress-rest-api-users-route-for-better-security
 title: Disable Wordpress Rest API Users route for better security
 description: Reduce risk of bruteforce attack by hiding Users information that Wordpress expose publicly by default via Rest API
 featured_image: ""

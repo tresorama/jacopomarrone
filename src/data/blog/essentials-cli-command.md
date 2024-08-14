@@ -1,6 +1,7 @@
 ---
 fmContentType: blog
 status: published
+slug: essential-cli-commands
 title: Essential CLI commands
 description: Useful list of CLI commands to get you started
 featured_image: null

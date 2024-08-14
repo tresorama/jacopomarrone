@@ -33,6 +33,7 @@
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "blog",
+      "slugTemplate": "{{title}}",
       "pageBundle": false,
       "previewPath": "blog",
       "fields": [
@@ -47,6 +48,12 @@
           "title": "Title",
           "required": true,
           "type": "string"
+        },
+        {
+          "name": "slug",
+          "title": "Slug (URL)",
+          "required": true,
+          "type": "slug"
         },
         {
           "name": "description",
@@ -83,11 +90,18 @@
     },
     {
       "name": "author",
+      "slugTemplate": "{{title}}",
       "pageBundle": false,
       "fields": [
         {
-          "name": "full_name",
-          "title": "Full Name",
+          "name": "slug",
+          "title": "Slug",
+          "required": true,
+          "type": "slug"
+        },
+        {
+          "name": "title",
+          "title": "Title",
           "required": true,
           "type": "string"
         }
