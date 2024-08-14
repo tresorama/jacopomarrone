@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: essential-cli-commands
 title: Essential CLI commands
-description: Useful list of CLI commands to get you started
+description: Useful list of CLI commands to get you started with command line usage in your daily work
 featured_image: null
 published_date: 2024-03-25T16:26:53.078Z
 author: jacopo-marrone

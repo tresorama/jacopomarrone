@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: terminal-vs-shell
 title: Terminal vs Shell
-description:
+description: Which is the difference between Terminal and Shell
 published_date: 2024-03-25T15:26:53.078Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/terminal-vs-shell-39jk

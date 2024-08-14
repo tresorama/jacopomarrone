@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: git-remove-file-from-not-last-commit
 title: Git remove file from not last commit
-description: 
+description: Edit you Git commint history and remove a file from a commit that is not the last one, preserving the rest of the Git history
 published_date: 2022-10-11T20:35:07.322Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/git-remove-file-from-not-last-commit-2nh4

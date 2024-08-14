@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: use-trpc-outside-react
 title: Use tRPC outside React
-description:
+description: tRPC is an API-Layer library, made famous by framework like the T3 stack that uses React. But tRPC can be used from vanilla js as well. Leran how to do it in this guide
 published_date: 2022-10-10T20:35:07.322Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/use-trpc-outside-react-d1o

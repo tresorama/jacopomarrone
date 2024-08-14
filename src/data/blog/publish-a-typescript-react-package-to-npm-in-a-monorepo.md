@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: publish-a-typescript-react-library-to-npm-in-a-monorepo
 title: Publish a Typescript React library to NPM in a monorepo
-description:
+description: Step-by-step tutorial that demonstrate how to create and publish (to NPM) a dummy React hook, with Typescript, Semvers-ioning and Monorepo
 published_date: 2023-01-21T07:35:07.322Z
 author: jacopo-marrone
 crossposted_url: https://dev.to/tresorama/publish-a-typescript-react-library-to-npm-in-a-monorepo-1ah1

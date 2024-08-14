@@ -3,7 +3,7 @@ fmContentType: blog
 status: published
 slug: load-global-css-in-block-theme-in-wordpress
 title: Load global CSS in block theme in Wordpress
-description: 
+description: How can you load global CSS in block theme in Wordpress and both frontend and block editor
 published_date: 2023-02-26T10:35:07.322Z
 author: jacopo-marrone
 ---
