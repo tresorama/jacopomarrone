@@ -1,7 +1,7 @@
-import Head from "next/head";
 import { GetStaticProps, NextPage } from "next";
 import { type BlogPost, getAllBlogPosts } from "@/data/blog";
 import { BlogView } from "@/views/Blog/BlogView";
+import { Seo } from "@/utils/seo";
 
 export type PageProps = {
   blogPosts: BlogPost[];
@@ -17,9 +17,11 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
 
 const Page: NextPage<PageProps> = (pageProps) => (
   <>
-    <Head>
-      <title>Blog</title>
-    </Head>
+    <Seo
+      path="/blog"
+      title="Blog"
+      description="A Blog about coding and web development, with articles about React, Next.js, Wordpress and more"
+    />
     <BlogView {...pageProps} />
   </>
 );
