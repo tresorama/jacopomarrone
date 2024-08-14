@@ -12,16 +12,12 @@ body.works--visible .works {
 .works {
 
   &__headline {
-    @include text('h4');
+    @include typo('h4');
   }
 
   &__list {
     display: grid;
-    gap: spaceOLD(20);
     gap: space('lg');
-
-    //// QUIIIIIIIIIIIII 
-    //// CONtinua a sostituire "spaceOLD()" con "space()"
   }
 
   &__list-item-separator {
@@ -58,13 +54,12 @@ body.works--visible .works {
   }
 
   &__title {
-    @include text('huge');
-    margin-bottom: spaceOLD(4);
+    @include typo('huge');
     margin-bottom: space('sm');
   }
 
   &__caption {
-    @include text('h5');
+    @include typo('h5');
     color: color('grey-800');
     display: block;
   }
@@ -74,10 +69,9 @@ body.works--visible .works {
   }
 
   &__description {
-    @include text("body");
+    @include typo("body");
 
     p {
-      margin-bottom: spaceOLD(4);
       margin-bottom: space('sm');
     }
 
@@ -87,7 +81,6 @@ body.works--visible .works {
   }
 
   &__actions {
-    padding: spaceOLD(5) 0;
     padding: space('md') 0;
     display: flex;
     flex-wrap: wrap;
@@ -108,11 +101,10 @@ body.works--visible .works {
   .work__content {
     padding-left: space('md');
     padding-right: space('md');
-    padding-top: spaceOLD(4);
     padding-top: space('sm');
   }
 
   .work__caption {
-    @include text('h3');
+    @include typo('h3');
   }
 }

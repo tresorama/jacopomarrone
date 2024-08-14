@@ -55,12 +55,12 @@ body,
   }
 
   &__box {
-    @include text("h4");
+    @include typo("h4");
     // font-weight: 900;
   }
 
   &__box-different {
-    @include text("h1");
+    @include typo("h1");
     // font-weight: 900;
   }
 

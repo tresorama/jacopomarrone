@@ -1,25 +1,46 @@
 @use "sass:math";
 
+// ==========================================
+// TYPOGRAPHY
+// ==========================================
+
+
 /* =================================================== 
-      UTILITIES, MIXIN, FUNCTION
+UTILITIES, MIXIN, FUNCTION
 =================================================== */
 
+
+$typo_scale_ratio: (
+  "minor-second": 1.067,
+  "major-second": 1.125,
+  "minor-third": 1.2,
+  "major-third": 1.25,
+  "perfect-fourth": 1.333,
+  "augmented-fourth": 1.414,
+  "perfect-fifth": 1.5,
+  "golden-ratio": 1.618
+);
+
+/**
+ * Convert pixel to percentage, assuming 100% is 16px.
+ * Use this in root html font-size to scale the size but let user the abilty to zoom in/out.
+ * Usage:
+ * :root {
+ *   font-size: root-font-size(20); // set root/html font size to 20px ideally.
+ * }
+*/
 @function root-font-size($pixel-size) {
   @return #{math.div($pixel-size, 16) * 100%};
-  /*
-  Return the root font size in percentage.
-  Use this function in the following way:
-  :root {
-    font-size: root-font-size(20); // set root/html font size to 20px ideally.
-  }
-  */
 }
 
+/**
+ * Generate a scale of fontsize.
+ * @example generateTypoScale(1.125, $min: -2, $max: 6);
+ * @param {number} $typo-scale-ratio - The ratio of the scale.
+ * @param {number} $min - The minimum value of the scale.
+ * @param {number} $max - The maximum value of the scale.
+ */
 @mixin generateTypoScale($typo-scale-ratio, $min: -2, $max: 6) {
-  @for $i from $min through $max {
-    --font-size-level#{$i}: #{math.pow($typo-scale-ratio, $i)}rem;
-  }
-
   // example output: 
   // 
   // generateTypoScale(1.125, $min: -2, $max: 6);
@@ -33,10 +54,19 @@
   //   --font-size-level4: 1.6018066406rem;
   //   --font-size-level5: 1.8020324707rem;
   //   --font-size-level6: 2.0272865295rem;
+
+  $name: "font-size-level";
+
+  @for $i from $min through $max {
+    $value: math.pow($typo-scale-ratio, $i);
+    --#{$name}#{$i}: #{$value}rem;
+  }
+
 }
 
 @function fontsize($level) {
-  @return var(--font-size-level#{$level});
+  $name: "font-size-level";
+  @return var(--#{$name}#{$level});
 }
 
 
@@ -44,26 +74,9 @@
       THIS PROJECT TYPOGRAPHY SYSTEM
 =================================================== */
 
-// Define root font size and font size scale.
-:root {
-
-  font-size: root-font-size(16); // 16 px
-  @include generateTypoScale(1.125, -3, 15);
-
-  // @include atLarge {
-  //   @include generateTypoScale(1.25, -3, 15);
-  // }
-  // @include atLarge {
-  //   @include generateTypoScale(1.333, -3, 15);
-  // }
-  @include atLarge {
-    font-size: root-font-size(20); // 20 px
-    @include generateTypoScale(1.333, -3, 15);
-  }
-
-}
-
-/* Import Font Family Favorites */
+/* Define primitive tokens for Font Family
+ * This scale must not be used directly
+ */
 :root {
   /* Font Families Jachi Favorites Sets */
 
@@ -103,57 +116,175 @@
 
 }
 
-/* Define Font Family for this project, choosing from imported ones */
-/* Define Text Sets for this project */
+/* Define primitive tokens for Font Size.
+ * This scale must not be used directly
+ */
+:root {
+
+  // base
+  font-size: root-font-size(16); // 16 px
+  @include generateTypoScale(1.125, -3, -1);
+  @include generateTypoScale(1.125, 0, 15);
+
+  // atLarge
+  @include atLarge {
+    font-size: root-font-size(20); // 20 px
+    @include generateTypoScale(1.333, -3, -1);
+    @include generateTypoScale(1.333, 0, 15);
+  }
+
+}
+
+
+/* Defined semantic tokens for:
+ * - Font-Family
+ * - Letter Spacing
+ * - Font-Size
+ */
 :root {
   /* Font-Families */
-  --font-family-main: var(--font-family-sans-serif);
-  --font-family-book: var(--font-family-sans-serif-2);
-  /* Use this for text that needs to be read easily, like copy of card, article, ... */
+  --font-family--display: var(--font-family-sans-serif); // for headings
+  --font-family--body: var(--font-family-sans-serif); // for long read text
 
-  /* Text Sets */
-  --text-gigantic: normal 500 #{fontsize(7)}/1 var(--font-family-main);
-  --text-huge: normal 500 #{fontsize(6)}/1 var(--font-family-main);
-  --text-h1: normal 500 #{fontsize(5)}/1 var(--font-family-main);
-  --text-h2: normal 500 #{fontsize(4)}/1.1 var(--font-family-main);
-  --text-h3: normal 500 #{fontsize(3)}/1.1 var(--font-family-main);
-  --text-h4: normal 500 #{fontsize(2)}/1.3 var(--font-family-main);
-  --text-h5: normal 500 #{fontsize(1)}/1.5 var(--font-family-main);
-  --text-h6: normal 500 #{fontsize(0)}/1.5 var(--font-family-main);
-  --text-body: normal 400 #{fontsize(0)}/1.5 var(--font-family-main);
-  --text-small: normal 400 #{fontsize(-1)}/1.2 var(--font-family-main);
-  --text-small-2: normal 500 #{fontsize(-2)}/1.2 var(--font-family-main);
-  // font: font-style font-variant font-weight font-size/line-height font-family; */
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+
+  /* Font-Sizes */
+  --fs--xs: #{fontsize(-2)};
+  --fs--sm: #{fontsize(-1)};
+  --fs--md: #{fontsize(0)};
+  --fs--lg: #{fontsize(1)};
+  --fs--xl: #{fontsize(2)};
+  --fs--2xl: #{fontsize(3)};
+  --fs--3xl: #{fontsize(4)};
+  --fs--4xl: #{fontsize(5)};
+  --fs--5xl: #{fontsize(6)};
+  --fs--6xl: #{fontsize(7)};
+  --fs--7xl: #{fontsize(8)};
 
 }
 
 
 // Define a mixin to be used in the project.
-@mixin text($key: 'body', $family: 'main') {
-  font: var(--text-#{$key});
-  @include font-family($family);
-  @content; // in case cosnumer wants to add some custom css, manly overrides
-}
-
-@mixin font-family($key: 'main') {
-
-  @if $key =='book' {
-    font-family: var(--font-family-book);
-    letter-spacing: 0.01em;
+@mixin typo($key: 'body') {
+  @if $key =='gigantic' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--6xl);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tighter);
   }
 
+  @else if $key =='huge' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--5xl);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  @else if $key =='h1' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--4xl);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  @else if $key =='h2' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--3xl);
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  @else if $key =='h3' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--2xl);
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tighter);
+  }
+
+  @else if $key =='h4' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--xl);
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  @else if $key =='h5' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--lg);
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  @else if $key =='h6' {
+    font-family: var(--font-family--display);
+    font-size: var(--fs--md);
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  @else if $key =='body' {
+    font-family: var(--font-family--body);
+    font-size: var(--fs--md);
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  @else if $key =='small' {
+    font-family: var(--font-family--body);
+    font-size: var(--fs--sm);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+  }
+
+  @else if $key =='small-2' {
+    font-family: var(--font-family--body);
+    font-size: var(--fs--xs);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  // if the key is not allowed, throw error
   @else {
-    //     Use the 'default' font-family, whichis defined in this files at lines 
-    font-family: var(--font-family-main);
-    letter-spacing: -0.01em;
+    @error "The key '#{$key}' is not allowed. Allowed keys are: 'gigantic', 'huge', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body', 'small', 'small-2'.";
   }
+
+  @content; // in case cosnumer wants to add some custom css, manly overrides
+
 }
+
 
 
 
 /*
 
   USAGE GUIDE
+
+  TODO: 
+  update this guide, now its not completly correct. Short version is:
+  - In SCSS file => use 
+    .my-selector { 
+      @include typo('h2') { 
+        // optional overrides
+        letter-spacing: 2em; 
+      }
+    }
+
 
 This typography system , shortly, works like this:
   1. You defined a "$spacing-scale-ratio" that will be used for calculate all the steps of the spacing scale.
@@ -162,10 +293,10 @@ This typography system , shortly, works like this:
   2. You can override the scale at different media query in the :root selector.
   3. When its time to use the scale, you do this:
       .my-elemnt {
-        @include text('h2');
+        @include typo('h2');
       }
       .my-elemnt-two {
-        @include text('h2', 'book');
+        @include typo('h2', 'book');
       }
 
 */
@@ -212,17 +343,17 @@ This typography system , shortly, works like this:
         }
 
     1.5 Define a mixin to use in the project.
-        @mixin text($key: 'body', $family: 'main') {
+        @mixin typo($key: 'body', $family: 'main') {
           font: var(--text-$key);
           font-family: var(--font-family-$family);
         }
 
   2. When you need to use a text in your SASS, you do this:
     .my-elemnt {
-      @include text('h2');
+      @include typo('h2');
     }
     .my-elemnt-two {
-      @include text('h2', $family: 'book');
+      @include typo('h2', $family: 'book');
     }
 
 

@@ -2,7 +2,7 @@
 
 .button {
   & {
-    @include text('body');
+    @include typo('body');
     color: color('black');
     padding: 0.5em 2em;
     text-decoration: none;
@@ -44,7 +44,7 @@
 }
 
 .button--big {
-  @include text('h5');
+  @include typo('h5');
 }
 
 .button--naked {

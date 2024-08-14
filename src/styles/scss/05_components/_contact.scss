@@ -1,6 +1,7 @@
 body:not(.contact--visible) .contact {
   visibility: hidden;
 }
+
 body.contact--visible .contact {
   visibility: visible;
 }
@@ -8,7 +9,7 @@ body.contact--visible .contact {
 .contact {
 
   &__headline {
-    @include text('h4');
+    @include typo('h4');
     display: none;
   }
 

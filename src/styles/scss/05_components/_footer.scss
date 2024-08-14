@@ -26,6 +26,9 @@ footer {
     align-items: center;
     gap: space('sm');
     padding: space('md') space('md');
+    @include typo('small-2');
+    color: color("grey-700");
+    background-color: color('grey-900');
 
     @include atMedium {
       gap: space('xs');
@@ -37,12 +40,6 @@ footer {
       padding: space('xs') space('md');
     }
 
-    @include text('small-2') {
-      letter-spacing: 0.05em;
-    }
-
-    color: color("grey-700");
-    background-color: color('grey-900');
   }
 
 

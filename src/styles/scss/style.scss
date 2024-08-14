@@ -12,11 +12,11 @@
 // 04 Layout - Layout CSS/SASS, i.e. Grid System, Flexbox System, Margin/Padding Utilites
 @import "./04_layout/container";
 
-// 05 Utilities - Utilities CSS/SASS, i.e. Color, Font, Spacing, etc.
-@import "./05_utilities/index";
-
 // 06 Components - i.e. Buttons, Forms, Lists, Gallery, Posts List, CTA
-@import "./06_components/index";
+@import "./05_components/index";
+
+// 05 Utilities - Utilities CSS/SASS, i.e. Color, Font, Spacing, etc.
+@import "./06_utilities/index";
 
 // 07 Pages - i.e. Home, About, Contact, etc.
 @import "./07_pages/home";
