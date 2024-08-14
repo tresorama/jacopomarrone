@@ -21,6 +21,7 @@ const blogCollection = createCollection({
   schema: (baseSchema) => baseSchema.extend({
     /* Add here your front-matter markdown custom fields */
     status: z.enum(["published", "draft"]),
+    description: z.string(),
     published_date: z.date().optional(),
     author: z.string(),
     crossposted_url: z.string().nullable().optional(),

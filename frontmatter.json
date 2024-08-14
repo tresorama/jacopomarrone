@@ -58,6 +58,7 @@
         {
           "name": "description",
           "title": "Description",
+          "required": true,
           "type": "string"
         },
         {
