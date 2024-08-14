@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { sendMailWithGmail } from "@/integrations/nodemail/server/gmail-client";
 import { z } from "zod";
+import { sendMailWithGmail } from "@/integrations/nodemail/server/gmail-client";
 
 // Schema + Types
 const requestDataSchema = z.object({

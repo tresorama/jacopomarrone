@@ -1,10 +1,10 @@
-import React from 'react';
-import { ArrowLeft } from '@/views/shared/components/icons';
+import { useRef, useMemo, useEffect } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
+import { ArrowLeft } from '@/views/_components/icons';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';
 
 function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
-  const animationRef = React.useRef<gsap.core.Timeline | null>(null);
+  const animationRef = useRef<gsap.core.Timeline | null>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (nodeRef.current) {
@@ -13,7 +13,7 @@ function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
     }
   }, [nodeRef]);
 
-  return React.useMemo(() => ({
+  return useMemo(() => ({
     FADE_IN: () => animationRef.current?.play(),
     FADE_OUT: () => animationRef.current?.reverse(),
   }), []);
@@ -24,17 +24,17 @@ export const FloatingPanel = ({ isVisible, onCloseClick, children }: {
   onCloseClick: () => void;
   children: React.ReactNode;
 }) => {
-  const nodeWrapperRef = React.useRef<HTMLDivElement>(null);
+  const nodeWrapperRef = useRef<HTMLDivElement>(null);
   const animation = useAnimation(nodeWrapperRef);
 
   // on "isVisible" change, show/hide the panel
-  React.useEffect(() => {
+  useEffect(() => {
     if (isVisible) animation.FADE_IN();
     if (!isVisible) animation.FADE_OUT();
   }, [isVisible, animation]);
 
   // on "esc" key press close the panel
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       // on "esc" press
       if (e.keyCode === 27) {
@@ -54,21 +54,24 @@ export const FloatingPanel = ({ isVisible, onCloseClick, children }: {
   );
 };
 
-FloatingPanel.Header = ({ children }: { children: React.ReactNode; }) => (
+const FloatingPanelHeader = ({ children }: { children: React.ReactNode; }) => (
   <div className="floating-panel__header">
     {children}
   </div>
 );
+FloatingPanel.Header = FloatingPanelHeader;
 
-FloatingPanel.HeaderBackButton = ({ onClick, children }: { onClick: () => void, children: React.ReactNode; }) => (
+const FloatingPanelHeaderBackButton = ({ onClick, children }: { onClick: () => void, children: React.ReactNode; }) => (
   <button className="floating-panel__close-panel" type="button" onClick={onClick}>
     <ArrowLeft />
     <span className="floating-panel__close-panel-text">{children}</span>
   </button>
 );
+FloatingPanel.HeaderBackButton = FloatingPanelHeaderBackButton;
 
-FloatingPanel.Content = ({ children }: { children: React.ReactNode; }) => (
+const FloatingPanelContent = ({ children }: { children: React.ReactNode; }) => (
   <div className="floating-panel__content">
     {children}
   </div>
 );
+FloatingPanel.Content = FloatingPanelContent;

@@ -1,5 +1,5 @@
-import { ArrowLeft } from "@/views/shared/components/icons";
 import Link, { type LinkProps } from "next/link";
+import { ArrowLeft } from "@/views/_components/icons";
 
 /**
  * @example

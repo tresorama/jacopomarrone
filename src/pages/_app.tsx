@@ -1,8 +1,11 @@
-import "@/styles/global.tailwind.css";
+// These CSS is used on all pages
 import "@/styles/fonts/stylesheet.css";
-import "@/styles/scss/style.scss";
-import "@/views/shared/components/icons/global.icons.styles.css";
+import "@/views/_components/icons/global.icons.styles.css";
 import "@/styles/global.css";
+// Tailwind is used in /blog pages
+import "@/styles/global.tailwind.css";
+// SASS is used in / (home) page
+import "@/styles/scss/style.scss";
 import type { AppProps } from 'next/app';
 import { GoogleTagManagerHead } from "@/integrations/GTM/client";
 

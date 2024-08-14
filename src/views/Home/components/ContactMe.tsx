@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -97,7 +97,7 @@ async function submitFormToServer(formValues: ContactValues) {
 
 
 const TheForm = () => {
-  const [submitStatus, setSubmitStatus] = React.useState<{
+  const [submitStatus, setSubmitStatus] = useState<{
     status: 'idle' | 'pending' | 'success' | 'error',
     error?: string,
   }>({ status: 'idle' });
