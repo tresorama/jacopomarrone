@@ -13,14 +13,17 @@ type SeoProps = {
   title?: string;
   /** Will be used in the <meta name="description"> and <meta property="og:description"> */
   description?: string;
+  /** Will be used in the <meta property="og:image"> */
+  image?: string;
 };
 
-export const Seo = ({ path, title, description }: SeoProps) => {
+export const Seo = ({ path, title, description, image }: SeoProps) => {
 
   const finalData = {
     url: path ? `${BASE_URL}${path}` : BASE_URL,
     title: title ? `${title} | Jacopo Marrone - Web Developer, Italy` : 'Jacopo Marrone - Web Developer, Italy',
-    description: description ? description : 'Give your business a boost with a new Website or a Tailor Made sodtaware or app that reduce your errors and time consumed on repeating tasks. Contact me and talk about your project!'
+    description: description ? description : 'Give your business a boost with a new Website or a Tailor Made sodtaware or app that reduce your errors and time consumed on repeating tasks. Contact me and talk about your project!',
+    image: image ? `${BASE_URL}${image}` : `${BASE_URL}/images/seo/seo-jacopo-marrone.png`,
   };
 
   return (
@@ -35,7 +38,7 @@ export const Seo = ({ path, title, description }: SeoProps) => {
       <meta property="og:url" content={finalData.url} />
       <meta property="og:title" content={finalData.title} />
       <meta property="og:description" content={finalData.description} />
-      <meta property="og:image" content={`${BASE_URL}/images/seo/seo-jacopo-marrone.png`} />
+      <meta property="og:image" content={finalData.image} />
       <meta property="og:image:width" content="1048" />
       <meta property="og:image:height" content="526" />
 
@@ -44,7 +47,7 @@ export const Seo = ({ path, title, description }: SeoProps) => {
       <meta property="twitter:url" content={finalData.url} />
       <meta property="twitter:title" content={finalData.title} />
       <meta property="twitter:description" content={finalData.description} />
-      <meta property="twitter:image" content={`${BASE_URL}/images/seo/seo-jacopo-marrone.png`} />
+      <meta property="twitter:image" content={finalData.image} />
     </Head>
   );
 };

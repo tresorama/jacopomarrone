@@ -45,6 +45,7 @@ const Page: NextPage<PageProps> = (pageProps) => (
       path={`/blog/${pageProps.blogPost.slug}`}
       title={`${pageProps.blogPost.title} | Blog`}
       description={pageProps.blogPost.description}
+      image={`/blog/${pageProps.blogPost.slug}/opengraph.jpg`}
     />
     <BlogPostView {...pageProps} />
   </>
