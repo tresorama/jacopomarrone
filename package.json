@@ -12,6 +12,7 @@
     "lint:ts": "tsc --noEmit",
     "lint:eslint": "next lint",
     "test": "vitest",
+    "data:generate-opengraph": "vite-node src/scripts/open-graph-generate-image/index.ts",
     "deps:auto-upgrade-test": "npm update && npm run build && npm run start",
     "deps:auto-upgrade-save": "npm update --save"
   },

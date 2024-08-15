@@ -1,0 +1,78 @@
+<main>
+  <div class="logo"></div>
+
+  <div class="details">
+
+    {{#if accentHeading}}
+    <span class="accent-heading">{{accentHeading}}</span>
+    {{/if}}
+
+    {{#if title}}
+    <span class="title">{{title}}</span>
+    {{/if}}
+
+    {{#if excerpt}}
+    <span class="excerpt">{{excerpt}}</span>
+    {{/if}}
+
+  </div>
+
+  {{#if brandTitle}}
+  <span class="brand-title">{{brandTitle}}</span>
+  {{/if}}
+
+  </div>
+</main>
+
+<style>
+  main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    column-gap: 2vw;
+    row-gap: 10vh;
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+  }
+
+  .logo {
+    width: 20vw;
+    height: 20vw;
+    background-color: red;
+  }
+
+  .details {
+    width: 55vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4vh;
+  }
+
+  .accent-heading {
+    font-size: 2.5vw;
+    opacity: 0.7;
+  }
+
+  .title {
+    font-size: 5vw;
+    font-weight: 500;
+  }
+
+  .excerpt {
+    font-size: 2.5vw;
+    opacity: 0.7;
+  }
+
+  .brand-title {
+    width: 60vw;
+    font-size: 2.5vw;
+    text-align: center;
+    opacity: 0.7;
+  }
+</style>
