@@ -8,4 +8,4 @@ export const IS_PRODUCTION = process.env.NEXT_PUBLIC_BUILD_MODE === 'production'
 
 // base url
 
-export const BASE_URL = 'https://www.jacopomarrone.com';
+export const BASE_URL = IS_DEVELOPMENT ? 'http://localhost:3000' : 'https://www.jacopomarrone.com';
