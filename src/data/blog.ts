@@ -1,18 +1,16 @@
-import * as fs from 'fs';
 import path from 'path';
 import { z } from "zod";
 import { createCollection } from "@/lib/markdown-data-layer/create-collection";
 import { createDb_Flatfile } from "@/lib/markdown-data-layer/create-db.flat-file";
 import { sortByDateDescending } from "@/lib/markdown-data-layer/utils.sort";
 
-// utils
-const getFilePathFromHere = (relativePath: string) => path.resolve(__dirname, relativePath);
+const getFilePathFromRoot = (relativePath: string) => path.resolve(process.cwd(), relativePath);
 
 // collections
 const authorCollection = createCollection({
   slug: 'author',
   db: createDb_Flatfile({
-    dirPath: getFilePathFromHere('./author'),
+    dirPath: getFilePathFromRoot("src/data/author"),
   }),
   schema: (baseSchema) => baseSchema,
 });
@@ -22,7 +20,7 @@ type Author = z.infer<typeof authorCollection.fullSchema>;
 const blogCollection = createCollection({
   slug: 'blog',
   db: createDb_Flatfile({
-    dirPath: getFilePathFromHere('./blog'),
+    dirPath: getFilePathFromRoot("src/data/blog"),
   }),
   schema: (baseSchema) => baseSchema.extend({
     /* Add here your front-matter markdown custom fields */

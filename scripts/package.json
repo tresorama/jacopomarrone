@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "data:generate-opengraph-image": "vite-node ./src/open-graph-generate-image/index.ts"
+    "data:generate-opengraph-image": "cd ../ && vite-node ./scripts/src/open-graph-generate-image/index.ts"
   },
   "keywords": [],
   "author": "Jacopo Marrone <@tresorama> (https://github.com/tresorama)",
