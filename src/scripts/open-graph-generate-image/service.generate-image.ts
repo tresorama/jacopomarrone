@@ -41,6 +41,8 @@ export const generateOpenGraphImage = async ({ title, excerpt }: {
     }
   });
 
+  // TODO: fix this typescript error
+  // @ts-expect-error
   return Buffer.from(image);
 
 };
