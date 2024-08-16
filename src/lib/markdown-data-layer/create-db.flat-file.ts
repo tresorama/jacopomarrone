@@ -1,5 +1,4 @@
 import { readdirSync, readFileSync } from "fs";
-import path from "path";
 import matter from 'gray-matter';
 import type { CollectionDB } from "./create-collection";
 import { compileMarkdownToHTMLString } from "./utils.markdown";
@@ -8,14 +7,15 @@ import { capitalize } from "./utils.string";
 export const createDb_Flatfile = ({
   dirPath,
 }: {
-  /** Path to the directory containing the markdown files, relative to process.cwd() - i.e. `./src/contents/posts` */
+  /** Absolute path of the directory containing the markdown files.  
+   * @example `path.resolve(__dirname,"./src/contents/posts")` */
   dirPath: string,
 }) => {
 
   // Utils for working with disk
-  const getDirPath = () => path.resolve(process.cwd(), dirPath);
-  const getAllFileNames = () => readdirSync(getDirPath()).map(filename => filename.replace('.md', ''));
-  const getFileByFileName = (slug: string) => readFileSync(`${getDirPath()}/${slug}.md`);
+
+  const getAllFileNames = () => readdirSync(dirPath).map(filename => filename.replace('.md', ''));
+  const getFileByFileName = (slug: string) => readFileSync(`${dirPath}/${slug}.md`);
 
   // Private API
   const convertFileToItem = async (file: Buffer) => {
