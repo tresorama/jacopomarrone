@@ -1,10 +1,11 @@
 import * as fs from 'fs';
 import path from 'path';
-import { BlogPost, getAllBlogPosts } from "../../data/blog";
+import { BlogPost, getAllBlogPosts } from "../../../src/data/blog";
 import { generateOpenGraphImage } from './service.generate-image';
 
 // Utility - Disk
 const getFilePathFromHere = (relativePath: string) => path.resolve(__dirname, relativePath);
+
 
 // Class
 class BlogPostImageGenerator {

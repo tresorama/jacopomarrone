@@ -12,7 +12,6 @@
     "lint:ts": "tsc --noEmit",
     "lint:eslint": "next lint",
     "test": "vitest",
-    "data:generate-opengraph": "vite-node src/scripts/open-graph-generate-image/index.ts",
     "deps:auto-upgrade-test": "npm update && npm run build && npm run start",
     "deps:auto-upgrade-save": "npm update --save"
   },
@@ -44,8 +43,6 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
-    "handlebars": "^4.7.8",
-    "node-html-to-image": "^4.0.0",
     "npm-check-updates": "^16.14.18",
     "npm-run-all": "^4.1.5",
     "postcss": "^8",
@@ -53,7 +50,6 @@
     "sass": "^1.72.0",
     "tailwindcss": "^3.4.3",
     "typescript": "5.5.4",
-    "vite-node": "^2.0.5",
     "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.0.5"
   }
