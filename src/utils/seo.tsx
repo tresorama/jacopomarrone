@@ -22,7 +22,7 @@ export const Seo = ({ path, title, description, image }: SeoProps) => {
   const finalData = {
     url: path ? `${BASE_URL}${path}` : BASE_URL,
     title: title ? `${title} | Jacopo Marrone - Web Developer, Italy` : 'Jacopo Marrone - Web Developer, Italy',
-    description: description ? description : 'Give your business a boost with a new Website or a Tailor Made sodtaware or app that reduce your errors and time consumed on repeating tasks. Contact me and talk about your project!',
+    description: description ? description : 'Give your business a boost with a new Website or a Tailor Made software or app that reduce your errors and time consumed on repeating tasks. Contact me and talk about your project!',
     image: image ? `${BASE_URL}${image}` : `${BASE_URL}/images/seo/seo-jacopo-marrone.png`,
   };
 
