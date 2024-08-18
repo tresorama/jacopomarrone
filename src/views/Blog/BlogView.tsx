@@ -10,11 +10,6 @@ const formatDate = (date: Date | string) => {
 };
 
 export const BlogView = ({ blogPosts }: PageProps) => {
-
-  // in "production" and "staging" shows only "published" posts
-  // in "dev" shows all posts
-  const posts = IS_DEVELOPMENT ? blogPosts : blogPosts.filter(p => p.status === 'published');
-
   return (
     <AppShell>
 
@@ -26,7 +21,7 @@ export const BlogView = ({ blogPosts }: PageProps) => {
       <div className='w-full min-h-full grid grid-rows-[minmax(0,1fr)_auto] bg-gradient-base'>
         <main className="pt-28 pb-12 px-8 lg:pt-40 lg:px-16">
           <ul className='space-y-8'>
-            {posts.map(({ url, title, published_date }) => (
+            {blogPosts.map(({ url, title, published_date }) => (
               <li key={url}>
                 <article className="relative flex flex-col">
                   {published_date && (
