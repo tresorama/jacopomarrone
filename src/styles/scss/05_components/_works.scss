@@ -75,6 +75,11 @@ body.works--visible .works {
       margin-bottom: space('sm');
     }
 
+    ul {
+      list-style-type: "-  ";
+      padding-left: 1em;
+    }
+
     .secondary-text {
       color: color('grey-700');
     }
