@@ -7,6 +7,11 @@
 }
 
 .floating-panel {
+  // start hidden, then GSAP animates it to visible
+  visibility: hidden;
+}
+
+.floating-panel {
   & {
     position: fixed;
     top: 0;
