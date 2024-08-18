@@ -1,1 +1,1 @@
-{"src":{"views":{"home":{}},"utils":{},"pages":{}},"public":{"blog":{"disable-wordpress-rest-api-users-route-for-better-security":{}}}}
+{"src":{"views":{"home":{}},"utils":{},"pages":{}},"public":{"blog":{"disable-wordpress-rest-api-users-route-for-better-security":{},"dynamic-html-tag-in-react-components":{},"dynamic-html-tag-in-react-components-with-the-as-prop":{"as-prop-autocomlete-ide.png":{"title":"","caption":"","alt":"VS Code autocomplete suggestion for the \"as\" prop"}}}}}
