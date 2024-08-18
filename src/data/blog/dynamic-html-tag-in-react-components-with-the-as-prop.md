@@ -1,5 +1,5 @@
 ---
-status: draft
+status: published
 title: Dynamic HTML Tag in React Components with the "as" prop
 slug: dynamic-html-tag-in-react-components-with-the-as-prop
 description: Learn how to add the "as" prop to your React Component, to add dynamic HTML tags decided by the consumer Component
