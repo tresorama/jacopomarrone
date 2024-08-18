@@ -73,6 +73,12 @@ body,
         white-space: initial;
         // font-weight: 900;
       }
+
+      >*:nth-child(2) {
+        @include typo("small");
+        line-height: 1;
+        white-space: initial;
+      }
     }
 
     &--no-bg {
