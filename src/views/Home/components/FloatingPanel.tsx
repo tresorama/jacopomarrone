@@ -47,7 +47,7 @@ export const FloatingPanel = ({ as: Tag = 'div', isVisible, onCloseClick, childr
   }, [isVisible, onCloseClick]);
 
   return (
-    <Tag className="floating-panel works" ref={nodeWrapperRef} >
+    <Tag className="floating-panel" ref={nodeWrapperRef} >
       <div className="floating-panel__inner">
         {children}
       </div>

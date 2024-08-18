@@ -19,7 +19,6 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
   >
     <FloatingPanel.Header>
       <FloatingPanel.HeaderBackButton onClick={onCloseClick}>Close</FloatingPanel.HeaderBackButton>
-      <div className="contact__headline"><span>Contact Me</span></div>
     </FloatingPanel.Header>
     <FloatingPanel.Content>
       <TheForm />
