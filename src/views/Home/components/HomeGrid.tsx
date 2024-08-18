@@ -43,7 +43,7 @@ export const HomeGrid = ({ onWorksClick, onContactMeClick, onBlogClick }: {
   return (
     <nav className="home-grid__wrapper" ref={nodeWrapperRef}>
       <div className="home-grid home-grid--shrinked">
-        <div className="home-grid__box home-grid__box--no-bg home-grid__box-different home-grid-animate animate-from-left"><span>Jacopo Marrone</span></div>
+        <div className="home-grid__box home-grid__box--no-bg home-grid__box--different home-grid-animate animate-from-left"><span>Jacopo Marrone</span></div>
         <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="blog" onClick={onBlogClick} type='button'><span>Blog</span></button>
         <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="works" onClick={onWorksClick} type='button'><span>Works</span></button>
         <button className="home-grid__box home-grid-animate" data-gtm-el="home-box" data-gtm-el-key="contact-me" onClick={onContactMeClick} type='button'><span>Contact Me</span></button>
