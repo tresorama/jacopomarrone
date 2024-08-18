@@ -13,6 +13,7 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
   onCloseClick: () => void;
 }) => (
   <FloatingPanel
+    as="section"
     isVisible={isVisible}
     onCloseClick={onCloseClick}
   >
@@ -137,7 +138,7 @@ const TheForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       onReset={() => clearErrors()}
     >
-      <div className="form__heading"><span>Contact Me</span></div>
+      <h2 className="form__heading"><span>Contact Me</span></h2>
       <div className="form__section">
         <div className={`form-field ${errors['contact__name'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__name">Name</label>

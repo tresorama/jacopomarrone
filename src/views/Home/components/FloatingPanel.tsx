@@ -19,7 +19,8 @@ function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {
   }), []);
 }
 
-export const FloatingPanel = ({ isVisible, onCloseClick, children }: {
+export const FloatingPanel = ({ as: Tag = 'div', isVisible, onCloseClick, children }: {
+  as?: React.ElementType,
   isVisible: boolean;
   onCloseClick: () => void;
   children: React.ReactNode;
@@ -46,11 +47,11 @@ export const FloatingPanel = ({ isVisible, onCloseClick, children }: {
   }, [isVisible, onCloseClick]);
 
   return (
-    <div className="floating-panel works" ref={nodeWrapperRef} >
+    <Tag className="floating-panel works" ref={nodeWrapperRef} >
       <div className="floating-panel__inner">
         {children}
       </div>
-    </div>
+    </Tag>
   );
 };
 

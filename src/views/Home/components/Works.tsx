@@ -10,12 +10,13 @@ export const Works = ({
   onCloseClick: () => void;
 }) => (
   <FloatingPanel
+    as="section"
     isVisible={isVisible}
     onCloseClick={onCloseClick}
   >
     <FloatingPanel.Header>
       <FloatingPanel.HeaderBackButton onClick={onCloseClick}>Close</FloatingPanel.HeaderBackButton>
-      <div className="works__headline"><span>Works</span></div>
+      <h2 className="works__headline"><span>Works</span></h2>
     </FloatingPanel.Header>
     <FloatingPanel.Content>
       <div className="works__list">
