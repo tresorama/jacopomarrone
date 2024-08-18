@@ -129,7 +129,7 @@ $typo_scale_ratio: (
   // atLarge
   @include atLarge {
     font-size: root-font-size(20); // 20 px
-    @include generateTypoScale(1.333, -3, -1);
+    @include generateTypoScale(1.25, -3, -1);
     @include generateTypoScale(1.333, 0, 15);
   }
 
