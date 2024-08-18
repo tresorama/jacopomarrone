@@ -319,7 +319,7 @@
 // ========================
 //    VARIATIONS - BOX HOVER FX
 // ========================
-[class*="hover-fx--"] {
+[class*="hover-fx-a--"] {
   .home-grid__box {
     --hover-fx-time: 400ms;
     transition-duration: var(--hover-fx-time);
@@ -327,11 +327,11 @@
   }
 }
 
-.hover-fx--0 {
+.hover-fx-a--0 {
   // NO STYLE
 }
 
-.hover-fx--1 {
+.hover-fx-a--1 {
   .home-grid__box {
     transition-property: filter;
     filter: blur(2px);
@@ -342,7 +342,7 @@
   }
 }
 
-.hover-fx--2 {
+.hover-fx-a--2 {
   .home-grid__box {
     transition-property: filter;
     filter: blur(2px);
@@ -353,7 +353,7 @@
   }
 }
 
-.hover-fx--3 {
+.hover-fx-a--3 {
   .home-grid__box {
     transition-property: filter;
     filter: drop-shadow(2px 4px 6px color("transparent"));
@@ -364,7 +364,7 @@
   }
 }
 
-.hover-fx--4 {
+.hover-fx-a--4 {
   .home-grid__box {
     transition-property: filter;
     filter: grayscale(0.6);
@@ -375,7 +375,7 @@
   }
 }
 
-.hover-fx--5 {
+.hover-fx-a--5 {
   .box {
     transition-property: filter;
     filter: grayscale(1);
@@ -397,14 +397,17 @@
 }
 
 .hover-fx-b--1 {
-  .home-grid__box:not(.home-grid__box-different)>* {
-    transition-duration: 200ms;
-    transition-property: transform;
-    transform: none;
-    transform-origin: bottom left;
+  .home-grid__box:not(.home-grid__box--different) {
+    >* {
+      transition-duration: 200ms;
+      transition-property: transform;
+      transform: none;
+      transform-origin: bottom left;
+    }
+
+    &:hover>* {
+      transform: translateY(-20%) scale(1.1);
+    }
   }
 
-  .home-grid__box:not(.home-grid__box-different):hover>* {
-    transform: translateY(-20%) scale(1.1);
-  }
 }

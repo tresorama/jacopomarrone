@@ -27,7 +27,7 @@ export const HomeGrid = ({ onWorksClick, onContactMeClick, onBlogClick }: {
   const animation = useAnimation(nodeWrapperRef);
   useEffect(() => {
     // Add body classes, CSS need this
-    document.body.classList.add("variation--20", "hover-fx--0", "hover-fx-b--1");
+    document.body.classList.add("variation--20", "hover-fx-a--0", "hover-fx-b--1");
   }, []);
 
   // execute intro animation
