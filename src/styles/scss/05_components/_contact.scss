@@ -1,11 +1,3 @@
-body:not(.contact--visible) .contact {
-  visibility: hidden;
-}
-
-body.contact--visible .contact {
-  visibility: visible;
-}
-
 .contact {
 
   &__headline {

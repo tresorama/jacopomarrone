@@ -1,14 +1,5 @@
 @use "sass:color";
 
-body:not(.works--visible) .works {
-  visibility: hidden;
-}
-
-body.works--visible .works {
-  visibility: visible;
-}
-
-
 .works {
 
   &__headline {
