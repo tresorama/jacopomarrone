@@ -117,7 +117,9 @@
       p:before,p:after { content: none; }
     }
 
-    @apply prose-li:marker:text-zinc-400
+    @apply prose-li:marker:text-zinc-400;
+
+    @apply prose-img:rounded;
 
   }
 }
