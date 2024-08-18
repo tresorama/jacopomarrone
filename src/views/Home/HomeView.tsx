@@ -24,6 +24,10 @@ export const HomeView = () => {
 
   return (
     <>
+      <div className="sr-only">
+        <h1>Jacopo Marrone</h1>
+        <p>Web Developer and Digital Consultant in Italy, Reggio Emilia. Websites, Webapps, Software, Spreadsheets and Tailor-made digital solution. Enhance your business today!</p>
+      </div>
       <HomeGrid
         onWorksClick={() => setIsVisibleWorks(true)}
         onContactMeClick={() => setIsVisibleContactMe(true)}
