@@ -1,11 +1,11 @@
 {
-  "name": "scripts",
+  "name": "@scripts/generate-opengraph-images",
   "version": "0.0.0",
   "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "data:generate-opengraph-image": "cd ../ && vite-node ./scripts/src/open-graph-generate-image/index.ts"
+    "data:generate-opengraph-image": "cd ../../ && vite-node ./scripts/generate-opengraph-images/src/index.ts"
   },
   "keywords": [],
   "author": "Jacopo Marrone <@tresorama> (https://github.com/tresorama)",
