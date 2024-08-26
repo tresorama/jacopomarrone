@@ -26,6 +26,10 @@
   - Sitemap: Next.js Sitemap (App Router)
 - Deploy: Netlify
 
+## Resources
+
+- [Online grammar checkers](https://quillbot.com/grammar-check)
+
 ## Important Choiches
 
 - **2024-08-14**: The generation of OpenGraph images uses `puppeteer` under the hood. This means that during `npm install` a browser of 170MB+ will be downloaded. In the deploy server - that do not need to generate images becasue are already generated - the build will not complete because of this. I fixed the "build" by creating a separate node package in `root-dir/scripts` and moving code here. In this way the build will not need to download the browser.
