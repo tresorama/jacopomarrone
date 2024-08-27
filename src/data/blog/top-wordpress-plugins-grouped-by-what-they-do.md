@@ -83,4 +83,4 @@ Here is a list of the most used plugins based on my perspective.
 
 <a target="_blank" href="https://elastic-cymbal-9af.notion.site/03bdc660ec38433aaf43f792f13fd9b0?v=dd2a7bfbe2f74038882f136af3ca221c&pvs=74">Top Wordpress Plugins</a>
 
-I updates this list regularly. Feel free to [suggest your own](https://jacopomarrone.dev/?initial-is-visible-contact-me=true). 
+I update this list regularly. Feel free to [suggest your own](https://jacopomarrone.dev/?initial-is-visible-contact-me=true). 
