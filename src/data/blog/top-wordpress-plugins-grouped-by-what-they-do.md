@@ -79,8 +79,9 @@ TODO -->
 
 ## Collection of Plugins
 
-Here is a list of the most used plugins based on my perspective.  
+Here is a list of the most used Wordpress plugins (based on my perspective).  
+I update the list regularly.  
+
+You can add your own plugins to the list by following the instructions that you find in the link.  
 
 <a target="_blank" href="https://elastic-cymbal-9af.notion.site/03bdc660ec38433aaf43f792f13fd9b0?v=dd2a7bfbe2f74038882f136af3ca221c&pvs=74">Top Wordpress Plugins</a>
-
-I update this list regularly. Feel free to [suggest your own](https://jacopomarrone.com/?initial-is-visible-contact-me=true). 
