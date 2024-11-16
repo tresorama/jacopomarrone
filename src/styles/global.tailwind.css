@@ -102,17 +102,49 @@
       prose-base
       prose-h1:font-semibold prose-h1:tracking-tight
       prose-h2:font-normal prose-h2:text-4xl prose-h2:tracking-tight
-      prose-h3:font-normal prose-h3:text-3xl prose-h3:tracking-tight
+      prose-h3:font-normal prose-h3:text-2xl prose-h3:tracking-tight
       prose-h4:font-semibold prose-h4:text-base
       prose-h5:font-semibold prose-h5:text-sm
       prose-h6:font-semibold prose-h6:text-xs
     ;
     
-    @apply prose-code:bg-zinc-500 prose-code:text-white prose-code:before:content-none prose-code:after:content-none prose-code:px-1 prose-code:py-0;
-    pre code { background-color: transparent;}
+    :not(pre) {
+      @apply 
+      prose-code:inline-block 
+      prose-code:bg-zinc-100 
+      prose-code:text-inherit 
+      prose-code:rounded 
+      prose-code:before:content-none 
+      prose-code:after:content-none 
+      prose-code:pl-[0.4em] 
+      prose-code:pr-[0.4em] 
+      prose-code:pt-[0.0em] 
+      prose-code:pb-[0.0em] 
+      prose-code:[font-family:inherit]
+      prose-code:[font-size:inherit]
+      prose-code:[font-weight:inherit]
+      prose-code:leading-[1.5]
+      ;
+    }
+    pre {
+      @apply 
+      prose-code:bg-transparent
+      prose-code:not-italic
+      ;
+    }
+    blockquote {
+      @apply
+      prose-code:pl-[0.3em]
+      prose-code:pr-[0.5em]
+      ;
+    }
     
-    @apply prose-blockquote:bg-zinc-200/60 prose-blockquote:pt-6 prose-blockquote:pb-4 prose-blockquote:px-8;
-    & blockquote {
+    @apply 
+  prose-blockquote:bg-zinc-200/60 
+    prose-blockquote:py-6 
+    prose-blockquote:px-8
+    prose-blockquote:rounded;
+    blockquote {
       p { margin:0 }
       p:before,p:after { content: none; }
     }
