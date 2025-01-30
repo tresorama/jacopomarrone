@@ -16,7 +16,9 @@ body,
     margin: auto;
   }
 
-  &.home-grid--expanded {}
+  &.home-grid--expanded {
+    overflow: hidden;
+  }
 
   .home-grid__box,
   .home-grid__box>* {
