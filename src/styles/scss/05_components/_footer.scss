@@ -24,20 +24,22 @@ footer {
     display: grid;
     justify-items: end;
     align-items: center;
-    gap: space('sm');
-    padding: space('md') space('md');
-    @include typo('small-2');
+    gap: space('xs');
+    padding: space('sm') space('sm') space('xxs');
+    @include typo('small-3');
+    line-height: 1;
     color: color("grey-700");
     background-color: color('grey-900');
 
     @include atMedium {
       gap: space('xs');
-      padding: space('sm') space('md');
+      padding: space('sm') space('sm') space('xs');
+      @include typo('small-2');
     }
 
     @include atLarge {
       gap: space('xxs');
-      padding: space('xs') space('md');
+      padding: space('xs') space('sm') space('xxs');
     }
 
   }
@@ -52,7 +54,10 @@ footer {
   }
 
   &__link {
-    padding: 0.35em;
+    >a {
+      display: inline-block;
+      padding: 0.35em;
+    }
 
     &:hover {
       color: color("grey-400");
