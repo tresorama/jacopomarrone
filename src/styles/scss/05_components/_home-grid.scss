@@ -94,3 +94,44 @@ body,
   }
 
 }
+
+
+.home-grid.home-grid--reorder-1 {
+  .home-grid__box {
+    &:nth-child(1) {
+      // Jacopo Marrone
+      // border: 5px green solid;
+      grid-row: 1/3;
+      grid-column: 3/7;
+
+      @include atLarge {
+        padding-left: 30vw;
+      }
+
+      @include atHuge {
+        padding-left: 40vw;
+      }
+    }
+
+    &:nth-child(2) {
+      // Blog
+      // border: 5px red solid;
+      grid-row: 1/3;
+      grid-column: 1/3;
+    }
+
+    &:nth-child(4) {
+      // Contact Me
+      // border: 5px yellow solid;
+      grid-row: 3/4;
+      grid-column: 1/3;
+    }
+
+    &:nth-child(3) {
+      // Works
+      // border: 5px blue solid;
+      grid-row: 3/4;
+      grid-column: 3/7;
+    }
+  }
+}
