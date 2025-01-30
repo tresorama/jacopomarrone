@@ -154,6 +154,7 @@ $typo_scale_ratio: (
   --tracking-wider: 0.05em;
 
   /* Font-Sizes */
+  --fs--2xs: #{fontsize(-3)};
   --fs--xs: #{fontsize(-2)};
   --fs--sm: #{fontsize(-1)};
   --fs--md: #{fontsize(0)};
@@ -259,9 +260,17 @@ $typo_scale_ratio: (
     letter-spacing: var(--tracking-wider);
   }
 
+  @else if $key =='small-3' {
+    font-family: var(--font-family--body);
+    font-size: var(--fs--2xs);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+  }
+
   // if the key is not allowed, throw error
   @else {
-    @error "The key '#{$key}' is not allowed. Allowed keys are: 'gigantic', 'huge', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body', 'small', 'small-2'.";
+    @error "The key '#{$key}' is not allowed. Allowed keys are: 'gigantic', 'huge', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body', 'small', 'small-2', 'small-3'.";
   }
 
   @content; // in case cosnumer wants to add some custom css, manly overrides
