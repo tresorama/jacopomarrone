@@ -14,6 +14,10 @@ body,
     width: min-content;
     height: min-content;
     margin: auto;
+
+    & .home-grid__box {
+      width: 10vw;
+    }
   }
 
   &.home-grid--expanded {
@@ -76,14 +80,14 @@ body,
       // Blog
       // border: 5px red solid;
       grid-row: 1/4;
-      grid-column: 1/3;
+      grid-column: 1/2;
     }
 
     &:nth-child(4) {
       // Contact Me
       // border: 5px yellow solid;
       grid-row: 1/3;
-      grid-column: 3/5;
+      grid-column: 3/6;
     }
 
     &:nth-child(3) {
