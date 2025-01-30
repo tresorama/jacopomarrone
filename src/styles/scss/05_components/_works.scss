@@ -85,21 +85,6 @@
 }
 
 @include atLarge {
-  .work {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-  }
-
-  .work__image {
-    grid-column: 1/2;
-  }
-
-  .work__content {
-    padding-left: space('md');
-    padding-right: space('md');
-    padding-top: space('sm');
-  }
-
   .work__caption {
     @include typo('h3');
   }
