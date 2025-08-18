@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
+import { IS_DEVELOPMENT } from "@/constants/client";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/lib/integrations/GTM/client";
-import { IS_DEVELOPMENT } from "@/constants/client";
 import { FloatingPanel } from "./FloatingPanel";
 
 export const ContactMe = ({ isVisible, onCloseClick }: {
@@ -37,7 +37,7 @@ type ContactValues = z.infer<typeof contactSchema>;
 const initialFormValues: ContactValues = IS_DEVELOPMENT ? {
   contact__name: 'Test in Dev User',
   contact__email: 'jacopo.marrone.dev.test.user@gmail.com',
-  contact__message: 'Demo omessage',
+  contact__message: 'Demo message',
 } : {
   contact__name: '',
   contact__email: '',
@@ -98,71 +98,88 @@ async function submitFormToServer(formValues: ContactValues) {
 
 
 const TheForm = () => {
-  const [submitStatus, setSubmitStatus] = useState<{
-    status: 'idle' | 'pending' | 'success' | 'error',
-    error?: string,
-  }>({ status: 'idle' });
-  const { register, handleSubmit, formState: { errors }, clearErrors, reset } = useForm<ContactValues>({
+
+  // local state
+  const form = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: initialFormValues,
   });
-  const onSubmit: SubmitHandler<ContactValues> = async (data) => {
-    console.log(data);
+  const [submitResult, setSubmitResult] = useState<(
+    | { status: 'success', message: string; }
+    | { status: 'error'; errorMessage: string; }
+  ) | null>(null);
 
-    try {
-      setSubmitStatus({ status: 'pending' });
-      const { success, error } = await submitFormToServer(data);
-      if (!success) throw new Error(error);
-      setSubmitStatus({ status: 'success' });
-      reset();
-    } catch (error) {
-      if (IS_DEVELOPMENT) {
-        setSubmitStatus({
-          status: 'error',
-          error: error instanceof Error ? error.message : 'Unexpected error!'
+  // event handlers
+  const handleSubmit = form.handleSubmit(
+    async (data) => {
+      console.log(data);
+
+      try {
+        setSubmitResult(null);
+        const { success, error } = await submitFormToServer(data);
+        if (!success) throw new Error(error);
+        form.reset();
+        setSubmitResult({
+          status: 'success',
+          message: "✅ Successfully submitted. I will reply you back as soon as possible !"
         });
-      }
-      else {
-        setSubmitStatus({
+      } catch (error) {
+        setSubmitResult({
           status: 'error',
-          error: 'Ops something went wrong! Please retry or contact directly at jacopo.marrone27@gmail.com'
+          errorMessage: IS_DEVELOPMENT
+            ? (
+              error instanceof Error ? `❌  ${error.message}` : '❌ Please retry! An unexpected error happened!'
+            ) : (
+              '❌ Ops something went wrong! Please retry or contact directly at jacopo.marrone27@gmail.com'
+            )
         });
       }
     }
-  };
+  );
 
   return (
     <form
       className="form contact-form"
       id="contact-form"
-      onSubmit={handleSubmit(onSubmit)}
-      onReset={() => clearErrors()}
+      onSubmit={handleSubmit}
+      onReset={() => {
+        form.reset();
+        form.clearErrors();
+        setSubmitResult(null);
+      }}
     >
       <h2 className="form__heading"><span>Contact Me</span></h2>
       <div className="form__section">
-        <div className={`form-field ${errors['contact__name'] ? "form-field--is-invalid" : ''}`}>
+        <div className={`form-field ${form.formState.errors['contact__name'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__name">Name</label>
-          <input {...register('contact__name')} className="form-field__input" type="text" id="contact__name" name="contact__name" placeholder="Your name" />
-          <span className="form-field__helper-text">{errors['contact__name']?.message ?? ' '}</span>
+          <input {...form.register('contact__name')} className="form-field__input" type="text" id="contact__name" name="contact__name" placeholder="Your name" />
+          <span className="form-field__helper-text">{form.formState.errors['contact__name']?.message ?? ' '}</span>
         </div>
-        <div className={`form-field ${errors['contact__email'] ? "form-field--is-invalid" : ''}`}>
+        <div className={`form-field ${form.formState.errors['contact__email'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__email">Email</label>
-          <input {...register('contact__email')} className="form-field__input" type="text" id="contact__email" name="contact__email" placeholder="Your email" />
-          <span className="form-field__helper-text">{errors['contact__email']?.message ?? ' '}</span>
+          <input {...form.register('contact__email')} className="form-field__input" type="text" id="contact__email" name="contact__email" placeholder="Your email" />
+          <span className="form-field__helper-text">{form.formState.errors['contact__email']?.message ?? ' '}</span>
         </div>
-        <div className={`form-field ${errors['contact__message'] ? "form-field--is-invalid" : ''}`}>
+        <div className={`form-field ${form.formState.errors['contact__message'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__message">Message</label>
-          <textarea {...register('contact__message')} className="form-field__input" id="contact__message" name="contact__message" placeholder="Tell me about your project in just a few words ..." rows={6}></textarea>
-          <span className="form-field__helper-text">{errors['contact__message']?.message ?? ' '}</span>
+          <textarea {...form.register('contact__message')} className="form-field__input" id="contact__message" name="contact__message" placeholder="Tell me about your project in just a few words ..." rows={6}></textarea>
+          <span className="form-field__helper-text">{form.formState.errors['contact__message']?.message ?? ' '}</span>
         </div>
       </div>
       <div className="form__section form__section--actions">
-        <button className="button" type="submit"><span>Send</span></button>
-        <button className="button button--naked" type="reset"><span>Reset</span></button>
-
-        {submitStatus.status === 'pending' && (<span>Submitting...</span>)}
-        {submitStatus.status === 'success' && (<span>✅ Successfully submitted. I will reply you back as soon as possible !</span>)}
-        {submitStatus.status === 'error' && (<span>❌ {submitStatus.error}</span>)}
+        <button className="button" type="submit">
+          <span>Send</span>
+        </button>
+        <button className="button button--naked" type="reset">
+          <span>Reset</span>
+        </button>
+        {form.formState.isSubmitting ? (
+          <span>Submitting...</span>
+        ) : submitResult?.status === 'success' ? (
+          <span>{submitResult.message}</span>
+        ) : submitResult?.status === 'error' ? (
+          <span>{submitResult.errorMessage}</span>
+        ) : null}
       </div>
     </form>
   );
