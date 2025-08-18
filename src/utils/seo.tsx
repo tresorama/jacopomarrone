@@ -1,4 +1,6 @@
+import type { Metadata } from 'next';
 import Head from 'next/head';
+
 import { BASE_URL } from '@/constants/shared';
 
 type SeoProps = {
@@ -17,7 +19,62 @@ type SeoProps = {
   image?: string;
 };
 
-export const Seo = ({ path, title, description, image }: SeoProps) => {
+
+export const seoAppRouter = ({
+  path,
+  title,
+  description,
+  image,
+}: SeoProps): Metadata => {
+
+  const finalData = {
+    url: path ? `${BASE_URL}${path}` : BASE_URL,
+    title: title ? `${title} | Jacopo Marrone - Web Developer, Italy` : 'Jacopo Marrone - Web Developer, Italy',
+    description: description ? description : 'Give your business a boost with a new Website or a Tailor Made software or app that reduce your errors and time consumed on repeating tasks. Contact me and talk about your project!',
+    image: image ? `${BASE_URL}${image}` : `${BASE_URL}/images/seo/seo-jacopo-marrone.png`,
+  };
+
+  return {
+    // Primary Meta Tags
+    title: finalData.title,
+    description: finalData.description,
+    // Open Graph / Facebook
+    openGraph: {
+      type: 'website',
+      url: finalData.url,
+      title: finalData.title,
+      description: finalData.description,
+      images: [
+        {
+          url: finalData.image,
+          width: 1048,
+          height: 526
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: finalData.title,
+      description: finalData.description,
+      images: [
+        {
+          url: finalData.image,
+          // width: 1048,
+          // height: 526
+        }
+      ]
+    }
+  };
+
+};
+
+
+export const SeoPageRouter = ({
+  path,
+  title,
+  description,
+  image
+}: SeoProps) => {
 
   const finalData = {
     url: path ? `${BASE_URL}${path}` : BASE_URL,

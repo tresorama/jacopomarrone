@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 import { HomeGridAnimation } from '../animations/HomeGridAnimation';
 
 
@@ -23,6 +24,7 @@ export const HomeGrid = ({ onWorksClick, onContactMeClick, onBlogClick }: {
   onBlogClick: () => void;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const nodeWrapperRef = useRef<HTMLDivElement>(null);
   const animation = useAnimation(nodeWrapperRef);
   useEffect(() => {
@@ -33,12 +35,12 @@ export const HomeGrid = ({ onWorksClick, onContactMeClick, onBlogClick }: {
   // execute intro animation
   // or skip it based on query string
   useEffect(() => {
-    if (router.query["skip-intro-animation"] === 'true') {
+    if (searchParams?.get("skip-intro-animation") === 'true') {
       animation?.SKIP_ANIMATION();
       return;
     }
     animation?.FADE_IN();
-  }, [router.query, animation]);
+  }, [searchParams, animation]);
 
   return (
     <nav className="home-grid__wrapper" ref={nodeWrapperRef}>

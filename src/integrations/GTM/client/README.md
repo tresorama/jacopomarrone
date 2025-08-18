@@ -3,7 +3,32 @@ https://github.com/sahava/datalayer-typescript
 
 Look at index.ts to seee what is exported.
 
-Demo - Nextjs
+
+## Demo - Nextjs - App Router
+
+```tsx
+// app/layout.tsx
+import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/integrations/GTM";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <GoogleTagManagerHead />
+      <body>
+        <GoogleTagManagerBody />
+        {children}
+      </body>
+    </html>
+  )
+}
+```
+
+## Demo - Nextjs - Pages Router
+
 ```tsx
 // pages/_documents.tsx
 import { Html, Head, Main, NextScript } from 'next/document';

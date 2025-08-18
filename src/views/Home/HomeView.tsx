@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 import { HomeGrid } from './components/HomeGrid';
 import { ContactMe } from './components/ContactMe';
 import { Works } from './components/Works';
@@ -8,15 +11,16 @@ import { usePageExitAnimation } from './hooks/use-page-exit-animation';
 
 export const HomeView = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isVisibleWorks, setIsVisibleWorks] = useState(false);
   const [isVisibleContactMe, setIsVisibleContactMe] = useState(false);
   const BlogPageExitAnimation = usePageExitAnimation({
     onAnimationEnd: () => router.push('/blog')
   });
   useEffect(() => {
-    if (router.query["initial-is-visible-works"] === 'true') setIsVisibleWorks(true);
-    if (router.query["initial-is-visible-contact-me"] === 'true') setIsVisibleContactMe(true);
-  }, [router.query]);
+    if (searchParams?.get("initial-is-visible-works") === 'true') setIsVisibleWorks(true);
+    if (searchParams?.get("initial-is-visible-contact-me") === 'true') setIsVisibleContactMe(true);
+  }, [searchParams]);
   useEffect(() => {
     // Add classes, CSS need this
     document.querySelector('#__next')?.classList.add('home');
