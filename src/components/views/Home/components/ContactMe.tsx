@@ -11,7 +11,13 @@ import { FloatingPanel } from "./FloatingPanel";
 import { cn } from "@/lib/utils/cn";
 // import { wait } from "../utils/wait";
 
-export const ContactMe = ({ isVisible, onCloseClick }: {
+
+// main component
+
+export const ContactMe = ({
+  isVisible,
+  onCloseClick
+}: {
   isVisible: boolean;
   onCloseClick: () => void;
 }) => (
@@ -21,7 +27,9 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
     onCloseClick={onCloseClick}
   >
     <FloatingPanel.Header>
-      <FloatingPanel.HeaderBackButton onClick={onCloseClick}>Close</FloatingPanel.HeaderBackButton>
+      <FloatingPanel.HeaderBackButton onClick={onCloseClick}>
+        Close
+      </FloatingPanel.HeaderBackButton>
     </FloatingPanel.Header>
     <FloatingPanel.Content>
       <TheForm />
@@ -30,13 +38,17 @@ export const ContactMe = ({ isVisible, onCloseClick }: {
 );
 
 
-const contactSchema = z.object({
+// form
+
+
+// form schema
+const formSchema = z.object({
   contact__name: z.string({ required_error: 'Name is required' }),
   contact__email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
   contact__message: z.string({ required_error: 'Message is required' }),
 });
-type ContactValues = z.infer<typeof contactSchema>;
-const initialFormValues: ContactValues = IS_DEVELOPMENT ? {
+type FormValues = z.infer<typeof formSchema>;
+const initialFormValues: FormValues = IS_DEVELOPMENT ? {
   contact__name: 'Test in Dev User',
   contact__email: 'jacopo.marrone.dev.test.user@gmail.com',
   contact__message: 'Demo message',
@@ -46,7 +58,7 @@ const initialFormValues: ContactValues = IS_DEVELOPMENT ? {
   contact__message: ''
 };
 
-async function submitFormToServer(formValues: ContactValues) {
+async function submitFormToServer(formValues: FormValues) {
   const date = new Date();
 
   const data: ContactMeRequestData = {
@@ -104,8 +116,8 @@ async function submitFormToServer(formValues: ContactValues) {
 const TheForm = () => {
 
   // local state
-  const form = useForm<ContactValues>({
-    resolver: zodResolver(contactSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: initialFormValues,
   });
   const [submitResult, setSubmitResult] = useState<(
@@ -152,18 +164,23 @@ const TheForm = () => {
         setSubmitResult(null);
       }}
     >
-      <h2 className="form__heading"><span>Contact Me</span></h2>
+      <h2 className="form__heading">
+        <span>Contact Me</span>
+      </h2>
       <div className="form__section">
+        {/* Form Field - Name */}
         <div className={`form-field ${form.formState.errors['contact__name'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__name">Name</label>
           <input {...form.register('contact__name')} className="form-field__input" type="text" id="contact__name" name="contact__name" placeholder="Your name" />
           <span className="form-field__helper-text">{form.formState.errors['contact__name']?.message ?? ' '}</span>
         </div>
+        {/* Form Field - Email */}
         <div className={`form-field ${form.formState.errors['contact__email'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__email">Email</label>
           <input {...form.register('contact__email')} className="form-field__input" type="text" id="contact__email" name="contact__email" placeholder="Your email" />
           <span className="form-field__helper-text">{form.formState.errors['contact__email']?.message ?? ' '}</span>
         </div>
+        {/* Form Field - Message */}
         <div className={`form-field ${form.formState.errors['contact__message'] ? "form-field--is-invalid" : ''}`}>
           <label className="form-field__label" htmlFor="contact__message">Message</label>
           <textarea {...form.register('contact__message')} className="form-field__input" id="contact__message" name="contact__message" placeholder="Tell me about your project in just a few words ..." rows={6}></textarea>
@@ -171,11 +188,13 @@ const TheForm = () => {
         </div>
       </div>
       <div className="form__section form__section--actions">
+        {/* Form Butto - Submit */}
         <button className="button" type="submit">
           <span>
             {form.formState.isSubmitting ? 'Sending...' : 'Send'}
           </span>
         </button>
+        {/* Form Button - Reset */}
         <button className="button button--naked" type="reset">
           <span>Reset</span>
         </button>
