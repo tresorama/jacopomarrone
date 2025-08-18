@@ -16,6 +16,7 @@
     "deps:auto-upgrade-save": "npm update --save"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.48.4",
     "@hookform/resolvers": "^3.3.4",
     "axios": "^0.27.2",
     "gray-matter": "^4.0.3",
