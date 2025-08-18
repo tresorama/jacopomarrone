@@ -1,6 +1,7 @@
-export * from './shared';// export all `constants/shared`
-import { isBrowser } from './utils/is-server';
-import { getFromEnv } from './utils/from-env';
+export * from './constants.client.mjs';
+export * from './constants.server.mjs';
+
+import { isBrowser } from './utils/is-server.mjs';
 
 // Ensure this file is not imported in client/browser code
 if (isBrowser()) {
@@ -10,7 +11,3 @@ if (isBrowser()) {
   Check all import of your code.  Follow the import tree if necessary.
   `);
 }
-
-// Gmail
-export const GMAIL_USER_ADDRESS = getFromEnv('GMAIL_USER_ADDRESS');
-export const GMAIL_USER_APP_PASSWORD = getFromEnv('GMAIL_USER_APP_PASSWORD');
