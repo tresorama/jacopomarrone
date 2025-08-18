@@ -43,9 +43,9 @@ export const ContactMe = ({
 
 // form schema
 const formSchema = z.object({
-  contact__name: z.string({ required_error: 'Name is required' }),
-  contact__email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
-  contact__message: z.string({ required_error: 'Message is required' }),
+  contact__name: z.string().min(1, { message: 'Name is required' }),
+  contact__email: z.string().min(1, { message: 'Email is required' }).email('Invalid email address'),
+  contact__message: z.string().min(1, { message: 'Message is required' }),
 });
 type FormValues = z.infer<typeof formSchema>;
 const initialFormValues: FormValues = IS_DEVELOPMENT ? {
@@ -128,7 +128,9 @@ const TheForm = () => {
   // event handlers
   const handleSubmit = form.handleSubmit(
     async (data) => {
-      console.log(data);
+      if (IS_DEVELOPMENT) {
+        console.log(data);
+      }
 
       try {
         setSubmitResult(null);
