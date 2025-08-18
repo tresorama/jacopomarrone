@@ -44,11 +44,14 @@
 
   &__label {
     @include typo('small');
-    margin-bottom: space('xs');
+    margin-bottom: space('sm');
   }
 
   &__helper-text {
-    @include typo('small');
+    @include typo('small-3') {
+      letter-spacing: var(--tracking-wide);
+    }
+
     margin-top: space('sm');
 
     // &:empty:before {
@@ -59,19 +62,20 @@
 
   &--has-value &__label {}
 
+
+  // INVALID
+
+  $color_invalid: hsl(0deg 72.22% 50.59%);
+
   &--is-invalid &__label,
   &--is-invalid &__helper-text {
-    color: red;
-  }
-
-  &--is-invalid &__helper-text {
-    background-color: color.change(red, $alpha: 0.1);
+    color: $color_invalid;
   }
 
   &--is-invalid &__input,
-  &--is-invalid &__input:focus {
-    --outline-color: red;
+  &--is-invalid &__input:focus,
+  &--is-invalid &__input:focus-visible {
+    --outline-color: #{color.change($color_invalid, $alpha: 0.8)};
   }
-
 
 }

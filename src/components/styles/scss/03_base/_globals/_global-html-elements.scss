@@ -1,28 +1,30 @@
 @use "sass:color";
 
+
+// Global - Focus
+:where(*:focus-visible) {
+  outline-width: 2px;
+  outline-style: outset;
+  outline-color: color.change(color('grey-900'), $alpha: 0.3);
+}
+
+// Elements
 img {
   max-width: 100%;
   display: block;
 }
-
-
-
 
 input,
 textarea {
   padding: 0.5em 1em;
   width: 100%;
   max-width: 100%;
-  outline-width: 4px;
-  outline-style: outset;
+  outline-width: 2px;
+  outline-style: solid;
   outline-color: var(--outline-color, transparent);
-  &:focus {
+
+  &:focus,
+  &:focus-visible {
     --outline-color: #{color.change(color('grey-900'), $alpha: 0.5)};
   }
-}
-
-*:focus-visible {
-  outline-width: 4px;
-  outline-style: outset;
-  outline-color:  color.change(color('grey-900'), $alpha: 0.5);
 }
