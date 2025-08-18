@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { seoAppRouter } from '@/utils/seo';
-import { HomeView } from '@/views/Home/HomeView';
+import { seoAppRouter } from '@/lib/utils/seo';
+import { HomeView } from '@/components/views/Home/HomeView';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = seoAppRouter({

@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import type { PageData } from "@/app/(frontend)/blog/page";
-import { IS_DEVELOPMENT } from "@/constants/shared";
+import { IS_DEVELOPMENT } from "@/constants/client";
 import { AppShell } from "./components/AppShell";
 import { HeaderBar } from "./components/HeaderBar";
 

@@ -1,7 +1,7 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 
-import { ArrowLeft } from '@/views/_components/icons';
+import { ArrowLeft } from '@/components/views/_components/icons';
 import { getFloatingPanelAnimation } from '../animations/FloatingPanelAnimation';
 
 function useAnimation(nodeRef: React.RefObject<HTMLDivElement>) {

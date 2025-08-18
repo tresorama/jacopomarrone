@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Head from 'next/head';
 
-import { BASE_URL } from '@/constants/shared';
+import { BASE_URL } from '@/constants/server';
 
 type SeoProps = {
   /** The url segments of the current page, without the host url.  

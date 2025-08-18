@@ -4,18 +4,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "build:clean": "rimraf .next && next build",
-    "start": "next start",
+    "dev": "dotenvx run -f .env.dev.local -- next dev",
     "lint": "npm-run-all -s lint:**",
     "lint:ts": "tsc --noEmit",
     "lint:eslint": "next lint",
     "test": "vitest",
     "deps:auto-upgrade-test": "npm update && npm run build && npm run start",
-    "deps:auto-upgrade-save": "npm update --save"
+    "deps:auto-upgrade-save": "npm update --save",
+    "prod-simulate:build": "dotenvx run -f .env.prod-simulate.local -- next build",
+    "prod-simulate:start": "dotenvx run -f .env.prod-simulate.local -- next start",
+    "prod:build": "next build",
+    "prod:start": "next start"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.48.4",
     "@hookform/resolvers": "^3.3.4",
     "axios": "^0.27.2",
     "gray-matter": "^4.0.3",

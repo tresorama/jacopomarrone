@@ -13,4 +13,4 @@ export const isBrowser = () => {
   if (isTest()) return false;
   return isDOM();
 };
-export const isServer = () => !isDOM();
+export const isServer = () => !isBrowser();

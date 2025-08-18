@@ -2,9 +2,9 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { z } from "zod";
 
-import { seoAppRouter } from "@/utils/seo";
+import { seoAppRouter } from "@/lib/utils/seo";
 import { type BlogPost, getAllBlogPostSlugs, getBlogPostBySlug, getNextBlogPostBySlug, getPrevBlogPostBySlug } from "@/data/blog";
-import { BlogPostView } from "@/views/Blog/BlogPostView";
+import { BlogPostView } from "@/components/views/Blog/BlogPostView";
 
 // 1. generate static params for all items
 

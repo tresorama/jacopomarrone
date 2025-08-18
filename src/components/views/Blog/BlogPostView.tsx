@@ -4,7 +4,7 @@ import Link from "next/link";
 import 'highlight.js/styles/github-dark-dimmed.css'; //This is the theme your code is going to be displayed with.
 
 import { type PageData } from '@/app/(frontend)/blog/[slug]/page';
-import { IS_DEVELOPMENT } from "@/constants/shared";
+import { IS_DEVELOPMENT } from "@/constants/client";
 import { AppShell } from "./components/AppShell";
 import { HeaderBar } from "./components/HeaderBar";
 
