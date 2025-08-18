@@ -8,6 +8,7 @@ import { IS_DEVELOPMENT } from "@/constants/client";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/lib/integrations/GTM/client";
 import { FloatingPanel } from "./FloatingPanel";
+import { cn } from "@/lib/utils/cn";
 // import { wait } from "../utils/wait";
 
 export const ContactMe = ({ isVisible, onCloseClick }: {
@@ -80,7 +81,7 @@ async function submitFormToServer(formValues: ContactValues) {
       };
     }
 
-    throw new Error('Form data not submitted to server. Something went wrong');
+    throw new Error(`Status Code: ${response?.status}`);
 
   } catch (error) {
 
@@ -124,16 +125,16 @@ const TheForm = () => {
         form.reset();
         setSubmitResult({
           status: 'success',
-          message: "✅ Successfully submitted. I will reply you back as soon as possible !"
+          message: "Successfully submitted. I will reply you back as soon as possible !"
         });
       } catch (error) {
         setSubmitResult({
           status: 'error',
           errorMessage: IS_DEVELOPMENT
             ? (
-              error instanceof Error ? `❌  ${error.message}` : '❌ Please retry! An unexpected error happened!'
+              error instanceof Error ? `${error.message}` : 'Please retry! An unexpected error happened!'
             ) : (
-              '❌ Ops something went wrong! Please retry or contact directly at jacopo.marrone27@gmail.com'
+              'Ops something went wrong! Please retry or contact directly at jacopo.marrone27@gmail.com'
             )
         });
       }
@@ -171,20 +172,47 @@ const TheForm = () => {
       </div>
       <div className="form__section form__section--actions">
         <button className="button" type="submit">
-          <span>Send</span>
+          <span>
+            {form.formState.isSubmitting ? 'Sending...' : 'Send'}
+          </span>
         </button>
         <button className="button button--naked" type="reset">
           <span>Reset</span>
         </button>
-        {form.formState.isSubmitting ? (
-          <span>Submitting...</span>
-        ) : submitResult?.status === 'success' ? (
-          <span>{submitResult.message}</span>
-        ) : submitResult?.status === 'error' ? (
-          <span>{submitResult.errorMessage}</span>
-        ) : null}
       </div>
+      {form.formState.isSubmitting
+        ? null
+        : submitResult?.status === 'success' ? (
+          <div className="form__section">
+            <AlertMessage variant="success" message={submitResult.message} />
+          </div>
+        ) : submitResult?.status === 'error' ? (
+          <div className="form__section">
+            <AlertMessage variant="error" message={submitResult.errorMessage} />
+          </div>
+        ) : null}
     </form>
   );
 
+};
+
+
+const AlertMessage = ({
+  variant,
+  message,
+}: {
+  variant: 'success' | 'error',
+  message: string;
+}) => {
+  return (
+    <div
+      className={cn(
+        "block p-4 border border-solid text-sm",
+        variant === 'success' && 'border-green-300 bg-green-300/40 text-green-800',
+        variant === 'error' && 'border-red-300 bg-red-300/30 text-red-600',
+      )}
+    >
+      <span>{message}</span>
+    </div>
+  );
 };
