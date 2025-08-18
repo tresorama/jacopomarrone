@@ -8,6 +8,7 @@ import { IS_DEVELOPMENT } from "@/constants/client";
 import type { RequestData as ContactMeRequestData } from "@/pages/api/contact-me";
 import { GTM_CustomEventDispatcher, GTM_Events } from "@/lib/integrations/GTM/client";
 import { FloatingPanel } from "./FloatingPanel";
+// import { wait } from "../utils/wait";
 
 export const ContactMe = ({ isVisible, onCloseClick }: {
   isVisible: boolean;
@@ -58,8 +59,10 @@ async function submitFormToServer(formValues: ContactValues) {
   };
 
   try {
+    // DEBUG
     // const response = await wait(1000, { status: 200 }); // test success
-    // const response = await wait(1000, {status: 401}); // test fail
+    // const response = await wait(1000, { status: 400 }); // test fail
+    // REAL
     const response = await axios.post('/api/contact-me', data);
 
     if (response?.status === 200) {
