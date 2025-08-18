@@ -8,11 +8,11 @@
   - SASS + BEM (In / page)
   - Tailwind (in /blog pages)
   - Why 2? The project started with SASS and without a blog section. Then i added the blog and Tailwind was my go to at that point. One day (I hope) I will remove SASS and use Tailwind exclusively.
-- UI: Next.js (Pages Router) + React
+- UI: Next.js (App Router) + React
 - Animation: GSAP
 - Form :
   - State: react-hook-form
-  - Validation: yup
+  - Validation: zod
   - Mail Service: Gmail
 - Analytics: Google Tag Manager
 - Test: Vitest
@@ -21,9 +21,9 @@
   - Data: Flatfile (JSON + Markdown)
   - Data Reader: Custom "Collection" API that reads Markdown files
 - SEO: 
-  - Metadata: Custom React Component
+  - Metadata: Next.js Metadata API + custom function
   - Open Graph Images: Custom script that generates images based on frontmatter
-  - Sitemap: Next.js Sitemap (App Router)
+  - Sitemap: Next.js Sitemap
 - Deploy: Netlify
 
 ## Resources
