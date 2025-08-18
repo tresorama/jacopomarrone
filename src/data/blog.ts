@@ -1,8 +1,8 @@
 import path from 'path';
 import { z } from "zod";
-import { createCollection } from "@/lib/markdown-data-layer/create-collection";
-import { createDb_Flatfile } from "@/lib/markdown-data-layer/create-db.flat-file";
-import { sortByDateDescending } from "@/lib/markdown-data-layer/utils.sort";
+import { createCollection } from "@/lib/markdown-data-layer/lib/create-collection";
+import { createDb_Flatfile } from "@/lib/markdown-data-layer/lib/create-db.flat-file";
+import { sortByDateDescending } from "@/lib/markdown-data-layer/lib/utils.sort";
 import { IS_DEVELOPMENT } from '@/constants/shared';
 
 const getFilePathFromRoot = (relativePath: string) => path.resolve(process.cwd(), relativePath);

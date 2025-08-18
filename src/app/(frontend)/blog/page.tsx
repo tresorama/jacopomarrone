@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import { seoAppRouter } from "@/utils/seo";
+import { seoAppRouter } from "@/lib/utils/seo";
 import { getAllBlogPosts } from "@/data/blog";
-import { BlogView } from "@/views/Blog/BlogView";
+import { BlogView } from "@/components/views/Blog/BlogView";
 
 export const metadata: Metadata = seoAppRouter({
   path: '/blog',
