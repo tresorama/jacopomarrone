@@ -41,6 +41,10 @@ function inferNetlifyUrl() {
   //     - i.e. `https://5b243e66dd6a547b4fee73ae--petsof.netlify.app`
   //     - is the immutable deplyment url.
   //     - changes on each deployment
+  // - DEPLOY_PRIME_URL:
+  //     - i.e. `https://deploy-preview-1--petsof.netlify.app`
+  //     - is the deplyment url of the gruoup (deploy preview for the same PR, ...).
+  //     - changes when the group changees
   // - URL:
   //     - i.e. `https://my-project.netlify.app`
   //     - is the fixed production url of the project on Vercel
@@ -57,6 +61,9 @@ function inferNetlifyUrl() {
     }
 
     // ...and this git branch is not main and we have a netlify deployment url...
+    if (process.env.BRANCH !== 'main' && process.env.DEPLOY_PRIME_URL) {
+      return process.env.DEPLOY_PRIME_URL;
+    }
     if (process.env.BRANCH !== 'main' && process.env.DEPLOY_URL) {
       return process.env.DEPLOY_URL;
     }
