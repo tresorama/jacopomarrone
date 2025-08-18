@@ -1,6 +1,7 @@
 import React from "react";
-import { FloatingPanel } from "./FloatingPanel";
+
 import works from '@/data/portfolio.json';
+import { FloatingPanel } from "./FloatingPanel";
 
 export const Works = ({
   isVisible,

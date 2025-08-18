@@ -1,16 +1,25 @@
+'use client';
+
 import Link from "next/link";
-import { PageProps } from "@/pages/blog/[slug]";
 import 'highlight.js/styles/github-dark-dimmed.css'; //This is the theme your code is going to be displayed with.
+
+import { type PageData } from '@/app/(frontend)/blog/[slug]/page';
+import { IS_DEVELOPMENT } from "@/constants/shared";
 import { AppShell } from "./components/AppShell";
 import { HeaderBar } from "./components/HeaderBar";
-import { IS_DEVELOPMENT } from "@/constants/shared";
 
 const formatDate = (date: Date | string) => {
   const locale = IS_DEVELOPMENT ? 'en-US' : undefined;// prevent mismatch server/client
   return new Date(date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: '2-digit' });
 };
 
-export const BlogPostView = ({ blogPost, prevBlogPost, nextBlogPost }: PageProps) => (
+type BlogPostViewProps = Extract<PageData, { code: 'ITEM_FOUND'; }>['data'];
+
+export const BlogPostView = ({
+  blogPost,
+  prevBlogPost,
+  nextBlogPost
+}: BlogPostViewProps) => (
   <AppShell>
 
     <HeaderBar>

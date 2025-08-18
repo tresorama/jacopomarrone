@@ -1,7 +1,10 @@
-import { PageProps } from "@/pages/blog/index";
+'use client';
+
 import Link from "next/link";
-import { AppShell } from "./components/AppShell";
+
+import type { PageData } from "@/app/(frontend)/blog/page";
 import { IS_DEVELOPMENT } from "@/constants/shared";
+import { AppShell } from "./components/AppShell";
 import { HeaderBar } from "./components/HeaderBar";
 
 const formatDate = (date: Date | string) => {
@@ -9,7 +12,7 @@ const formatDate = (date: Date | string) => {
   return new Date(date).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: '2-digit' });
 };
 
-export const BlogView = ({ blogPosts }: PageProps) => {
+export const BlogView = ({ blogPosts }: PageData) => {
   return (
     <AppShell>
 
